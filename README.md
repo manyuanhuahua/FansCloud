@@ -3,7 +3,7 @@
 
 ## Database Schema Design
 
-![image] (图片的URL)
+![image] (https://github.com/manyuanhuahua/AA-fullstackProject1/blob/main/schema.png)
 
 ## API Documentation
 

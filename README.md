@@ -3,7 +3,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+`![image](https://github.com/manyuanhuahua/AA-fullstackProject1/blob/main/schema.png)`
 
 ## API Documentation
 

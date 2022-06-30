@@ -3,7 +3,7 @@
 
 ## Database Schema Design
 
-![Alt text](https://github.com/weiman152/StarsView/blob/master/ScreenShots/1.png)
+![Alt text](https://github.com/manyuanhuahua/AA-fullstackProject1/blob/main/schema.png)
 
 ## API Documentation
 

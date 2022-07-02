@@ -51,7 +51,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /user/current
+  * URL: /user/currentUser
   * Body: none
 
 * Successful Response
@@ -269,7 +269,7 @@ Returns all the songs created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /user/current/songs
+  * URL: /user/currentUser/songs
   * Body: none
 
 * Successful Response
@@ -357,7 +357,7 @@ Creates and returns a new song.
 * Require proper authorization: Album must belong to the current user
 * Request
   * Method: POST
-  * URL: /albums/:albumId
+  * URL: /albums/:albumId/new
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -660,7 +660,7 @@ Creates and returns a new album.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /albums
+  * URL: /albums/new
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1033,7 +1033,7 @@ Returns the details of an artist specified by their id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /user/:userId
+  * URL: /user/artist/:userId
   * Body: none
 
 * Successful Response
@@ -1072,7 +1072,7 @@ Returns all the songs created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /user/:userId/songs
+  * URL: /user/artist/:userId/songs
   * Body: none
 
 * Successful Response
@@ -1119,7 +1119,7 @@ Returns all the albums created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL:  /user/:userId/albums
+  * URL:  /user/artist/:userId/albums
   * Body: none
 
 * Successful Response
@@ -1164,7 +1164,7 @@ Returns all the playlists created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /user/:userId/playlists
+  * URL: /user/artist/:userId/playlists
   * Body: none
 
 * Successful Response
@@ -1261,7 +1261,7 @@ Add a song to a playlist specified by the playlist's id.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: POST
-  * URL: /user/current/playlists/:playlistId/songs
+  * URL: /playlists/:playlistId/songs
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1373,7 +1373,7 @@ Updates and returns an existing playlist.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: PUT
-  * URL: /users/current/playlist/:playlistId
+  * URL: /playlist/:playlistId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1439,7 +1439,7 @@ Deletes an existing playlist.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /users/current/playlist/:id
+  * URL: /playlist/:playlistId
   * Body: none
 
 * Successful Response

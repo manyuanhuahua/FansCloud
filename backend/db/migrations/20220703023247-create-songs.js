@@ -1,43 +1,45 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Songs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
-        unique:true
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+          model: "Users",
+          key: 'id'
+       },
+        onDelete: 'cascade'
       },
-      email: {
+      albumId: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+          model: 'Albums',
+          key: 'id'
+       },
+        onDelete: 'cascade'
+      },
+      title: {
         type: Sequelize.STRING,
-        unique:false,
         allowNull:false
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,//is it same as direct binary type
-        allowNull:false
-      },
-      firstName:{
+      description: {
         type: Sequelize.STRING,
-        unique:false,
-        allowNull:false
+        allowNull: false
       },
-      lastName:{
+      audioUrl: {
         type: Sequelize.STRING,
-        unique:false,
         allowNull:false
       },
-      isArtist: {
-        type: Sequelize.BOOLEAN,
-        allowNull:false
-      },
-      previewImage:{
-        type: Sequelize.STRING,
+      previewImage: {
+        type: Sequelize.STRING
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -52,6 +54,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Songs');
   }
 };

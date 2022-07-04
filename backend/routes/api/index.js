@@ -25,18 +25,22 @@ router.use(restoreUser);
     //     return res.json(req.user)
     // })
 
-    // const { reuquireAuth} = require('../../utils/auth.js');
+
+const { requireAuth} = require('../../utils/auth.js');
+router.use(requireAuth)
+
+    // const { requireAuth} = require('../../utils/auth.js');
     // router.get('/require-auth',requireAuth,(req,res)=>{
-        //     return res.json(req.user)
-        // })
+    //         return res.json(res)
+    // })
 
 router.use('/session',sessionRouter)
 
 router.use('/users',userRouter);
 
-router.post('/test',(req,res)=>{
-    res.json({requestBody: req.body})
-})
+// router.post('/test',(req,res)=>{
+//     res.json({requestBody: req.body})
+// })
 
 
 

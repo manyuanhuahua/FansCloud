@@ -49,15 +49,32 @@ const restoreUser = (req, res, next)=>{
 //if there is no current user, return an error
 const requireAuth = function (req, _res, next){
     if(req.user) return next();
-    const err = new Error('Unauthorized');
+    const err = new Error("Authentication required");
     err.title= 'Unauthorized';
     err.errors = ['Unauthorized'];
     err.status = 401;
     return next(err)
 }
 
+
+//if current does not have the correct permission, return an error
+//if current user is not a creator, return forbidden error
+const createrAuth = function (req, res, next){
+    //if current user is a listener
+    if(req.user.prevewImage) return next()
+
+    const err = new Error("Forbidden");
+    err.title= 'Unauthorized';
+    err.errors = ['Unauthorized'];
+    err.status = 403;
+    return next(err)
+}
+
+
+
 module.exports = {
     setTokenCookie,
     restoreUser,
-    requireAuth
+    requireAuth,
+    createrAuth
 }

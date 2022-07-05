@@ -51,7 +51,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /user/currentUser
+  * URL: /session/currentUser
   * Body: none
 
 * Successful Response

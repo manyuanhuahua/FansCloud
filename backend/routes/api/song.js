@@ -20,7 +20,7 @@ router.get('/',async (req,res)=>{
 
 })
 
-router.get('/:songId',async (req,res)=>{
+router.get('/:songId',async (req,res,next)=>{
     const { songId } = req.params
 
     Song.addScope('artistScope',{
@@ -45,7 +45,11 @@ router.get('/:songId',async (req,res)=>{
     if(song){
         return res.json(song)
     }else{
-        return res.json({})
+        const err = new Error("Song couldn't be found");
+        err.status = 404;
+        err.title = 'Find song failed';
+        // err.errors=['The song id is invalid.'];
+        return next(err);
     }
 
 })

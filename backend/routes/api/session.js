@@ -2,7 +2,7 @@ const express = require('express')
 
 
 
-const {setTokenCookie, restoreUser } = require('../../utils/auth');
+const {setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { User }= require('../../db/models');
 
 const { check }=require('express-validator');
@@ -21,21 +21,13 @@ router.delete('/',(_req, res)=>{
 
 
 
-router.get('/',restoreUser,(req,res)=>{
-    const { user }=req.user;
-    if(user){
-        return res.json({
-            user: user.toSafeObject()
-        })
-    }else return res.json({})
-})
 
 
 const validateLogin = [
-    check('credential')
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .withMessage('Please provide a valid email or username.'),
+  check('credential')
+  .exists({ checkFalsy: true })
+  .notEmpty()
+  .withMessage('Please provide a valid email or username.'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.'),
@@ -60,12 +52,14 @@ app.post(
 
 
 router.post('/', validateLogin, async (req,res,next)=>{
-    const { credential, password }= req.body;
+    const { credential, password, token }= req.body;
+    console.log(token)
     const user = await User.login({ credential, password });
 
+
     if(!user){
-        const err = new Error('Login failed');
-        err.staus = 401;
+        const err = new Error('Invalid credentials');
+        err.status = 401;
         err.title = 'Login failed';
         err.errors=['The provided credentials were invalid.'];
         return next(err);
@@ -74,9 +68,28 @@ router.post('/', validateLogin, async (req,res,next)=>{
     await setTokenCookie(res, user);
 
     return res.json({
-        user
+        id : user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.username,
+        token: ''
     })
 })
+
+router.get('/currentUser',restoreUser,async (req,res)=>{
+
+
+    if(req.user){
+        return res.json(
+            req.user
+        )
+    }else return res.json({})
+})
+
+
+
+
 
 
 

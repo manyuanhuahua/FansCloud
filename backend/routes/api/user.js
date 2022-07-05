@@ -16,12 +16,14 @@ const validateSignup = [
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
-        .withMessage('Please provide a valid email.')
+        .withMessage('Please provide a valid email.'),
+    check('email')
         .custom(async function(email){
-            const existedEmail = await User.findeOne({where:{email: email}})
-            return existedEmail.length === 0
+            const existedEmail = await User.findOne({where:{email,}})
+            if(existedEmail) return Promise.reject('Email is also exist')
         })
         .withMessage('User with that email already exists'),
+
 
     check('username')
         .exists({ checkFalsy: true })
@@ -30,30 +32,31 @@ const validateSignup = [
     check('username')
         .not()
         .isEmail()
-        .withMessage('Username cannot be an email.')
+        .withMessage('Username cannot be an email.'),
+    check('username')
         .custom(async function(username){
-            const existedUserName = await User.findeOne({username: username})
-            return existedUserName.length === 0
+            const existedUserName = await User.findOne({where: {username}})
+            if(existedUserName) return Promise.reject('Username is also exist')
         })
         .withMessage('User with that username already exists'),
 
-    check('password')
+
+        check('password')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a password.'),
-    check('password')
+        check('password')
         .exists({ checkFalsy: true })
         .isLength({ min: 6 })
         .withMessage('Password must be 6 characters or more.'),
-    check('firstName')
+        check('firstName')
         .exists({ checkFalsy: true })
         .withMessage('First Name is required.'),
-    check('lastName')
+        check('lastName')
         .exists({ checkFalsy: true })
         .withMessage('Last Name is required.'),
-    emailExistedErrors,
-    usernameExistedErrors,
-    handleValidationErrors
-];
+        handleValidationErrors
+
+    ];
 
 
 router.post('/',validateSignup,async (req,res)=>{

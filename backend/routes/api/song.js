@@ -1,11 +1,11 @@
 const express = require('express')
 
-const {setTokenCookie, requireAuth}= require('../../utils/auth');
+// const {setTokenCookie, requireAuth}= require('../../utils/auth');
 const {User, Album, Song} = require('../../db/models')
 
-const {check}=require('express-validator');
-const {handleValidationErrors, emailExistedErrors,usernameExistedErrors}=require('../../utils/validation')
-const { Op } = require('sequelize');
+// const {check}=require('express-validator');
+// const {handleValidationErrors, emailExistedErrors,usernameExistedErrors}=require('../../utils/validation')
+// const { Op } = require('sequelize');
 
 
 const router = express.Router();
@@ -29,9 +29,10 @@ router.get('/:songId',async (req,res,next)=>{
               model: User,
               where: {
                 isArtist: true
-              },
-              attributes: ['id','username','previewImage']
-            }]
+            },
+            attributes: ['id','username','previewImage'],
+
+            }],
           });
     Song.addScope('albumScope',{
           include:[{

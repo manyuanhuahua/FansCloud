@@ -1,16 +1,16 @@
 const { validationResult } = require('express-validator');
 const handleValidationErrors = (req, _res, next)=>{
     const validationErrors = validationResult(req);
-
+    // console.log(validationErrors)
     if(!validationErrors.isEmpty()){
         const errors = validationErrors
                 .array()
                 .map((error)=>(`${error.param}: ${error.msg}`));
 
-        const err = Error('Bad request.');
+        const err = Error('Validation Error');
         err.errors=errors;
         err.status = 400;
-        err.title = 'Bad request.';
+        err.title = 'Validation Error';
         next(err)
     };
     next();
@@ -18,43 +18,6 @@ const handleValidationErrors = (req, _res, next)=>{
 
 };
 
-const emailExistedErrors = (req, _res, next)=>{
-    const validationErrors = validationResult(req);
-
-    if(!validationErrors.isEmpty()){
-        const errors = validationErrors
-                .array()
-                .map((error)=>(`${error.param}: ${error.msg}`))[1];
-
-        const err = Error('User already exists');
-        err.errors= errors;
-        err.status = 403;
-        err.title = 'Bad request.';
-        next(err)
-    };
-    next();
-
-
-};
-
-const usernameExistedErrors = (req, _res, next)=>{
-    const validationErrors = validationResult(req);
-
-    if(!validationErrors.isEmpty()){
-        const errors = validationErrors
-                .array()
-                .map((error)=>(`${error.param}: ${error.msg}`))[2];
-
-        const err = Error('User already exists');
-        err.errors= errors;
-        err.status = 403;
-        err.title = 'Bad request.';
-        next(err)
-    };
-    next();
-
-
-};
 
 
 
@@ -63,7 +26,5 @@ const usernameExistedErrors = (req, _res, next)=>{
 
 
 module.exports={
-    handleValidationErrors,
-    emailExistedErrors,
-    usernameExistedErrors
+    handleValidationErrors
 }

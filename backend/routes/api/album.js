@@ -9,7 +9,7 @@ const {requireAuth,createrAuth}=require('../../utils/auth')
 
 const router = express.Router();
 
-const validateSong = [
+const validateAlbumSong = [
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Song title is required.'),
@@ -26,7 +26,7 @@ const validateSong = [
 
 
 
-router.post('/:albumId/new',requireAuth, validateSong, async(req, res, next)=>{
+router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next)=>{
     const { albumId } = req.params
     const { title, description, audioUrl, previewImage } = req.body
     const album = await Album.findOne({
@@ -34,7 +34,7 @@ router.post('/:albumId/new',requireAuth, validateSong, async(req, res, next)=>{
             id: albumId
         }
     })
-    
+
     const id = req.user.dataValues.id
     const artist = await User.findByPk(id)
     if(album){

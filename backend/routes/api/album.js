@@ -63,7 +63,14 @@ router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next
     }
 })
 
-
+router.get('/', async (req,res,next)=>{
+    const albums = await Album.findAll()
+    if(albums){
+        res.json(albums)
+    }else{
+        res.json({})
+    }
+})
 
 
 

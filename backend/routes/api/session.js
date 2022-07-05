@@ -127,6 +127,22 @@ router.get('/currentUser/songs',async (req,res)=>{
 
 })
 
+router.get('/currentUser/albums', async (req,res,next)=>{
+    const userId = req.user.dataValues.id
+    const albums = await Album.findAll({
+      where:{
+        userId
+      }
+    })
+
+    if(albums){
+      res.json(
+        {'Albums': albums})
+    }else{
+      return res.json({})
+  }
+})
+
 
 
 

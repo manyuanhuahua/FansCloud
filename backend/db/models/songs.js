@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 
-    
+
 
 
 
@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Song',
+    defaultScope :{
+      attributes: {}
+    },
+   
   });
   return Song;
 };

@@ -3,10 +3,11 @@ const express = require('express')
 
 
 const {setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { User }= require('../../db/models');
+const {User, Album, Song} = require('../../db/models')
 
 const { check }=require('express-validator');
-const { handleValidationErrors} = require('../../utils/validation')
+const { handleValidationErrors} = require('../../utils/validation');
+// const { Model } = require('sequelize/types');
 
 const router = express.Router();
 
@@ -52,8 +53,8 @@ app.post(
 
 
 router.post('/', validateLogin, async (req,res,next)=>{
-    const { credential, password, token }= req.body;
-    console.log(token)
+    const { credential, password }= req.body;
+    // console.log(token)
     const user = await User.login({ credential, password });
 
 
@@ -88,7 +89,43 @@ router.get('/currentUser',restoreUser,async (req,res)=>{
 })
 
 
+router.get('/currentUser/songs',async (req,res)=>{
 
+  const songs = await Song.findAll(
+    {
+      where:{
+        userId : req.user.id
+      },
+      include: User
+    }
+  )
+
+  let arr = []
+  // console.log(songs)
+  if(songs.length){
+
+      for( let song of songs){
+        let obj = {}
+        obj.id = song.id;
+        obj.userId = song.userId;
+        obj.albumId = song.albumId;
+        obj.title = song.title;
+        obj.description = song.description;
+        obj.audioUrl = song.audioUrl;
+        obj.previewImage = song.previewImage;
+        obj.createdAt = song.createdAt;
+        obj.updatedAt = song.updatedAt
+
+        arr.push(obj)
+      }
+
+
+      return res.json(arr)
+  }else{
+      return res.json({})
+  }
+
+})
 
 
 

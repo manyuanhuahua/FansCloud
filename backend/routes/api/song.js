@@ -56,5 +56,22 @@ router.get('/:songId',async (req,res,next)=>{
 })
 
 
+router.delete('/:songId', async (req, res, next)=>{
+    const { songId } = req.params
+    const song = await Song.findByPk(songId)
+    if(!song){
+        const err = new Error("Song couldn't be found")
+        err.status = 404
+        return next(err)
+    }
+    await song.destroy()
+    res.json({
+        message: "Successfully deleted",
+        statusCode: 200
+    })
+})
+
+
+
 
 module.exports= router

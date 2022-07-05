@@ -37,7 +37,7 @@ const restoreUser = (req, res, next)=>{
         try{
             const { id }=jwtPayload.data;
             req.user = await User.scope('currentUser').findByPk(id);
-            
+
         }catch(e){
             res.clearCookie('token');
             return next();
@@ -61,16 +61,21 @@ const requireAuth = function (req, _res, next){
 
 //if current does not have the correct permission, return an error
 //if current user is not a creator, return forbidden error
-const createrAuth = function (req, res, next){
+const createrAuth =  async (req, _res, next)=>{
     //if current user is a listener
-    if(isArtist) return next()
 
-    const err = new Error("Forbidden");
-    err.title= 'Permission Unauthorized';
-    err.errors = ['Permission Unauthorized'];
-    err.status = 403;
-    return next(err)
-}
+        const id = req.user.dataValues.id
+        const artist = await User.findByPk(id)
+        if(artist.dataValues.isArtist) return next()
+
+        const err = new Error("Forbidden");
+        err.title= 'Permission Unauthorized';
+        err.errors = ['Permission Unauthorized'];
+        err.status = 403;
+        return next(err)
+    }
+
+
 
 
 

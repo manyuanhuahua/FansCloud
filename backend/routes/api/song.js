@@ -1,12 +1,15 @@
 const express = require('express')
 
 const {setTokenCookie, requireAuth}= require('../../utils/auth');
-const {User, Album, Song, Comment} = require('../../db/models')
+const {User, Song, Comment} = require('../../db/models')
 
 const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation');
 const { ResultWithContext } = require('express-validator/src/chain');
 // const { Op } = require('sequelize');
+
+const router = express.Router();
+
 
 const validateSong = [
     check('title')
@@ -20,12 +23,17 @@ const validateSong = [
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Descrtiption is required.'),
-    handleValidationErrors
-];
+        handleValidationErrors
+    ];
 
 
+    const validateComment = [
+            check('body')
+                .exists({ checkFalsy: true })
+                .withMessage('Comment body is required.'),
+            handleValidationErrors
+        ];
 
-const router = express.Router();
 
 router.get('/',async (req,res)=>{
     const songs = await Song.findAll()
@@ -63,7 +71,7 @@ router.delete('/:songId', requireAuth,async (req, res, next)=>{
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
-        if (artist.dataValues.isArtist && id === song.userId){
+        if (artist.isArtist && id === song.userId){
 
             await song.destroy()
             res.json({
@@ -95,7 +103,7 @@ router.put('/:songId', validateSong, async(req,res,next)=>{
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
-        if (artist.dataValues.isArtist && id === song.userId){
+        if (artist.isArtist && id === song.userId){
             song.update({
                 title,
                 description,
@@ -138,12 +146,6 @@ router.get('/:songId/comments', async(req, res, next)=>{
     }
 })
 
-const validateComment = [
-    check('body')
-        .exists({ checkFalsy: true })
-        .withMessage('Comment body is required.'),
-    handleValidationErrors
-];
 
 router.post('/:songId/comments/new',requireAuth, validateComment, async(req, res, next)=>{
     const { songId } = req.params
@@ -167,6 +169,10 @@ router.post('/:songId/comments/new',requireAuth, validateComment, async(req, res
         return next(err);
     }
 })
+
+
+
+
 
 
 

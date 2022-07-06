@@ -61,19 +61,19 @@ const requireAuth = function (req, _res, next){
 
 //if current does not have the correct permission, return an error
 //if current user is not a creator, return forbidden error
-const createrAuth =  async (req, _res, next)=>{
-    //if current user is a listener
+// const createrAuth =  async (req, _res, next)=>{
+//     //if current user is a listener
 
-        const id = req.user.dataValues.id
-        const artist = await User.findByPk(id)
-        if(artist.dataValues.isArtist) return next()
+//         const id = req.user.dataValues.id
+//         const artist = await User.findByPk(id)
+//         if(artist.dataValues.isArtist) return next()
 
-        const err = new Error("Forbidden");
-        err.title= 'Permission Unauthorized';
-        err.errors = ['Permission Unauthorized'];
-        err.status = 403;
-        return next(err)
-    }
+//         const err = new Error("Forbidden");
+//         err.title= 'Permission Unauthorized';
+//         err.errors = ['Permission Unauthorized'];
+//         err.status = 403;
+//         return next(err)
+//     }
 
 
 
@@ -83,5 +83,5 @@ module.exports = {
     setTokenCookie,
     restoreUser,
     requireAuth,
-    createrAuth
+    // createrAuth
 }

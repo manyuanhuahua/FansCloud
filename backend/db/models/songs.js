@@ -40,7 +40,9 @@ module.exports = (sequelize, DataTypes) => {
     defaultScope :{
       attributes: {}
     },
-
+    scopes:{
+      
+    }
   });
   return Song;
 };

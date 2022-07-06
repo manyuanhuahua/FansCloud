@@ -24,6 +24,20 @@ const validateAlbumSong = [
     handleValidationErrors
 ];
 
+const validateAlbum = [
+    check('title')
+        .exists({ checkFalsy: true })
+        .withMessage('Album title is required.'),
+
+    check('previewImage')
+        .exists({ checkFalsy: true })
+        .withMessage('Album preview image is required.'),
+
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Descrtiption is required.'),
+    handleValidationErrors
+];
 
 
 router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next)=>{
@@ -72,8 +86,30 @@ router.get('/', async (req,res,next)=>{
     }
 })
 
+router.get('/:albumId', async (req, res, next)=>{
+    const {albumId} = req.params
+    const album = await Album.scope('artistScope','songScope').findOne({where: { id: albumId }})
 
+    if(album){
+        res.json(album)
+    }else{
+        const err = new Error ("Album couldn't be found")
+        err.status = 404
+        next(err)
+    }
+})
 
+router.post('/new', requireAuth, validateAlbum, async (req, res, next)=>{
+    const { title, description, previewImage } = req.body
+    const userId = req.user.dataValues.id
+    const album = await Album.create({
+            'userId': userId,
+            title,
+            description,
+            previewImage
+        })
+        res.json(album)
+    })
 
 
 

@@ -37,6 +37,28 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Album',
-  });
+    defaultScope:{},
+    scopes:{
+      artistScope(){
+        const { User } = require('../models');
+        return {
+        include: [{
+          model: User,
+          where:{
+              isArtist: true
+          },
+          attributes: ['id', 'username','previewImage']
+      }],
+      }
+    },
+    songScope(){
+      const { Song } = require('../models')
+      return {
+        include:[{
+          model: Song,
+          attributes:{}}],
+      }
+  },
+  }});
   return Album;
 };

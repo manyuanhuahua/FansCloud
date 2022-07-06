@@ -89,7 +89,7 @@ router.get('/currentUser',restoreUser,async (req,res)=>{
 })
 
 
-router.get('/currentUser/songs',async (req,res)=>{
+router.get('/currentUser/songs',requireAuth, async (req,res)=>{
 
   const songs = await Song.findAll(
     {
@@ -127,7 +127,7 @@ router.get('/currentUser/songs',async (req,res)=>{
 
 })
 
-router.get('/currentUser/albums', async (req,res,next)=>{
+router.get('/currentUser/albums', requireAuth, async (req,res,next)=>{
     const userId = req.user.dataValues.id
     const albums = await Album.findAll({
       where:{

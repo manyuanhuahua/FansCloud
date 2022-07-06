@@ -867,7 +867,7 @@ Create and return a new comment for a song specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /songs/:songId/comments
+  * URL: /songs/:songId/comments/new
   * Headers:
     * Content-Type: application/json
   * Body:

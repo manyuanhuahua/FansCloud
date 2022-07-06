@@ -112,6 +112,63 @@ router.post('/new', requireAuth, validateAlbum, async (req, res, next)=>{
     })
 
 
+router.put('/:albumId',requireAuth, validateAlbum, async (req, res, next)=>{
+    const { albumId } = req.params
+    const album = await Album.findByPk(albumId)
+
+    const { title, description, previewImage} = req.body
+
+    const id = req.user.dataValues.id
+    const artist = await User.findByPk(id)
+    if(album){
+        if (artist.dataValues.isArtist && id === album.userId){
+            album.update({
+                title,
+                description,
+                previewImage
+            })
+            res.json(album)
+        }else{
+            const err = new Error("Forbidden");
+            err.title= 'Permission Unauthorized';
+            err.errors = ['Permission Unauthorized'];
+            err.status = 403;
+            return next(err)
+        }
+    }else{
+        const err = new Error("Album couldn't be found")
+        err.status = 404
+        return next(err)
+    }
+})
+
+router.delete('/:albumId', requireAuth, async (req, res, next)=>{
+    const { albumId } = req.params
+    const album = await Album.findByPk(albumId)
+
+    const id = req.user.dataValues.id
+    const artist = await User.findByPk(id)
+    if(album){
+        if (artist.dataValues.isArtist && id === album.userId){
+            await album.destroy()
+            res.json({
+                message: "Successfully deleted",
+                statusCode : 200
+            })
+    }else {
+        const err = new Error("Forbidden");
+            err.title= 'Permission Unauthorized';
+            err.errors = ['Permission Unauthorized'];
+            err.status = 403;
+            return next(err)
+    }
+    }else{
+        const err = new Error("Album couldn't be found")
+        err.status = 404
+        return next(err)
+    }
+    }
+)
 
 
 module.exports= router

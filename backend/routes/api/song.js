@@ -39,24 +39,6 @@ router.get('/',async (req,res)=>{
 router.get('/:songId',async (req,res,next)=>{
     const { songId } = req.params
 
-    Song.addScope('artistScope',{
-
-            include: [{
-              model: User,
-              where: {
-                isArtist: true
-            },
-            attributes: ['id','username','previewImage'],
-
-            }],
-          });
-    Song.addScope('albumScope',{
-          include:[{
-            model: Album,
-            attributes: ['id','title','previewImage']
-          }]
-          });
-
     const song = await Song.scope('artistScope','albumScope').findOne({where:{id : songId},})
 
     if(song){

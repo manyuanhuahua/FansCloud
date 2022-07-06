@@ -1033,7 +1033,7 @@ Returns the details of an artist specified by their id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /user/artist/:userId
+  * URL: /artist/:userId
   * Body: none
 
 * Successful Response

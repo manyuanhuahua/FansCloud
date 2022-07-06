@@ -1208,7 +1208,7 @@ Creates and returns a new playlist.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /playlists
+  * URL: /playlists/new
   * Headers:
     * Content-Type: application/json
   * Body:

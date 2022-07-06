@@ -30,6 +30,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Comment',
+    scopes:{
+      userScope(){
+        const { User } = require('../models')
+        return {
+          include:[
+            {model: User,
+              attributes:['id','username']
+            }]
+        }
+      }
+    }
   });
   return Comment;
 };

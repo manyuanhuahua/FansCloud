@@ -3,6 +3,7 @@ const sessionRouter = require('./session.js')
 const userRouter = require('./user.js')
 const songRouter = require('./song.js')
 const albumRouter = require('./album.js')
+const commentRouter = require('./comment.js')
 
 const {restoreUser}=require('../../utils/auth.js')
 
@@ -43,6 +44,8 @@ router.use('/users',userRouter);
 router.use('/songs',songRouter);
 
 router.use('/albums',albumRouter);
+
+router.use('/comments',commentRouter);
 // router.post('/test',(req,res)=>{
 //     res.json({requestBody: req.body})
 // })

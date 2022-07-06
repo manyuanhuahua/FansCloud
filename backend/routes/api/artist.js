@@ -1,5 +1,5 @@
 const express = require('express')
-const {User, Song, Album} = require('../../db/models');
+const {User, Song, Album, Playlist} = require('../../db/models');
 const { route } = require('./song');
 require('dotenv').config();
 const { sequelize } = require('../../db/models');
@@ -9,10 +9,10 @@ const {handleValidationErrors}=require('../../utils/validation')
 const {requireAuth}=require('../../utils/auth')
 // const { Model } = require('sequelize/types');
 const { Op } = require('sequelize');
-const user = require('../../db/models/user');
+
 // const { sequelize } = require('sequelize');
 
-
+//Get details of an Artist from an id
 const router = express.Router();
 
 router.get('/:userId', async (req, res, next)=>{
@@ -48,7 +48,67 @@ router.get('/:userId', async (req, res, next)=>{
 
 })
 
+//Get all Songs of an Artist from an id
+router.get('/:userId/songs', async (req, res, next)=>{
+    const { userId } = req.params
 
+    const songs = await Song.findAll({
+        where:{
+            userId
+        }
+    })
+
+    if(songs.length){
+        res.json({
+            Songs: songs})
+    }else{
+        const err = new Error("Artist couldn't be found")
+        err.status= 404
+        next(err)
+    }
+})
+
+
+//Get all Albums of an Artist from an id
+router.get('/:userId/albums', async (req, res, next)=>{
+    const { userId }= req.params
+    const albums = await Album.findAll({
+        where:{
+            userId
+        }
+    })
+
+    if(albums.length){
+        res.json({
+            Albums: albums
+        })
+    }else{
+        const err = new Error("Artist couldn't be found")
+        err.status= 404
+        next(err)
+    }
+})
+
+
+//Get all Playlists of an Artist from an id
+router.get('/:userId/playlists', async (req, res, next)=>{
+    const {userId} = req.params
+    const playlists = await Playlist.findAll({
+        where:{
+            userId
+        }
+    })
+    console.log(playlists)
+    if(playlists.length){
+        res.json({
+            Playlists: playlists
+        })
+    }else{
+        const err = new Error("Artist couldn't be found")
+        err.status= 404
+        next(err)
+    }
+})
 
 
 

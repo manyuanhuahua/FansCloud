@@ -67,7 +67,7 @@ router.delete('/:songId', requireAuth,async (req, res, next)=>{
     const { songId } = req.params
     const song = await Song.findByPk(songId)
 
-    const id = req.user.dataValues.id
+    const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
@@ -99,7 +99,7 @@ router.put('/:songId', validateSong, async(req,res,next)=>{
 
     const { title, description, audioUrl, previewImage} = req.body
 
-    const id = req.user.dataValues.id
+    const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
@@ -152,7 +152,7 @@ router.post('/:songId/comments/new',requireAuth, validateComment, async(req, res
     const song = await Song.findByPk(songId)
     const { body } = req.body
 
-    const userId = req.user.dataValues.id
+    const userId = req.user.toJSON().id
 
     if(song){
         const comment = await Comment.create({

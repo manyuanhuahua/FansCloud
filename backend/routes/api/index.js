@@ -5,6 +5,7 @@ const songRouter = require('./song.js')
 const albumRouter = require('./album.js')
 const commentRouter = require('./comment.js')
 const artistRouter = require('./artist.js')
+const playlistRouter = require('./playlist.js')
 
 const {restoreUser}=require('../../utils/auth.js')
 
@@ -49,6 +50,8 @@ router.use('/albums',albumRouter);
 router.use('/comments',commentRouter);
 
 router.use('/artists',artistRouter);
+
+router.use('/playlists',playlistRouter);
 
 // router.post('/test',(req,res)=>{
 //     res.json({requestBody: req.body})

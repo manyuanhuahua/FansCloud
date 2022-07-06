@@ -49,7 +49,7 @@ router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next
         }
     })
 
-    const id = req.user.dataValues.id
+    const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(album){
         // check if current user is the album's owner and if it is an artist
@@ -101,7 +101,7 @@ router.get('/:albumId', async (req, res, next)=>{
 
 router.post('/new', requireAuth, validateAlbum, async (req, res, next)=>{
     const { title, description, previewImage } = req.body
-    const userId = req.user.dataValues.id
+    const userId = req.user.toJSON().id
     const album = await Album.create({
             'userId': userId,
             title,
@@ -118,7 +118,7 @@ router.put('/:albumId',requireAuth, validateAlbum, async (req, res, next)=>{
 
     const { title, description, previewImage} = req.body
 
-    const id = req.user.dataValues.id
+    const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(album){
         if (artist.isArtist && id === album.userId){
@@ -146,7 +146,7 @@ router.delete('/:albumId', requireAuth, async (req, res, next)=>{
     const { albumId } = req.params
     const album = await Album.findByPk(albumId)
 
-    const id = req.user.dataValues.id
+    const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(album){
         if (artist.isArtist && id === album.userId){

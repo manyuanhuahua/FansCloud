@@ -30,7 +30,7 @@ router.get('/', async (req,res,next)=>{
 router.put('/:commentId',requireAuth, validateComment, async(req, res, next)=>{
     const { commentId } = req.params
 
-    const id = req.user.dataValues.id
+    const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
 
     const comment = await Comment.findByPk(commentId)
@@ -62,7 +62,7 @@ router.delete('/:commentId',requireAuth, async(req, res, next)=>{
     const { commentId } = req.params
     const comment = await Comment.findByPk(commentId)
 
-    const userId = req.user.dataValues.id
+    const userId = req.user.toJSON().id
     const artist = await User.findByPk(userId)
     if(comment){
         if(artist.isArtist && comment.userId === userId){

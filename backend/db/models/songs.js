@@ -29,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Song',
     defaultScope :{
-      attributes: {}
-    },
+      attributes: {}},
     scopes:{
       artistScope(){
         const {User} = require('../models')

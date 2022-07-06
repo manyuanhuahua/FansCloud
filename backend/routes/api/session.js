@@ -128,7 +128,7 @@ router.get('/currentUser/songs',requireAuth, async (req,res)=>{
 })
 
 router.get('/currentUser/albums', requireAuth, async (req,res,next)=>{
-    const userId = req.user.dataValues.id
+    const userId = req.user.toJSON().id
     const albums = await Album.findAll({
       where:{
         userId

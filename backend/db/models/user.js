@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId', onDelete: 'CASCADE',  hooks: true
       });
       User.hasMany(models.Song,{
-        foreignKey: 'userId', as: 'Artist',onDelete: 'CASCADE',  hooks: true
+        foreignKey: 'userId',onDelete: 'CASCADE',  hooks: true
       });
       User.hasMany(models.Comment,{
         foreignKey: 'userId', onDelete: 'CASCADE', hooks: true

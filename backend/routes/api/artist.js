@@ -20,22 +20,21 @@ router.get('/:userId', async (req, res, next)=>{
 
     const artist = await User.findByPk(userId,{
         include:{
-            model: Song
+            model: Song,
         },
         attributes:{
             include:[
             [sequelize.fn('COUNT', sequelize.col('Songs.id')), "totalSongs"]]
         },
 })
-
-    if(!artist.length){
+const artistData = artist.toJSON()
+    if(!artist){
         const err = new Error("Artist couldn't be found")
         err.status = 404
         next(err)
     }
     const totalAlbum = await Album.count({where:{userId}})
 
-    const artistData = artist.toJSON()
 
     res.json({
         id: artistData.id,

@@ -50,8 +50,8 @@ module.exports = (sequelize, DataTypes) => {
       return {
         include:[{
           model: Album,
+          attributes: ['id','title','previewImage']
         }],
-        attributes: ['id','title','previewImage']
       }
     }
   },

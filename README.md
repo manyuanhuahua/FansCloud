@@ -932,7 +932,7 @@ Update and return an existing comment.
 * Require proper authorization: Comment must belong to the current user
 * Request
   * Method: PUT
-  * URL: /songs/:songId/comments/:commentId
+  * URL: /comments/:commentId
   * Headers:
     * Content-Type: application/json
   * Body:

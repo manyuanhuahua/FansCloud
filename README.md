@@ -569,7 +569,7 @@ Returns all the Albums created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /session/current/albums
+  * URL: /session/currentUser/albums
   * Body: none
 
 * Successful Response

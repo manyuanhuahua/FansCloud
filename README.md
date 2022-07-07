@@ -569,7 +569,7 @@ Returns all the Albums created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /user/current/albums
+  * URL: /session/current/albums
   * Body: none
 
 * Successful Response
@@ -724,7 +724,7 @@ Updates and returns an existing album.
     {
       "title": "Time",
       "description": "An album about time.",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 
@@ -1033,7 +1033,7 @@ Returns the details of an artist specified by their id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /artist/:userId
+  * URL: /artists/:userId
   * Body: none
 
 * Successful Response
@@ -1072,7 +1072,7 @@ Returns all the songs created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /user/artist/:userId/songs
+  * URL: /artists/:userId/songs
   * Body: none
 
 * Successful Response
@@ -1119,7 +1119,7 @@ Returns all the albums created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL:  /user/artist/:userId/albums
+  * URL:  /artist/:userId/albums
   * Body: none
 
 * Successful Response
@@ -1164,7 +1164,7 @@ Returns all the playlists created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /user/artist/:userId/playlists
+  * URL: /artist/:userId/playlists
   * Body: none
 
 * Successful Response
@@ -1475,7 +1475,7 @@ Returns all the playlists created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/current/playlists
+  * URL: /session/currentUser/playlists
   * Body: none
 
 * Successful Response

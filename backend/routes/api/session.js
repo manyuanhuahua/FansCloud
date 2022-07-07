@@ -96,32 +96,19 @@ router.get('/currentUser/songs',requireAuth, async (req,res)=>{
     {
       where:{
         userId : req.user.id
-      },
-      include: User
+      }
     }
   )
 
-  let arr = []
-  // console.log(songs)
+
+
   if(songs.length){
 
-      for( let song of songs){
-        let obj = {}
-        obj.id = song.id;
-        obj.userId = song.userId;
-        obj.albumId = song.albumId;
-        obj.title = song.title;
-        obj.description = song.description;
-        obj.audioUrl = song.audioUrl;
-        obj.previewImage = song.previewImage;
-        obj.createdAt = song.createdAt;
-        obj.updatedAt = song.updatedAt
-
-        arr.push(obj)
-      }
+    return res.json({
+      Songs: songs
+    })
 
 
-      return res.json(arr)
   }else{
       return res.json({})
   }

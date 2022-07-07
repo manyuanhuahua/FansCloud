@@ -43,6 +43,10 @@ app.use(
 
 app.use(routes);
 
+app.get('/',(req, res,next)=>{
+    res.send('Hello! Welcome to my website')
+})
+
 //resource not found error
 app.use((_req,_res,next)=>{
     const err = new Error("The requested resource couldn't be HostNotFoundError.");

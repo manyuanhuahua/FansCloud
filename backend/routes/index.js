@@ -20,6 +20,11 @@ header will be used to validate the `_csrf` cookie to confirm that the
 request comes from your site and not an unauthorized site.
 */
 
+router.get('/',(req,res)=>{
+    res.send("Hello! Welcome to my website!")
+})
+
+
 
 router.get('/api/csrf/restore',(req, res)=>{
     const csrfToken = req.csrfToken();

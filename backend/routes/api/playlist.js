@@ -6,7 +6,7 @@ const { sequelize } = require('../../db/models');
 
 const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation')
-const {requireAuth}=require('../../utils/auth')
+const {requireAuth, properAuth}=require('../../utils/auth')
 // const { Model } = require('sequelize/types');
 const { Op, Model } = require('sequelize');
 const router = express.Router();
@@ -82,11 +82,7 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
             songId: songPlaylist.songId
         })
     }else{
-        const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+        return next(properAuth())
     }
 
 })
@@ -131,11 +127,7 @@ router.put('/:playlistId', requireAuth, validatePlaylist, async (req, res, next)
         })
         res.json(playlist)
     }else{
-        const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+        return next(properAuth())
     }
     }else{
         const err = new Error("Playlist couldn't be found")
@@ -160,11 +152,7 @@ router.delete('/:playlistId',requireAuth,async(req, res, next)=>{
             message: "Successfully deleted",
             statusCode: 200
         })}else{
-            const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+            return next(properAuth())
         }
     }else{
         const err = new Error("Playlist couldn't be found")

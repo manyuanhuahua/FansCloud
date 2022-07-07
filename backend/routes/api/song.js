@@ -1,6 +1,6 @@
 const express = require('express')
 
-const {setTokenCookie, requireAuth}= require('../../utils/auth');
+const {requireAuth, properAuth}= require('../../utils/auth');
 const {User, Song, Comment} = require('../../db/models')
 
 const {check}=require('express-validator');
@@ -52,15 +52,17 @@ const validateSong = [
     query('page')
         .custom((value)=>{
             if(value < 0) return Promise.reject('Page must be greater than or equal to 0')
-        })
-        .withMessage('Page must be greater than or equal to 0'),
+            else{ return true}
+        }),
+        // .withMessage('Page must be greater than or equal to 0'),
 
 
     query('size')
         .custom((value)=>{
             if(value <0) return Promise.reject('Size must be greater than or equal to 0')
-        })
-        .withMessage('Size must be greater than or equal to 0'),
+            else{ return true}
+        }),
+        // .withMessage('Size must be greater than or equal to 0'),
 
     query('title')
         .optional()
@@ -139,11 +141,7 @@ router.delete('/:songId', requireAuth,async (req, res, next)=>{
                 statusCode: 200
             })
         }else{
-            const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+            return next(properAuth())
         }
     }else{
         const err = new Error("Song couldn't be found")
@@ -172,11 +170,7 @@ router.put('/:songId', validateSong, async(req,res,next)=>{
             })
             res.json(song)
         }else{
-            const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+            return next(properAuth())
         }
     }else{
         const err = new Error("Song couldn't be found")

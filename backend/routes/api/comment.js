@@ -4,7 +4,7 @@ const { route } = require('./song');
 
 const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation')
-const {requireAuth}=require('../../utils/auth')
+const {requireAuth,properAuth}=require('../../utils/auth')
 
 
 const router = express.Router();
@@ -43,11 +43,7 @@ router.put('/:commentId',requireAuth, validateComment, async(req, res, next)=>{
             })
             res.json(comment)
         }else{
-            const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+            return next(properAuth())
         }
     }else{
         const err = new Error("Comment couldn't be found")
@@ -72,11 +68,7 @@ router.delete('/:commentId',requireAuth, async(req, res, next)=>{
                 statusCode: 200
             })
         }else{
-            const err = new Error("Forbidden");
-            err.title= 'Permission Unauthorized';
-            err.errors = ['Permission Unauthorized'];
-            err.status = 403;
-            return next(err)
+            return next(properAuth())
         }
     }else{
         const err = new Error("Comment couldn't be found")

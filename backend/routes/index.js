@@ -21,7 +21,7 @@ request comes from your site and not an unauthorized site.
 */
 
 
-router.get('/api/csrf/restorec',(req, res)=>{
+router.get('/api/csrf/restore',(req, res)=>{
     const csrfToken = req.csrfToken();
     res.cookie('XSRF-TOKEN', csrfToken);
     res.status(200).json({

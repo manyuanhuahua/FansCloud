@@ -3,10 +3,11 @@ const express = require('express')
 
 
 const {setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const {User, Album, Song} = require('../../db/models')
+const {User, Album, Song, Playlist} = require('../../db/models')
 
 const { check }=require('express-validator');
 const { handleValidationErrors} = require('../../utils/validation');
+const playlists = require('../../db/models/playlists');
 // const { Model } = require('sequelize/types');
 
 const router = express.Router();
@@ -143,6 +144,21 @@ router.get('/currentUser/albums', requireAuth, async (req,res,next)=>{
   }
 })
 
+router.get('/currentUser/playlists', requireAuth, async (req,res,next)=>{
+  const userId = req.user.toJSON().id
+  const playlists = await Playlist.findAll({
+    where:{
+      userId
+    }
+  })
+
+  if(playlists){
+    res.json(
+      {'Playlists': playlists})
+  }else{
+    return res.json({})
+}
+})
 
 
 

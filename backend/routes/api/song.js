@@ -6,6 +6,8 @@ const {User, Song, Comment} = require('../../db/models')
 const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation');
 const { ResultWithContext } = require('express-validator/src/chain');
+const { query } = require('express-validator/check');
+
 // const { Op } = require('sequelize');
 
 const router = express.Router();
@@ -23,26 +25,84 @@ const validateSong = [
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Descrtiption is required.'),
+
+
+    handleValidationErrors
+    ];
+
+
+
+    const validateComment = [
+        check('body')
+        .exists({ checkFalsy: true })
+        .withMessage('Comment body is required.'),
         handleValidationErrors
     ];
 
 
-    const validateComment = [
-            check('body')
-                .exists({ checkFalsy: true })
-                .withMessage('Comment body is required.'),
-            handleValidationErrors
-        ];
+    const validateParams = [
+
+    query('createdAt')
+            .optional()
+            .custom((value)=>{
+            if(!(typeof (value) === 'string')) return Promise.reject('CreatedAt is invalid')
+        })
+        .withMessage('CreatedAt is invalid'),
+
+    query('page')
+        .custom((value)=>{
+            if(value<0) return Promise.reject('Page must be greater than or equal to 0')
+        })
+        .withMessage('Page must be greater than or equal to 0'),
 
 
-router.get('/',async (req,res)=>{
-    const songs = await Song.findAll()
+    query('size')
+        .custom((value)=>{
+            if(value <0) return Promise.reject('Size must be greater than or equal to 0')
+        })
+        .withMessage('Size must be greater than or equal to 0'),
+
+    query('title')
+        .optional()
+        .custom((value)=>{
+        if(!(typeof (value) === 'string')) return Promise.reject('Title is invalid')
+    })
+        .withMessage('Title is invalid'),
+
+    handleValidationErrors
+    ]
+
+
+router.get('/',validateParams, async (req,res)=>{
+    let { page, size, title, createdAt } = req.query
+    if(!page) page = 0
+    if(!size) size = 20
+
+    page = parseInt(page)
+    size = parseInt(size)
+
+    // if(!validatePagination.length){
+    const pagination = {}
+    if(page >=0 && page<=10 && size >= 0 && size <= 20){
+        pagination.limit = size;
+        pagination.offset = size*(page-1)
+    }
+
+    const songs = await Song.findAll({
+        ...pagination
+    })
+    console.log(songs)
     if(songs.length){
-        return res.json(songs)
+        return res.json({
+            Songs: songs,
+            page,
+            size
+
+        })
     }else{
         return res.json({})
     }
-
+    // }
 })
 
 router.get('/:songId',async (req,res,next)=>{

@@ -366,7 +366,7 @@ Creates and returns a new song.
     {
       "title": "Yesterday",
       "description": "A song about the past.",
-      "url": "audio url",
+      "audioUrl": "audio url",
       "imageUrl": "image url"
     }
     ```
@@ -384,7 +384,7 @@ Creates and returns a new song.
       "albumId": 1,
       "title": "Yesterday",
       "description": "A song about the past.",
-      "url": "audio url",
+      "audioUrl": "audio url",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36", 
       "previewImage": "image url"
@@ -403,7 +403,7 @@ Creates and returns a new song.
       "statusCode": 400,
       "errors": {
         "title": "Song title is required",
-        "url": "Audio is required"
+        "audioUrl": "Audio is required"
       }
     }
     ```
@@ -438,7 +438,7 @@ Updates and returns an existing song.
     {
       "title": "Yesterday",
       "description": "A song about the past.",
-      "url": "audio url",
+      "audioUrl": "audio url",
       "imageUrl": "image url"
     }
     ```

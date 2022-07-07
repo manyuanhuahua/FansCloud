@@ -18,7 +18,9 @@ const router = express.Router();
 router.get('/:userId', async (req, res, next)=>{
     const {userId} = req.params
 
-    const artist = await User.findByPk(userId,{
+    const artist = await User.findOne(
+       { where: {
+        id: userId,},
         include:{
             model: Song,
         },
@@ -26,6 +28,8 @@ router.get('/:userId', async (req, res, next)=>{
             include:[
             [sequelize.fn('COUNT', sequelize.col('Songs.id')), "totalSongs"]]
         },
+        group: ['User.id']
+
 })
 const artistData = artist.toJSON()
     if(!artist){
@@ -34,7 +38,6 @@ const artistData = artist.toJSON()
         next(err)
     }
     const totalAlbum = await Album.count({where:{userId}})
-
 
     res.json({
         id: artistData.id,

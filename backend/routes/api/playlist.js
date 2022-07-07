@@ -17,6 +17,10 @@ const validatePlaylist = [
     check('name')
         .exists({ checkFalsy: true })
         .withMessage('Playlist name is required.'),
+
+    check('previewImage')
+        .exists({ checkFalsy: true })
+        .withMessage('Playlist preview image is required.'),
     handleValidationErrors
 ];
 

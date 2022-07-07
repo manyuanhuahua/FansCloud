@@ -5,6 +5,7 @@ const { User } = require('../db/models');
 
 const { secret, expiresIn} = jwtConfig
 
+//set-token-cookie
 const setTokenCookie = (res, user)=>{
     const token = jwt.sign(
         {data: user.toSafeObject()},
@@ -26,16 +27,17 @@ const setTokenCookie = (res, user)=>{
 
 const restoreUser = (req, res, next)=>{
     const { token } = req.cookies;
+
     req.user = null;
 
     return jwt.verify(token, secret, null, async (err,jwtPayload)=>{
         if(err){
             return next();
         }
-
         try{
             const { id }=jwtPayload.data;
             req.user = await User.scope('currentUser').findByPk(id);
+
         }catch(e){
             res.clearCookie('token');
             return next();
@@ -49,15 +51,31 @@ const restoreUser = (req, res, next)=>{
 //if there is no current user, return an error
 const requireAuth = function (req, _res, next){
     if(req.user) return next();
-    const err = new Error('Unauthorized');
+    const err = new Error("Authentication required");
     err.title= 'Unauthorized';
     err.errors = ['Unauthorized'];
     err.status = 401;
     return next(err)
 }
 
+
+//if current does not have the correct permission, return an error
+//if current user is not a creator, return forbidden error
+const properAuth =  function (){
+    const err = new Error("Forbidden");
+    err.title= 'Permission Unauthorized';
+    err.errors = ['Permission Unauthorized'];
+    err.status = 403;
+    return err
+    }
+
+
+
+
+
 module.exports = {
     setTokenCookie,
     restoreUser,
-    requireAuth
+    requireAuth,
+    properAuth
 }

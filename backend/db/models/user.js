@@ -30,18 +30,33 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password}){
+    static async signup({ username, email, password, firstName, lastName, isArtist, previewImage}){
       const hashedPassword = bcrypt.hashSync(password)
       const user = await User.create({
         username,
         email,
-        hashedPassword
+        hashedPassword,
+        firstName,
+        lastName,
+        isArtist,
+        previewImage
       });
       return await User.scope('currentUser').findByPk(user.id)
     }
 
     static associate(models) {
-      // define association here
+      User.hasMany(models.Album,{
+        foreignKey: 'userId', onDelete: 'CASCADE',  hooks: true
+      }, );
+      User.hasMany(models.Playlist,{
+        foreignKey: 'userId', onDelete: 'CASCADE',  hooks: true
+      });
+      User.hasMany(models.Song,{
+        foreignKey: 'userId',onDelete: 'CASCADE',  hooks: true
+      });
+      User.hasMany(models.Comment,{
+        foreignKey: 'userId', onDelete: 'CASCADE', hooks: true
+      });
     }
   }
   User.init(
@@ -65,11 +80,6 @@ module.exports = (sequelize, DataTypes) => {
       unique:false,
       validate:{
         len:[3,256],
-        // isEmail(value){
-        //   if(!(Validator.isEmail(value))){
-        //     throw new Error('Should be an Email')
-        //   }
-        // }
       }
     },
     hashedPassword: {
@@ -78,7 +88,22 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         len: [60,60]
       }
-    }
+    },
+    firstName:{
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    lastName:{
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    isArtist:{
+      type: DataTypes.BOOLEAN,
+      allowNull:false
+    },
+    previewImage:{
+      type: DataTypes.STRING
+    },
   }, {
     sequelize,
     modelName: 'User',
@@ -90,14 +115,15 @@ module.exports = (sequelize, DataTypes) => {
     scopes:{
       currentUser:{
         attributes:{
-          exclude:['hashedPassword']
+          exclude:['hashedPassword','previewImage','createdAt','updatedAt']
         }
       },
       loginUser:{
         attributes:{}
-      }
-    }
+      },
+
   }
+}
 );
   return User;
 

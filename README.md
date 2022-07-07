@@ -367,7 +367,7 @@ Creates and returns a new song.
       "title": "Yesterday",
       "description": "A song about the past.",
       "audioUrl": "audio url",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 

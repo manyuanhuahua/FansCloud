@@ -439,7 +439,7 @@ Updates and returns an existing song.
       "title": "Yesterday",
       "description": "A song about the past.",
       "audioUrl": "audio url",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 
@@ -669,7 +669,7 @@ Creates and returns a new album.
     {
       "title": "Time",
       "description": "An album about time.",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 
@@ -1216,7 +1216,7 @@ Creates and returns a new playlist.
     ```json
     {
       "name": "Current Favorites",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 
@@ -1381,7 +1381,7 @@ Updates and returns an existing playlist.
     ```json
     {
       "name": "Current Favorites",
-      "imageUrl": "image url"
+      "previewImage": "image url"
     }
     ```
 

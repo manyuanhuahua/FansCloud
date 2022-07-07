@@ -23,6 +23,7 @@ router.get('/:userId', async (req, res, next)=>{
         id: userId,},
         include:{
             model: Song,
+            group: ['Song.id']
         },
         attributes:{
             include:[
@@ -37,7 +38,9 @@ const artistData = artist.toJSON()
         err.status = 404
         next(err)
     }
-    const totalAlbum = await Album.count({where:{userId}})
+    const totalAlbum = await Album.count({
+        where:{userId},
+    })
 
     res.json({
         id: artistData.id,

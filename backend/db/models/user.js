@@ -47,12 +47,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Album,{
         foreignKey: 'userId', onDelete: 'CASCADE',  hooks: true
-      });
+      }, );
       User.hasMany(models.Playlist,{
         foreignKey: 'userId', onDelete: 'CASCADE',  hooks: true
       });
       User.hasMany(models.Song,{
-        foreignKey: 'userId', onDelete: 'CASCADE',  hooks: true
+        foreignKey: 'userId', as: 'Artist',onDelete: 'CASCADE',  hooks: true
       });
       User.hasMany(models.Comment,{
         foreignKey: 'userId', onDelete: 'CASCADE', hooks: true

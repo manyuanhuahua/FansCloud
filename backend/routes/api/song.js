@@ -51,7 +51,7 @@ const validateSong = [
 
     query('page')
         .custom((value)=>{
-            if(value<0) return Promise.reject('Page must be greater than or equal to 0')
+            if(value < 0) return Promise.reject('Page must be greater than or equal to 0')
         })
         .withMessage('Page must be greater than or equal to 0'),
 

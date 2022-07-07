@@ -86,7 +86,7 @@ information.
     ```json
     {
       "credential": "john.smith@gmail.com",
-      "password": "secret password"
+      "password": "password"
     }
     ```
 

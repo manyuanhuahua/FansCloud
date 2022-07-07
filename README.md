@@ -269,7 +269,7 @@ Returns all the songs created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /user/currentUser/songs
+  * URL: /session/currentUser/songs
   * Body: none
 
 * Successful Response

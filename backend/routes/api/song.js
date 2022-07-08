@@ -51,7 +51,7 @@ const validateSong = [
 
     query('page')
         .custom((value)=>{
-            if(value < 0) return Promise.reject('Page must be greater than or equal to 0')
+            if(value < 0 || value > 10) return Promise.reject('Page must be greater than or equal to 0')
             else{ return true}
         }),
         // .withMessage('Page must be greater than or equal to 0'),
@@ -59,7 +59,7 @@ const validateSong = [
 
     query('size')
         .custom((value)=>{
-            if(value <0) return Promise.reject('Size must be greater than or equal to 0')
+            if(value <0 || value > 20) return Promise.reject('Size must be greater than or equal to 0')
             else{ return true}
         }),
         // .withMessage('Size must be greater than or equal to 0'),
@@ -77,7 +77,7 @@ const validateSong = [
 
 router.get('/',validateParams, async (req,res)=>{
     let { page, size, title, createdAt } = req.query
-    if(!page) page = 0
+    if(!page) page = 1
     if(!size) size = 20
 
     page = parseInt(page)
@@ -85,7 +85,7 @@ router.get('/',validateParams, async (req,res)=>{
 
     // if(!validatePagination.length){
     const pagination = {}
-    if(page >=0 && page<=10 && size >= 0 && size <= 20){
+    if(page > 0 && page<=10 && size >= 0 && size <= 20){
         pagination.limit = size;
         pagination.offset = size*(page-1)
     }

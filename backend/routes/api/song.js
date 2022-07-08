@@ -78,7 +78,11 @@ const validateSong = [
 router.get('/',validateParams, async (req,res)=>{
     let { page, size, title, createdAt } = req.query
     if(!page) page = 1
-    if(!size) size = 20
+    if(!size){
+        const songs = await Song.findAll()
+        size = songs.length
+    }
+
 
     page = parseInt(page)
     size = parseInt(size)

@@ -77,8 +77,8 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
 
 
         const songPlaylist = await SongPlaylist.create({
-            playlistId,
-            songId
+            playlistId: parseInt(playlistId),
+            songId: parseInt(songId)
         })
 
 
@@ -87,7 +87,7 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
         console.log(songPlaylist.toJSON())
         res.json({
             id: songPlaylist.id,
-            playlistId: parseInt(playlistId),
+            playlistId: songPlaylist.playlistId,
             songId: songPlaylist.songId
         })
     }else{

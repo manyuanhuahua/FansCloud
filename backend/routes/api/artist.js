@@ -28,7 +28,7 @@ router.get('/:userId', async (req, res, next)=>{
             include:[
             [sequelize.fn('COUNT', sequelize.col('Songs.id'),), "totalSongs"]],
         },
-        group: 'Song.id'
+        group: 'User.id'
 })
 const artistData = artist.toJSON()
     if(!artist){

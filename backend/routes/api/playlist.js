@@ -72,6 +72,8 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
         next(err)
     }
 
+
+   
     const user = req.user.toJSON()
     if( user.isArtist && user.id === playlist.userId ){
 

@@ -34,13 +34,13 @@ router.get('/:userId', async (req, res, next)=>{
 // })
 
 const artist = await User.findByPk(userId)
+if(!artist){
+    const err = new Error("Artist couldn't be found")
+    err.status = 404
+    next(err)
+}
 
 const artistData = artist.toJSON()
-    if(!artist){
-        const err = new Error("Artist couldn't be found")
-        err.status = 404
-        next(err)
-    }
     const totalAlbum = await Album.count({
         where:{userId},
     })

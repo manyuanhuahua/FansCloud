@@ -1261,7 +1261,7 @@ Add a song to a playlist specified by the playlist's id.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: POST
-  * URL: /api/playlists/:playlistId/songs
+  * URL: /api/playlists/:playlistId/new
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1319,7 +1319,7 @@ Returns the details of a playlist specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/playlist/:id
+  * URL: /api/playlists/:id
   * Body: none
 
 * Successful Response
@@ -1373,7 +1373,7 @@ Updates and returns an existing playlist.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: PUT
-  * URL: /api/playlist/:playlistId
+  * URL: /api/playlists/:playlistId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1439,7 +1439,7 @@ Deletes an existing playlist.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /api/playlist/:playlistId
+  * URL: /api/playlists/:playlistId
   * Body: none
 
 * Successful Response
@@ -1508,7 +1508,7 @@ Return songs filtered by query parameters.
   * Method: GET
   * URL: /api/songs
   * Query Parameters
-    * page: integer, minimum: 0, maximum: 10, default: 0
+    * page: integer, minimum: 1, maximum: 10, default: 1
     * size: integer, minimum: 0, maximum: 20, default: 20
     * title: string, optional
     * createdAt: string, optional
@@ -1551,7 +1551,7 @@ Return songs filtered by query parameters.
       "message": "Validation Error",
       "statusCode": 400,
       "errors": {
-        "page": "Page must be greater than or equal to 0",
+        "page": "Page must be greater than or equal to 1",
         "size": "Size must be greater than or equal to 0",
         "createdAt": "CreatedAt is invalid"
       }

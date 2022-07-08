@@ -1119,7 +1119,7 @@ Returns all the albums created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL:  /artist/:userId/albums
+  * URL:  /artists/:userId/albums
   * Body: none
 
 * Successful Response
@@ -1164,7 +1164,7 @@ Returns all the playlists created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /artist/:userId/playlists
+  * URL: /artists/:userId/playlists
   * Body: none
 
 * Successful Response

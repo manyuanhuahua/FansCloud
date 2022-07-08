@@ -16,7 +16,7 @@ const router = express.Router();
 
 
 //user logout api route
-router.delete('/',(_req, res)=>{
+router.delete('/logout',(_req, res)=>{
     res.clearCookie('token');
     return res.json({message:'success'})
 })

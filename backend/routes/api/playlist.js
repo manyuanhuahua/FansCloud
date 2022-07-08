@@ -54,6 +54,7 @@ router.post('/new', requireAuth, validatePlaylist, async(req, res, next)=>{
 router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
     const { playlistId }= req.params
     const playlist = await Playlist.findByPk(playlistId)
+    console.log(playlist)
 
 
     if(!playlist){
@@ -79,7 +80,7 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
             songId
         })
         // const test = await SongPlaylist.findByPk(5)
-        console.log(songPlaylist)
+        // console.log(songPlaylist)
         res.json({
             id: songPlaylist.id,
             playlistId: songPlaylist.playlistId,

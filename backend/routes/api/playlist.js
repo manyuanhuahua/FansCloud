@@ -17,6 +17,10 @@ const validatePlaylist = [
     check('name')
         .exists({ checkFalsy: true })
         .withMessage('Playlist name is required.'),
+
+    check('previewImage')
+        .exists({ checkFalsy: true })
+        .withMessage('Playlist preview image is required.'),
     handleValidationErrors
 ];
 
@@ -50,6 +54,7 @@ router.post('/new', requireAuth, validatePlaylist, async(req, res, next)=>{
 router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
     const { playlistId }= req.params
     const playlist = await Playlist.findByPk(playlistId)
+    // console.log(`PLAYLIST--ID---${playlistId}`)
 
 
     if(!playlist){
@@ -67,15 +72,21 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
         next(err)
     }
 
+
+   
     const user = req.user.toJSON()
-    // console.log(req.user)
     if( user.isArtist && user.id === playlist.userId ){
+
+
         const songPlaylist = await SongPlaylist.create({
-            playlistId,
-            songId
+            playlistId: parseInt(playlistId),
+            songId: parseInt(songId)
         })
+
+
+
         // const test = await SongPlaylist.findByPk(5)
-        console.log(songPlaylist)
+        console.log(songPlaylist.toJSON())
         res.json({
             id: songPlaylist.id,
             playlistId: songPlaylist.playlistId,

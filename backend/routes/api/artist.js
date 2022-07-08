@@ -18,28 +18,40 @@ const router = express.Router();
 router.get('/:userId', async (req, res, next)=>{
     const {userId} = req.params
 
-    const artist = await User.findByPk(userId,{
-        include:{
-            model: Song,
-        },
-        attributes:{
-            include:[
-            [sequelize.fn('COUNT', sequelize.col('Songs.id')), "totalSongs"]]
-        },
-})
+
+//     const artist = await User.findOne(
+//        { where: {
+//         id: userId,},
+//         include:{
+//             model: Song,
+//             required: false
+//         },
+//         attributes:{
+//             include:[
+//             [sequelize.fn('COUNT', sequelize.col('Songs.id'),), "totalSongs"]],
+//         },
+//         group: 'User.id'
+// })
+
+const artist = await User.findByPk(userId)
+if(!artist){
+    const err = new Error("Artist couldn't be found")
+    err.status = 404
+    next(err)
+}
+
 const artistData = artist.toJSON()
-    if(!artist){
-        const err = new Error("Artist couldn't be found")
-        err.status = 404
-        next(err)
-    }
-    const totalAlbum = await Album.count({where:{userId}})
+    const totalAlbum = await Album.count({
+        where:{userId},
+    })
 
-
+    const totalSong = await Song.count({
+        where:{userId},
+    })
     res.json({
         id: artistData.id,
         username: artistData.username,
-        totalSongs: artistData.totalSongs,
+        totalSongs: totalSong,
         totalAlbum: totalAlbum,
         previewImage: artistData.previewImage
     })

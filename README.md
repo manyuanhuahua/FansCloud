@@ -1,6 +1,6 @@
 # AA-fullstackProject1
 # `Sound Cloud`
-
+Welcome to the Music World! In this site, you can play as a creator, uploading your creative songs, having your own album and making your playlists. And also, as a listener, you are able to collect and manage your fav songs with your playlists. 
 ## Database Schema Design
 
 ![Alt text](https://github.com/manyuanhuahua/AA-fullstackProject1/blob/main/schema.png)

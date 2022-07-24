@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-
+import { NavLink } from "react-router-dom";
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
@@ -42,6 +42,12 @@ function ProfileButton({ user }) {
           </li>
         </ul>
       )}
+      <h2>this is login user's profile page</h2>
+      {/* the home page of user profile should list all the playlist for current user */}
+
+      {/* <NavLink exact to="/songs">Songs</NavLink> */}
+            <NavLink exact to="/songs">Playlists</NavLink>
+
     </>
   );
 }

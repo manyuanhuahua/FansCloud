@@ -9,16 +9,28 @@ function LoginForm(){
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    // console.log("outside submit")
 
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        setErrors([]);
-        return dispatch(sessionActions.login({credential,password}))
-            .catch(async (res)=>{
-                const data = await res.json();
-                if(data && data.errors) setErrors(data.errors);
-            });
-    }
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setErrors([]);
+      return dispatch(sessionActions.login({ credential, password })).catch(
+        async (res) => {
+          console.log("in the catch")
+
+          const data  = await res.json();
+
+          console.log("data.error", data.errors)
+
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
+    };
+
+
+
+    console.log('error before return',errors.map(e=>console.log('e',e)))
+
 
     return (
         <form onSubmit={handleSubmit}>

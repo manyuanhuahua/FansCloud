@@ -9,6 +9,9 @@ function Navigation({ isLoaded }){
     const sessionUser = useSelector(state => state.session.user);
   // console.log(sessionUser)
     let sessionLinks;
+    const songList = useSelector(state => state.songs);
+    // console.log("songList", songList)
+
     if (sessionUser && Object.keys(sessionUser).length >0) {
     sessionLinks = (
       <ProfileButton user={sessionUser} />
@@ -17,8 +20,19 @@ function Navigation({ isLoaded }){
         sessionLinks=(
             <>
                 <LoginFormModal />
-                <NavLink to='/signup'>Sign Up</NavLink>
+                <NavLink to='/signup'>Create account</NavLink>
+                <h2>this is seesion link navbar</h2>
+                {/* {songList.map((song)=>{
+                  return (
+                    <ul>
+                      <li>
+                        {song}
+                      </li>
+                    </ul>
+                  ) */}
+                {/* })} */}
             </>
+
         )
     }
 

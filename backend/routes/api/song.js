@@ -97,7 +97,7 @@ router.get('/',validateParams, async (req,res)=>{
     const songs = await Song.findAll({
         ...pagination
     })
-    console.log(songs)
+    // console.log(songs)
     if(songs.length){
         return res.json({
             Songs: songs,

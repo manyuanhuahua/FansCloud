@@ -27,9 +27,18 @@ const SignupFormPage = () =>{
             setErrors([]);
 
             return dispatch(sessionActions.signup({email, username, password, firstName, lastName, isArtist, previewImage})).catch(async (res) => {
-                          const data = await res.json();
-                          console.log(data)
-                          if(data.user.errors) setErrors(data.user.errors);
+                          // const data = await res.json();
+                          // console.log(data)
+                          // if(data.user.errors) setErrors(data.user.errors);
+
+                          // async (res) => {
+                            // console.log("in the catch")
+
+                            const data  = await res.json();
+
+                            // console.log("data.error", data.errors)
+
+                            if (data && data.errors) setErrors(data.errors);
                       })
     }
 

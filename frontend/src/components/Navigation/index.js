@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
+
 function Navigation({ isLoaded }){
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
   // console.log(sessionUser)
     let sessionLinks;
-    const songList = useSelector(state => state.songs);
-    // console.log("songList", songList)
 
     if (sessionUser && Object.keys(sessionUser).length >0) {
     sessionLinks = (
@@ -22,15 +22,8 @@ function Navigation({ isLoaded }){
                 <LoginFormModal />
                 <NavLink to='/signup'>Create account</NavLink>
                 <h2>this is seesion link navbar</h2>
-                {/* {songList.map((song)=>{
-                  return (
-                    <ul>
-                      <li>
-                        {song}
-                      </li>
-                    </ul>
-                  ) */}
-                {/* })} */}
+
+
             </>
 
         )

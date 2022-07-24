@@ -1,6 +1,6 @@
 import { csrfFetch } from './csrf';
 
-const LOAD_SONGS = "song/LOAD_SONGS"
+const LOAD_SONGS = "song/loadSong"
 
 const loadSong = songs => ({
     type: LOAD_SONGS,
@@ -8,17 +8,14 @@ const loadSong = songs => ({
   });
 
 export const getSong = () => async dispatch => {
-    // console.log("thunk")
 
     const response = await csrfFetch(`/api/songs`);
-    // if (response.ok) {
-        // console.log("response",response)
+    if (response.ok) {
         const songs = await response.json();
-        // console.log("songs frontend",songs)
         dispatch(loadSong(songs));
-        return songs
+        // return response
     }
-//   };
+  };
 // export const getSongs = () => async dispatch =>{
 //     const res = await fetch(`/api/songs`);
 //     const songs = await res.json()
@@ -31,12 +28,11 @@ const initialState = { songs: null}
 
 const songsReducer = (state = initialState, action)=>{
     let newState;
-    // console.log("action",action.songs)
     switch(action.type){
         case LOAD_SONGS:{
             newState = Object.assign({},state)
-            newState.songs = action.songs
-            console.log("mewState", newState)
+            newState.songs = action.songs.Songs
+            console.log("newState", newState)
             return newState
         }
         default:

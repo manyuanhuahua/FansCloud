@@ -15,11 +15,15 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+
+
+
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch("/api/session/currentUser");
 
   const data = await response.json();
-  console.log("restore", data);
+  // console.log("restore", data);
   if (Object.values(data).length > 0) {
     dispatch(setUser(data));
     return response;

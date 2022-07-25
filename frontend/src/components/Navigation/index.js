@@ -14,7 +14,9 @@ function Navigation({ isLoaded }){
 
     if (sessionUser && Object.keys(sessionUser).length >0) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+
+        <ProfileButton user={sessionUser} />
+
     );
     }else{
         sessionLinks=(

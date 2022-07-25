@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { NavLink, useHistory } from 'react-router-dom';
 
 function LoginForm(){
+    const history = useHistory()
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
-
     // console.log("outside submit")
 
     const handleSubmit = (e) => {
@@ -23,13 +23,14 @@ function LoginForm(){
           // console.log("data.error", data.errors)
 
           if (data && data.errors) setErrors(data.errors);
+
         }
-      );
-    };
+        ).then(()=>history.push('/currentUser'));
+      };
 
 
 
-    console.log('error before return',errors.map(e=>console.log('e',e)))
+    // console.log('error before return',errors.map(e=>console.log('e',e)))
 
 
     return (
@@ -55,7 +56,10 @@ function LoginForm(){
               required
             />
           </label>
-          <button type="submit">Log In</button>
+          <button type="submit">Log In
+            {/* <NavLink exact to="/session/currentUser"></NavLink> */}
+            {/* {isLoaded && sessionLinks} */}
+          </button>
         </form>
       );
 }

@@ -5,30 +5,32 @@ import * as songActions from '../../store/song'
 
 const SongsBrowser = ()=>{
     const dispatch = useDispatch()
-    const songList = useSelector(state => Object.values(state.songs)[0]);
-
+    const songList = useSelector(state => state.songs.songs);
+    const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)
-    console.log('songList', songList)
+    // console.log('songList', songList)
 
       useEffect(()=>{
-        dispatch(songActions.getSong())
+        dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
       },[dispatch])
 
 
-      return (
-        <div>
-            {/* {console.log("return songList", songList)} */}
-            {songList && songList.length > 0 && songList.map((song)=>{
+      return isLoaded && (
+            <div>
+                {/* {console.log("return songList", songList)} */}
+                {songList.map((song)=>{
                 return (
-                    <div className='song-entry' key={song.id}>
-                        <div className='song-entry-image'>
-                            <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
+                    <NavLink key={song.title} to={`/songs/${song.id}`}>
+                        <div className='song-entry' key={song.id}>
+                            <div className='song-entry-image'>
+                                <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
+                            </div>
+                            <div className='song-title'>{song.title}</div>
+                            <div className='song-text'>Top 50</div>
                         </div>
-                        <div className='song-title'>{song.title}</div>
-                        <div className='song-text'>Top 50</div>
-                    </div>
+                    </NavLink>
                 )
-            })}
+                })}
         </div>
       )
 

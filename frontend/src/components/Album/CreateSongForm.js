@@ -3,7 +3,7 @@ import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-function CreateSongForm(){
+function CreateSongForm({hideForm}){
     const history = useHistory()
     const dispatch = useDispatch();
     const {albumId} = useParams
@@ -33,11 +33,11 @@ function CreateSongForm(){
             createdSong = await res.json()
         } catch (error) {
             // const data  = await res.json();
-            if (createdSong && createdSong.errors) setErrors(data.errors);
+            if (createdSong && createdSong.errors) setErrors(createdSong.errors);
         }
-        if (createdPokemon) {
+        if (createdSong) {
           setErrors({});
-          history.push(`/currentUser`);
+          // history.push(`/currentUser`);
           setShowForm(false)
         }
       };
@@ -60,7 +60,7 @@ function CreateSongForm(){
     const handleCancelClick = (e) => {
         e.preventDefault();
         setErrors({});
-        setShowForm(false);
+        hideForm()
       };
 
 
@@ -93,9 +93,9 @@ function CreateSongForm(){
             placeholder="Song profile image"
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
-          
+
           <button type="submit">Create new Song</button>
-          <button type="button" onClick={handleCancelClick}>Cancel</button>
+          <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>
       );

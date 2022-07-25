@@ -25,7 +25,7 @@ const CurrentUser = ()=>{
                 {/* <Fab hidden={showForm} onClick={() => setShowForm(true)} /> */}
                 <button hidden={showForm} onClick={() => setShowForm(true)}>Upload</button>
                 {showForm ?
-                (<CreateSongForm />)
+                (<CreateSongForm hideForm={() => setShowForm(false)}/>)
                 :
                 (<Route path="/currentUser" />)}
 

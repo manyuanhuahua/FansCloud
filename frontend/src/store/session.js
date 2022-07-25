@@ -53,7 +53,7 @@ export const login = (user) => async (dispatch) => {
 //   if (response.ok) {
     const data = {}
     data.user = await response.json();
-    console.log("res",response)
+    // console.log("res",response)
     dispatch(setUser(data.user));
     return response
 //   }

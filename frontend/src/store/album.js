@@ -31,18 +31,56 @@ export const getalbums = () => async dispatch => {
     }
   };
 
-export const createAlbum = () => async dispatch=>{
+//export const signup = (user) => async (dispatch) => {
+    // const {
+    //     email,
+    //     password,
+    //     username,
+    //     firstName,
+    //     lastName,
+    //     isArtist,
+    //     previewImage,
+    //   } = user;
+    //   const res = await csrfFetch("/api/users", {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       email,
+    //       password,
+    //       username,
+    //       firstName,
+    //       lastName,
+    //       isArtist,
+    //       previewImage,
+    //     }),
+    //   });
+    //   // if(res.ok){
+    //   const data = await res.json();
+    //   // console.log(data)
+    //   dispatch(setUser(data));
+    //   return res;
+    // };
+
+export const createAlbum = (album) => async dispatch=>{
+    const {
+        title,
+        description,
+        previewImage
+    } = album;
+
     const res = await fetch('/api/albums/new',{
         method:'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(album)
-    })
+        body: JSON.stringify({
+            title,
+            description,
+            previewImage
+        }),
+    });
     if(res.ok){
         const newAlbum = await res.json()
         dispatch(addAlbum(newAlbum))
         return newAlbum
     }
-
 }
 
 const initialState = {
@@ -52,24 +90,20 @@ const initialState = {
 const albumsReducer = (state = initialState, action)=>{
     let newState;
     switch(action.type){
-        case LOAD_SONGS:{
+        case GET_ALBUMS:{
             newState = Object.assign({},state)
             newState.albums = action.albums.Albums
             // console.log("newState", newState)
             return newState
         };
         case CREATE_ALBUM:{
+
             if(!state[action.album.id]){
-                const newState = {
+                newState = {
                     ...state,
                     [action.album.id]:action.album
                 };
-                
             }
-            newState = {}
-            // console.log("action.song", action.song)
-            newState.song = action.song
-
             return newState
         }
 

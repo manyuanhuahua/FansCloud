@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const LOAD_SONGS = "song/loadSong"
 const LOAD_SONG_DETAIL = "song/loadSongDetail"
+const ADD_SONG = "song/addSong"
 
 
 const loadSong = songs => ({
@@ -13,6 +14,13 @@ const loadSongDetail = song =>({
     type: LOAD_SONG_DETAIL,
     song
 })
+
+const addSong = (song) =>{
+    return {
+        type: ADD_SONG,
+        song
+    }
+}
 
 export const getSong = () => async dispatch => {
 
@@ -36,6 +44,31 @@ export const getSongDetail = (id) => async dispatch =>{
     }
 }
 
+export const createSong = (albumId,song) => async dispatch=>{
+    const {
+        title,
+        description,
+        audioUrl,
+        previewImage,
+    } = song;
+
+    const res = await fetch(`/api/albums/${albumId}/new`,{
+        method:'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title,
+            description,
+            audioUrl,
+            previewImage,
+        }),
+    });
+    if(res.ok){
+        const newSong = await res.json()
+        dispatch(addSong(newSong))
+        return newSong
+    }
+}
+
 
 const initialState = {
     songs: null,
@@ -55,6 +88,16 @@ const songsReducer = (state = initialState, action)=>{
             // console.log("action.song", action.song)
             newState.song = action.song
 
+            return newState
+        }
+        case ADD_SONG:{
+
+            if(!state[action.id]){
+                newState = {
+                    ...state,
+                    [action.song.id]:action.song
+                };
+            }
             return newState
         }
 

@@ -23,7 +23,7 @@ function Navigation({ isLoaded }){
             <>
                 <LoginFormModal />
                 <NavLink to='/signup'>Create account</NavLink>
-                <h2>this is seesion link navbar</h2>
+                {/* <h2>this is seesion link navbar</h2> */}
 
 
             </>

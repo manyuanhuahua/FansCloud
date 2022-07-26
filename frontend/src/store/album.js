@@ -54,7 +54,7 @@ export const createAlbum = (album) => async dispatch=>{
             previewImage,
         } = album;
 
-        const res = await fetch(`/api/albums/new`,{
+        const res = await csrfFetch(`/api/albums/new`,{
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -65,8 +65,9 @@ export const createAlbum = (album) => async dispatch=>{
         });
         if(res.ok){
             const newAlbum = await res.json()
+            // console.log(newAlbum)
             dispatch(addAlbum(newAlbum))
-            return newAlbum
+            return res
         }
     }
 
@@ -98,6 +99,7 @@ const albumsReducer = (state = initialState, action)=>{
                     [action.album.id]:action.album
                 };
             }
+
             return newState
         }
 

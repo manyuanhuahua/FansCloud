@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import CreateSongForm from './CreateSongForm';
+import CreateAlbumForm from './CreateAlbumForm';
 
 
-function CreateSongModal() {
+function CreateAlbumModal() {
   const [showModal, setShowModal] = useState(false);
+  
+
+
 
   return (
     <>
       <button onClick={() => setShowModal(true)}>Upload</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateSongForm />
+          <CreateAlbumForm hideModal={()=>setShowModal(false)}/>
         </Modal>
       )}
     </>
   );
 }
 
-export default CreateSongModal;
+export default CreateAlbumModal;

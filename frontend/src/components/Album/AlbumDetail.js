@@ -35,6 +35,12 @@ const AlbumDetail = ()=>{
 
                     </div> */}
                 </div>
+                <div>
+                    <button>Add songs</button>
+                    <button>Edit Album</button>
+                    <button>Delete Album</button>
+
+                </div>
 
             </div>
 

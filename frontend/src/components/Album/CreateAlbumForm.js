@@ -3,14 +3,16 @@ import * as albumActions from '../../store/album'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-function CreateAlbumForm({hideForm}){
+function CreateAlbumForm({hideModal}){
     const history = useHistory()
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state=>state.session.user);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
-    const [showForm, setShowForm] = useState(true)
+
+
 
     // console.log("outside submit")
 
@@ -18,49 +20,30 @@ function CreateAlbumForm({hideForm}){
       e.preventDefault();
 
       setErrors([]);
-
+      hideModal()
         const newAlbum = {
             title,
             description,
             previewImage
         }
+          return dispatch(albumActions.createAlbum(newAlbum)).catch(
+            async (res) => {
+              // console.log("in the catch")
 
-        let createdAlbum;
-        try {
-            const res = await dispatch(albumActions.createAlbum(newAlbum));
-            createdAlbum = await res.json()
-        } catch (error) {
-            // const data  = await res.json();
-            if (createdAlbum && createdAlbum.errors) setErrors(createdAlbum.errors);
-        }
+              const data  = await res.json();
 
-        console.log("in created album thunk",createdAlbum)
-        if (createdAlbum) {
-          setErrors({});
-          history.push(`/albums/${createdAlbum.id}`);
-          setShowForm(false)
-        }
-      };
+              // console.log("data.error", data.errors)
 
-    //     dispatch(songActions.createSong(albumId,newSong)).catch(
-    //         async (res) => {
-    //           // console.log("in the catch")
+              if (data && data.errors) setErrors(data.errors);
 
-    //           const data  = await res.json();
+            }
+            );
+          };
 
-    //           // console.log("data.error", data.errors)
-
-    //           if (data && data.errors) setErrors(data.errors);
-
-    //         }
-    //         ).then(()=>history.push('/currentUser'));
-
-    //   }
-    //   };
     const handleCancelClick = (e) => {
         e.preventDefault();
         setErrors({});
-        hideForm()
+        hideModal()
       };
 
 

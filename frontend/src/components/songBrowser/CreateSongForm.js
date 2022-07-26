@@ -3,7 +3,7 @@ import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-function CreateSongForm({hideForm}){
+function CreateSongForm(){
     const history = useHistory()
     const dispatch = useDispatch();
     const {albumId} = useParams
@@ -27,52 +27,30 @@ function CreateSongForm({hideForm}){
             audioUrl,
             previewImage
         }
+        return dispatch(songActions.createSong(albumId,newSong))
+            .catch(async (res) => {
+               const data  = await res.json();
 
-        let createdSong;
-        try {
-            const res = await dispatch(songActions.createSong(albumId,newSong));
-            createdSong = await res.json()
-        } catch (error) {
             // const data  = await res.json();
-            if (createdSong && createdSong.errors) setErrors(createdSong.errors);
-        }
+            if (data && data.errors) setErrors(data.errors);
+        })
 
-        console.log(createdSong)
-        if (createdSong) {
-          setErrors({});
-          history.push(`/songs/${createdSong.id}`);
-          setShowForm(false)
-        }
+
       };
 
-    //     dispatch(songActions.createSong(albumId,newSong)).catch(
-    //         async (res) => {
-    //           // console.log("in the catch")
-
-    //           const data  = await res.json();
-
-    //           // console.log("data.error", data.errors)
-
-    //           if (data && data.errors) setErrors(data.errors);
-
-    //         }
-    //         ).then(()=>history.push('/currentUser'));
-
-    //   }
+    // const handleCancelClick = (e) => {
+    //     e.preventDefault();
+    //     setErrors({});
+    //     setShowForm(false)
     //   };
-    const handleCancelClick = (e) => {
-        e.preventDefault();
-        setErrors({});
-        hideForm()
-      };
 
 
 
 
 
-    return (
+    return showForm && (
         <section className="new-form-holder centered middled">
-        <form className="create-song-form" onSubmit={handleSubmit}>
+          <form className="create-song-form" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
           </ul>
@@ -101,7 +79,7 @@ function CreateSongForm({hideForm}){
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
           <button type="submit">Create New Song</button>
-          <button type="button" onClick={handleCancelClick} >Cancel</button>
+          {/* <button type="button" onClick={handleCancelClick} >Cancel</button> */}
         </form>
       </section>
       );

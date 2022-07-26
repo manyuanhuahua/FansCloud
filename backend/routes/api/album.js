@@ -99,6 +99,7 @@ router.get('/:albumId', async (req, res, next)=>{
 router.post('/new', requireAuth, validateAlbum, async (req, res, next)=>{
     const { title, description, previewImage } = req.body
     const userId = req.user.toJSON().id
+    console.log("userId",userId)
     const album = await Album.create({
             'userId': userId,
             title,

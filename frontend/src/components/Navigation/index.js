@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignupFormPage';
-import SongsBrowser from '../songBrowser';
+import SongsBrowser from '../songBrowser/SongBrowser';
 import CreateAlbumForm from '../Album/CreateAlbumForm';
 import './Navigation.css';
-import CreateSongModal from '../songDetail/CreateSongModal';
+import CreateSongModal from '../songBrowser/CreateSongModal';
+import UploadBotton from '../currentUserpage/UploadButton';
+import DemoUser from './demoUser';
 
 
 function Navigation({ isLoaded }){
@@ -22,8 +24,8 @@ function Navigation({ isLoaded }){
       <>
         <div className='profile-nav'>
         {/* <NavLink to="/albums/new" >Upload</NavLink> */}
-        <NavLink to="/you/library" >Library</NavLink>
-        <CreateSongModal />
+        <UploadBotton />
+        {/* <CreateSongModal /> */}
         <ProfileButton user={sessionUser} />
 
         </div>
@@ -36,6 +38,7 @@ function Navigation({ isLoaded }){
             <div>
                 <LoginFormModal />
                 <SignUpFormModal />
+                {/* <DemoUser /> */}
                 {/* <NavLink to='/signup'>Create account</NavLink> */}
 
             </div>

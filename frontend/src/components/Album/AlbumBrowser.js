@@ -5,27 +5,27 @@ import * as albumActions from '../../store/album'
 
 const AlbumsBrowser = ()=>{
     const dispatch = useDispatch()
-    const songList = useSelector(state => state.songs.songs);
+    const albumList = useSelector(state => state.albums.albums);
     const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)
     // console.log('songList', songList)
 
-      useEffect(()=>{
-        dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
+    useEffect(()=>{
+        dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
       },[dispatch])
 
 
       return isLoaded && (
             <div>
                 {/* {console.log("return songList", songList)} */}
-                {songList.map((song)=>{
+                {albumList.map((album)=>{
                 return (
-                    <NavLink key={song.id} to={`/songs/${song.id}`}>
-                        <div className='song-entry' key={song.id}>
+                    <NavLink key={album.id} to={`/albums/${album.id}`}>
+                        <div className='song-entry' key={album.id}>
                             <div className='song-entry-image'>
                                 <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
                             </div>
-                            <div className='song-title'>{song.title}</div>
+                            <div className='song-title'>{album.title}</div>
                             <div className='song-text'>Top 50</div>
                         </div>
                     </NavLink>
@@ -37,4 +37,4 @@ const AlbumsBrowser = ()=>{
 
 }
 
-export default SongsBrowser;
+export default AlbumsBrowser;

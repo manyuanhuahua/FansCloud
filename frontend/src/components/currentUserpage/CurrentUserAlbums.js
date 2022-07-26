@@ -1,40 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
-import * as albumActions from '../../store/album'
+// import * as albumActions from '../../store/album'
 
-const CurrentUserAlbums = ()=>{
+const CurrentUserAlbums = ({albumList, isLoaded})=>{
     const dispatch = useDispatch()
-    const albumsList = useSelector(state => state.albums.albums.filter((album)=> album.userId === sessionUser.id));
     const sessionUser = useSelector(state => state.session.user);
+    // const [isLoaded, setIsLoaded] = useState(false)
 
-    const [isLoaded, setIsLoaded] = useState(false)
-    // console.log(songList.length)
-    // console.log('songList', songList)
+    const yourAlbums = albumList.filter((album)=> album.userId === sessionUser.id);
 
-      useEffect(()=>{
-        dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
-      },[dispatch])
+    // console.log('yourAlbums',yourAlbums)
 
 
       return isLoaded && (
-            <div>
-                {/* {console.log("return songList", songList)} */}
-                {albumsList.map((album)=>{
-                return (
-                    <NavLink key={album.id} to={`/albums/${album.id}`}>
-                        <div className='content-entry' key={album.id}>
-                            <div className='content-entry-image'>
-                                <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
-                            </div>
-                            <div className='content-title'>{album.title}</div>
-                            <div className='content-text'>Top 50</div>
+        <div>
+            {yourAlbums.map((album)=>{
+            return (
+                <NavLink key={album.id} to={`/albums/${album.id}`}>
+                    <div className='content-entry' key={album.id}>
+                        <div className='content-entry-image'>
+                            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4q7aSdGz3Y2tqilrzNrgAQB4Iz6PAavqwPg&usqp=CAU' />
                         </div>
-                    </NavLink>
-                )
-                })}
-        </div>
-      )
+                        <div className='content-title'>{album.title}</div>
+                        <div className='content-text'>{sessionUser.username}</div>
+                    </div>
+                </NavLink>
+            )
+            })}
+    </div>
+  )
+
 
 
 }

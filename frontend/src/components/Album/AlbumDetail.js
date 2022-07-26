@@ -1,36 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
-import * as songActions from '../../store/song'
+import * as albumActions from '../../store/album'
 
-const SongDetail = ()=>{
+
+const AlbumDetail = ()=>{
     const dispatch = useDispatch()
-    const {songId} = useParams()
-    const song = useSelector(state => state.songs.song);
+    const {albumId} = useParams()
+    const album = useSelector(state => state.albums.album);
     const [isLoaded, setIsLoaded] = useState(false)
 
     // console.log("song", song)
     // console.log('songObj', Object.values(song))
 
       useEffect(()=>{
-        dispatch(songActions.getSongDetail(songId)).then(()=>setIsLoaded(true))
-      },[dispatch,songId])
+        dispatch(albumActions.getAlbumDetail(albumId)).then(()=>setIsLoaded(true))
+      },[dispatch,albumId])
 
 
 
       return isLoaded && (
 
-            <div className='song-detial-block'>
+            <div className='detial-container'>
 
-                <div className='song-entry' key={song.id}>
-                    <h2 className='song-title'>{song.title}</h2>
-                    <h3 className='song-text'>{song.Artist.username}</h3>
-                    <div className='song-entry-image'>
-                        <img src='https://cdn.ywwpay.com/zb_users/upload/2022/07/20220706000744165703726471194.jpg' />
+                <div className='detail-entry' key={album.id}>
+                    <div className='detail-content'>
+                    <h2 className='detial-title'>{album.title}</h2>
+                    <h3 className='detail-text'>{album.Artist.username}</h3>
                     </div>
-                    <div className='song-create-time'>
+                    <div className='detail-image'>
+                        <img src='https://cdn.flipsnack.com/template/4465/small/page_1?v=1626961047' />
+                    </div>
+                    {/* <div className='song-create-time'>
 
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
@@ -39,4 +42,4 @@ const SongDetail = ()=>{
 
 }
 
-export default SongDetail;
+export default AlbumDetail;

@@ -3,20 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
 
-const CurrentUserSongs = ({songList})=>{
+const CurrentUserSongs = ({songList, isLoaded})=>{
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
+    // const [isLoaded, setIsLoaded] = useState(false)
+
     // console.log('currentUserSong', songList)
 
     const yourSongs = songList.filter((song)=> song.userId === sessionUser.id);
 
-    const [isLoaded, setIsLoaded] = useState(false)
+    // const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)
     // console.log('currentUserSong', yourSongs)
 
-    useEffect(()=>{
-        dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
-    },[dispatch])
+    // useEffect(()=>{
+    //     dispatch(()=>setIsLoaded(true))
+    // },[dispatch])
 
 
       return isLoaded && (

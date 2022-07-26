@@ -20,12 +20,14 @@ const SongDetail = ()=>{
 
       return isLoaded && (
 
-            <div className='song-detial-block'>
+            <div className='detial-container'>
 
-                <div className='song-entry' key={song.id}>
-                    <h2 className='song-title'>{song.title}</h2>
-                    <h3 className='song-text'>{song.Artist.username}</h3>
-                    <div className='song-entry-image'>
+                <div className='detail-entry' key={song.id}>
+                    <div className='detail-content'>
+                        <h2 className='detial-title'>{song.title}</h2>
+                        <h3 className='detail-text'>{song.Artist.username}</h3>
+                    </div>
+                    <div className='detail-image'>
                         <img src='https://cdn.ywwpay.com/zb_users/upload/2022/07/20220706000744165703726471194.jpg' />
                     </div>
                     <div className='song-create-time'>

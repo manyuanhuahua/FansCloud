@@ -3,13 +3,18 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALBUMS="album/getAlbums"
 const CREATE_ALBUM="album/createAlbum"
-
+const LOAD_ALBUM_DETAIL="album/loadAlbumDetail"
 const loadAlbums = (albums) => {
   return {
     type: GET_ALBUMS,
     albums
   }
 }
+
+const loadAlbumDetail = album =>({
+    type: LOAD_ALBUM_DETAIL,
+    album
+})
 
 const addAlbum = (album) =>{
     return {
@@ -25,10 +30,20 @@ export const getalbums = () => async dispatch => {
     if (response.ok) {
         const albums = await response.json();
         dispatch(loadAlbums(albums));
-        // console.log("getsongs",songs)
+        // console.log("getalbums",albums)
         // return response
     }
   };
+
+  export const getAlbumDetail = (id) => async dispatch =>{
+    const response = await csrfFetch(`/api/albums/${id}`)
+
+    if(response.ok){
+        const album = await response.json();
+
+        dispatch(loadAlbumDetail(album))
+    }
+}
 
 
 
@@ -64,10 +79,17 @@ const albumsReducer = (state = initialState, action)=>{
     switch(action.type){
         case GET_ALBUMS:{
             newState = Object.assign({},state)
-            newState.albums = action.albums.Albums
-            console.log("newState", newState)
+            // console.log("action",action.albums)
+            newState.albums = action.albums
+            // console.log("newState", newState)
             return newState
         };
+        case LOAD_ALBUM_DETAIL:{
+            newState = {}
+            // console.log("action.song", action.song)
+            newState.album = action.album
+            return newState
+        }
         case CREATE_ALBUM:{
 
             if(!state[action.album.id]){

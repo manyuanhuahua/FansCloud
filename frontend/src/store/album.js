@@ -27,61 +27,33 @@ export const getalbums = () => async dispatch => {
         dispatch(loadAlbums(albums));
         // console.log("getsongs",songs)
         // return response
-
     }
   };
 
-//export const signup = (user) => async (dispatch) => {
-    // const {
-    //     email,
-    //     password,
-    //     username,
-    //     firstName,
-    //     lastName,
-    //     isArtist,
-    //     previewImage,
-    //   } = user;
-    //   const res = await csrfFetch("/api/users", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       email,
-    //       password,
-    //       username,
-    //       firstName,
-    //       lastName,
-    //       isArtist,
-    //       previewImage,
-    //     }),
-    //   });
-    //   // if(res.ok){
-    //   const data = await res.json();
-    //   // console.log(data)
-    //   dispatch(setUser(data));
-    //   return res;
-    // };
+
 
 export const createAlbum = (album) => async dispatch=>{
-    const {
-        title,
-        description,
-        previewImage
-    } = album;
-
-    const res = await fetch('/api/albums/new',{
-        method:'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        const {
             title,
             description,
-            previewImage
-        }),
-    });
-    if(res.ok){
-        const newAlbum = await res.json()
-        dispatch(addAlbum(newAlbum))
-        return newAlbum
+            previewImage,
+        } = album;
+
+        const res = await fetch(`/api/albums/new`,{
+            method:'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title,
+                description,
+                previewImage,
+            }),
+        });
+        if(res.ok){
+            const newAlbum = await res.json()
+            dispatch(addAlbum(newAlbum))
+            return newAlbum
+        }
     }
-}
 
 const initialState = {
     albums: null,
@@ -93,7 +65,7 @@ const albumsReducer = (state = initialState, action)=>{
         case GET_ALBUMS:{
             newState = Object.assign({},state)
             newState.albums = action.albums.Albums
-            // console.log("newState", newState)
+            console.log("newState", newState)
             return newState
         };
         case CREATE_ALBUM:{

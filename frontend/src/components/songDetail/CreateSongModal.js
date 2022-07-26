@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import LoginForm from './LoginForm';
+import CreateSongForm from './CreateSongForm';
 
 
 function CreateSongModal() {
@@ -8,10 +8,10 @@ function CreateSongModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Log In</button>
+      <button onClick={() => setShowModal(true)}>Upload</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
+          <CreateSongForm />
         </Modal>
       )}
     </>

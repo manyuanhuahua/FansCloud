@@ -5,6 +5,7 @@ const LOAD_SONG_DETAIL = "song/loadSongDetail"
 const ADD_SONG = "song/addSong"
 
 
+
 const loadSong = songs => ({
     type: LOAD_SONGS,
     songs
@@ -21,6 +22,8 @@ const addSong = (song) =>{
         song
     }
 }
+
+
 
 export const getSong = () => async dispatch => {
 
@@ -74,6 +77,12 @@ const initialState = {
     songs: null,
 }
 
+// const sortList = (list) => {
+//     return list.sort((songA, songB) => {
+//       return songA.id - songB.id;
+//     }).map((song) => song.id);
+//   };
+
 const songsReducer = (state = initialState, action)=>{
     let newState;
     switch(action.type){
@@ -83,6 +92,7 @@ const songsReducer = (state = initialState, action)=>{
             // console.log("newState", newState)
             return newState
         };
+
         case LOAD_SONG_DETAIL:{
             newState = {}
             // console.log("action.song", action.song)
@@ -90,6 +100,7 @@ const songsReducer = (state = initialState, action)=>{
 
             return newState
         }
+
         case ADD_SONG:{
 
             if(!state[action.id]){
@@ -97,9 +108,19 @@ const songsReducer = (state = initialState, action)=>{
                     ...state,
                     [action.song.id]:action.song
                 };
+                const songList = newState.list.map(id => newState[id]);
+                songList.push(action.song);
+                return newState;
             }
-            return newState
-        }
+            console.log("add song newState", newState)
+            return {
+              ...state,
+              [action.song.id]: {
+                ...state[action.song.id],
+                ...action.song
+              }
+            };
+          }
 
         default:
             return state;

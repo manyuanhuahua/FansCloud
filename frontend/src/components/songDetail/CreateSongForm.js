@@ -13,6 +13,7 @@ function CreateSongForm({hideForm}){
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
     const [showForm, setShowForm] = useState(true)
+
     // console.log("outside submit")
 
     const handleSubmit = async (e) => {
@@ -35,9 +36,11 @@ function CreateSongForm({hideForm}){
             // const data  = await res.json();
             if (createdSong && createdSong.errors) setErrors(createdSong.errors);
         }
+
+        console.log(createdSong)
         if (createdSong) {
           setErrors({});
-          // history.push(`/currentUser`);
+          history.push(`/songs/${createdSong.id}`);
           setShowForm(false)
         }
       };
@@ -70,6 +73,9 @@ function CreateSongForm({hideForm}){
     return (
         <section className="new-form-holder centered middled">
         <form className="create-song-form" onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+          </ul>
           <input
             type="text"
             placeholder="Title"
@@ -94,7 +100,7 @@ function CreateSongForm({hideForm}){
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button type="submit">Create new Song</button>
+          <button type="submit">Create New Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>

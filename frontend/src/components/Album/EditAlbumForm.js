@@ -20,7 +20,7 @@ function EditAlbumForm({album, hideModal}){
       e.preventDefault();
 
       setErrors([]);
-      hideModal()
+      // hideModal()
         const updateAlbum = {
             ...album,
             title,
@@ -28,11 +28,22 @@ function EditAlbumForm({album, hideModal}){
             previewImage
         }
 
-        const updaedAlbum = await dispatch(albumActions.editAlbum(updateAlbum));
+        return dispatch(albumActions.editAlbum(updateAlbum)).catch(
+              async (res) => {
+            // console.log("in the catch")
 
-        if(updaedAlbum){
-            hideModal()
-        }
+              const data  = await res.json();
+
+            // console.log("data.error", data.errors)
+
+              if (data && data.errors) setErrors(data.errors);
+
+          }
+          ).then(()=>hideModal());
+
+        // if(updaedAlbum){
+        //     hideModal()
+        // }
           };
 
     const handleCancelClick = (e) => {

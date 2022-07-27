@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as songActions from '../../store/album'
+import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
@@ -7,10 +7,10 @@ function EditSongForm({song, album, hideModal}){
     const history = useHistory()
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state.session.user);
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [audioUrl, setaudioUrl] = useState("");
-    const [previewImage, setPreviewImage] = useState("");
+    const [title, setTitle] = useState(song.title);
+    const [description, setDescription] = useState(song.description);
+    const [audioUrl, setaudioUrl] = useState(song.audioUrl);
+    const [previewImage, setPreviewImage] = useState(song.previewImage);
     const [errors, setErrors] = useState([]);
     const [showForm, setShowForm] = useState(true)
 
@@ -23,19 +23,30 @@ function EditSongForm({song, album, hideModal}){
 
       setErrors([]);
       hideModal()
-        const updateAlbum = {
-            ...album,
+        const updateSong = {
+            ...song,
             title,
             description,
+            audioUrl,
             previewImage
         }
 
-        const updaedAlbum = await dispatch(songActions.editAlbum(updateAlbum));
+        return dispatch(songActions.editSong(updateSong))
+                .catch(async (res) => {
+                    const data  = await res.json();
 
-        if(updaedAlbum){
-            hideModal()
+              // const data  = await res.json();
+              if (data && data.errors) setErrors(data.errors);
+          })
+
+
+        //   if(updaedSong)
+        //     hideModal()
         }
-          };
+;
+
+
+
 
     const handleCancelClick = (e) => {
         e.preventDefault();
@@ -67,11 +78,17 @@ function EditSongForm({song, album, hideModal}){
             onChange={(e)=>setDescription(e.target.value)} />
           <input
             type="text"
-            placeholder="Album profile image"
+            placeholder="Audio Url"
+            required
+            value={audioUrl}
+            onChange={(e)=>setaudioUrl(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Song profile image"
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button type="submit">Upload Album</button>
+          <button type="submit">Update Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>

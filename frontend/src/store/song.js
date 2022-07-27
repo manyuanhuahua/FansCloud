@@ -30,6 +30,25 @@ const removeSong = (songId, albumId) => ({
 
   });
 
+  export const editSong = (song)=> async dispatch =>{
+    const response = await csrfFetch(`/api/songs/${song.id}`,{
+        method:'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(song)
+    })
+    if (response.ok) {
+        const editedSong = await response.json();
+        dispatch(addSong(song));
+        return editedSong;
+      }
+}
+
+
+
+
+
 export const deleteSong =(songId, albumId)=>async dispatch=>{
     const response = await csrfFetch(`/api/songs/${songId}`,{
         method: `DELETE`,
@@ -131,7 +150,7 @@ const songsReducer = (state = initialState, action)=>{
                 songList.push(action.song);
                 return newState;
             }
-            console.log("add song newState", newState)
+            // console.log("add song newState", newState)
             return {
               ...state,
               [action.song.id]: {

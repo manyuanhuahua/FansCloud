@@ -38,7 +38,7 @@ const SongDetail = ()=>{
                         <h3 className='detail-text'>{song.Artist.username}</h3>
                     </div>
                     <div className='detail-image'>
-                        <img src='https://cdn.ywwpay.com/zb_users/upload/2022/07/20220706000744165703726471194.jpg' />
+                        <img src={song.previewImage} />
                     </div>
                     <div className='song-create-time'>
                     {(sessionUser.id === song.userId) ? (

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
-import * as songActions from '../../store/song'
+import * as albumActions from '../../store/album'
 
-const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
+const DeleteAlbumAlert = ({album,hideModal})=>{
     const history=useHistory()
     const dispatch = useDispatch()
 
@@ -12,10 +12,10 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
 
     // const songList=songs.filter((song)=>song.albumId === albumId);
 
-    const songId = song.id
+    // const songId = song.id
 
-    console.log('song', song.id)
-    console.log('user', user)
+    // console.log('song', song.id)
+    // console.log('user', user)
 
     const handleDeleteClick = async (e) => {
       e.preventDefault();
@@ -25,19 +25,8 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
 
         // setErrors([]);
 
-        return dispatch(songActions.deleteSong(songId, albumId))
+        return dispatch(albumActions.deleteAlbum(album.id))
                   .then(()=>history.push('/currentUser'))
-        //       .catch(async (res) => {
-        //        const data  = await res.json();
-
-        //     // const data  = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-
-        // })
-
-
-
-
 
       };
 
@@ -50,13 +39,13 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
 
       return  (
        <form>
-          <div>Delete Song</div>
+          <div>Delete Album</div>
           {/* {errors && (
             <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
           </ul>
           )} */}
-          <p>Are you sure you want to delete {song.title}? This action cannot be undone.</p>
+          <p>Are you sure you want to delete {album.title}? This action cannot be undone.</p>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
           <button type="button" onClick={handleDeleteClick}>Delete</button>
        </form>
@@ -66,4 +55,4 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
 
 }
 
-export default DeleteSongAlert;
+export default DeleteAlbumAlert;

@@ -28,7 +28,7 @@ const SongList = ({songs,albumId})=>{
 
                     </div>
                     <div className='detail-image'>
-                        <img src='https://cdn.ywwpay.com/zb_users/upload/2022/07/20220706000744165703726471194.jpg' />
+                        <img src={song.previewImage}/>
                     </div>
                     <div className='song-create-time'>
 

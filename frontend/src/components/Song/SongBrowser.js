@@ -24,7 +24,7 @@ const SongsBrowser = ()=>{
                     <NavLink key={song.id} to={`/songs/${song.id}`}>
                         <div className='song-entry' key={song.id}>
                             <div className='song-entry-image'>
-                                <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
+                                <img src={song.previewImage} />
                             </div>
                             <div className='song-title'>{song.title}</div>
                             <div className='song-text'>Top 50</div>

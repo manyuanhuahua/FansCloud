@@ -20,7 +20,7 @@ function EditAlbumForm({album, hideModal}){
       e.preventDefault();
 
       setErrors([]);
-      // hideModal()
+      hideModal()
         const updateAlbum = {
             ...album,
             title,
@@ -39,7 +39,7 @@ function EditAlbumForm({album, hideModal}){
               if (data && data.errors) setErrors(data.errors);
 
           }
-          ).then(()=>hideModal());
+          ).then(()=>history.push(`/currentUser`));
 
         // if(updaedAlbum){
         //     hideModal()

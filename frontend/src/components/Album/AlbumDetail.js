@@ -6,6 +6,7 @@ import * as songActions from '../../store/song'
 import SongList from '../Song/SongList';
 import EditAlbumModal from './EditAlbumModal';
 import CreateSongModal from '../Song/CreateSongModal';
+import DeleteAlbumModal from './DeleteAlbumModal';
 
 
 const AlbumDetail = ()=>{
@@ -56,7 +57,7 @@ const AlbumDetail = ()=>{
 
                      <EditAlbumModal album={album}/>
 
-                     <button>Delete Album</button>
+                     <DeleteAlbumModal album={album}/>
                      <CreateSongModal albumId={album.id}/>
                  </div>
                  <div>

@@ -147,18 +147,16 @@ const songsReducer = (state = initialState, action)=>{
                     ...state,
                     [action.song.id]:action.song
                 };
-                // const songList = newState.list.map(id => newState[id]);
-                // songList.push(action.song);
                 return newState;
             }
             // console.log("add song newState", newState)
-            return {
-              ...state,
-              [action.song.id]: {
-                ...state[action.song.id],
-                ...action.song
-              }
-            };
+            // return {
+            //   ...state,
+            //   [action.song.id]: {
+            //     ...state[action.song.id],
+            //     ...action.song
+            //   }
+            // };
           }
 
           case REMOVE_SONG:{

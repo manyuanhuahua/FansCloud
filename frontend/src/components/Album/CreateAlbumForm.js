@@ -42,7 +42,7 @@ function CreateAlbumForm({hideModal}){
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        setErrors({});
+        setErrors([]);
         hideModal()
       };
 

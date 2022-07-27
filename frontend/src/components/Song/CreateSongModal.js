@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import CreateSongForm from './CreateSongForm';
 
 
-function CreateSongModal() {
+function CreateSongModal({albumId}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ function CreateSongModal() {
       <button onClick={() => setShowModal(true)}>Add Song</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateSongForm hideModal={()=>setShowModal(false)}/>
+          <CreateSongForm hideModal={()=>setShowModal(false)} albumId={albumId}/>
         </Modal>
       )}
     </>

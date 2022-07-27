@@ -5,6 +5,7 @@ import * as albumActions from '../../store/album'
 import * as songActions from '../../store/song'
 import SongList from '../Song/SongList';
 import EditAlbumModal from './EditAlbumModal';
+import CreateSongModal from '../Song/CreateSongModal';
 
 
 const AlbumDetail = ()=>{
@@ -30,10 +31,6 @@ const AlbumDetail = ()=>{
     },[dispatch])
     // const  = album.Songs
 
-    const [showEditAlbumForm, setShowEditAlbumForm] = useState(false);
-    const [showAddSongForm, setShowAddSongForm] = useState(false);
-
-
     // console.log("albumSong", albumSongs)
     // console.log('album', album)
 
@@ -50,7 +47,7 @@ const AlbumDetail = ()=>{
                      <h3 className='detail-text'>{album.Artist.username}</h3>
                      </div>
                      <div className='detail-image'>
-                         <img src='https://cdn.flipsnack.com/template/4465/small/page_1?v=1626961047' />
+                         <img src={album.previewImage} />
                      </div>
 
                 </div>
@@ -58,9 +55,9 @@ const AlbumDetail = ()=>{
 
 
                      <EditAlbumModal album={album}/>
+
                      <button>Delete Album</button>
-
-
+                     <CreateSongModal albumId={album.id}/>
                  </div>
                  <div>
                  <SongList songs={songList} albumId={album.id}/>

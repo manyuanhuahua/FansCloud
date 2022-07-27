@@ -3,32 +3,35 @@ import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-function CreateSongForm({hideModal}){
+function CreateSongForm({hideModal,albumId}){
     const history = useHistory()
     const dispatch = useDispatch();
-    const {albumId} = useParams
+    // const albumId = useParams()
+    const sessionUser = useSelector(state=>state.session.user);
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [audioUrl, setaudioUrl] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
-    const [showForm, setShowForm] = useState(true)
+    // const albumId = album.id
+    // const [showForm, setShowForm] = useState(true)
 
-    // console.log("outside submit")
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       setErrors([]);
-
+      hideModal()
         const newSong = {
             title,
             description,
             audioUrl,
             previewImage
         }
-        return dispatch(songActions.createSong(albumId,newSong))
-            .catch(async (res) => {
+        return dispatch(songActions.createSong(albumId,newSong)).catch(
+          async (res) => {
                const data  = await res.json();
 
             // const data  = await res.json();
@@ -40,7 +43,7 @@ function CreateSongForm({hideModal}){
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        setErrors({});
+        setErrors([]);
         hideModal()
       };
 
@@ -48,7 +51,7 @@ function CreateSongForm({hideModal}){
 
 
 
-    return showForm && (
+    return (
         <section className="new-form-holder centered middled">
           <form className="create-song-form" onSubmit={handleSubmit}>
           <ul>

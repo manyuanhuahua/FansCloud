@@ -16,10 +16,11 @@ const loadSongDetail = song =>({
     song
 })
 
-const addSong = (song) =>{
+const addSong = (albumId, song) =>{
     return {
         type: ADD_SONG,
-        song
+        song,
+        albumId
     }
 }
 
@@ -93,7 +94,7 @@ export const createSong = (albumId,song) => async dispatch=>{
         previewImage,
     } = song;
 
-    const res = await fetch(`/api/albums/${albumId}/new`,{
+    const res = await csrfFetch(`/api/albums/${albumId}/new`,{
         method:'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -105,8 +106,8 @@ export const createSong = (albumId,song) => async dispatch=>{
     });
     if(res.ok){
         const newSong = await res.json()
-        dispatch(addSong(newSong))
-        return newSong
+        dispatch(addSong(albumId, newSong))
+        return res
     }
 }
 
@@ -146,8 +147,8 @@ const songsReducer = (state = initialState, action)=>{
                     ...state,
                     [action.song.id]:action.song
                 };
-                const songList = newState.list.map(id => newState[id]);
-                songList.push(action.song);
+                // const songList = newState.list.map(id => newState[id]);
+                // songList.push(action.song);
                 return newState;
             }
             // console.log("add song newState", newState)

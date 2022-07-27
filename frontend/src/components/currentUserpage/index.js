@@ -62,14 +62,6 @@ const CurrentUser = ()=>{
                 </div>
 
 
-                {/* <button hidden={showForm} onClick={() => setShowForm(true)}>Upload</button>
-                {showForm ?
-                (
-                    <CreateAlbumForm hideForm={() => setShowForm(false)}/>
-                )
-                :
-                (<Route path="/currentUser" />)} */}
-
             </div>
       )
 

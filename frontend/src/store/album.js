@@ -4,6 +4,11 @@ import { csrfFetch } from "./csrf";
 const GET_ALBUMS="album/getAlbums"
 const CREATE_ALBUM="album/createAlbum"
 const LOAD_ALBUM_DETAIL="album/loadAlbumDetail"
+
+
+
+
+
 const loadAlbums = (albums) => {
   return {
     type: GET_ALBUMS,
@@ -21,6 +26,21 @@ const addAlbum = (album) =>{
         type: CREATE_ALBUM,
         album
     }
+}
+
+export const editAlbum = (album)=> async dispatch =>{
+    const response = await csrfFetch(`/api/albums/${album.id}`,{
+        method:'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(album)
+    })
+    if (response.ok) {
+        const album = await response.json();
+        dispatch(addAlbum(album));
+        return album;
+      }
 }
 
 

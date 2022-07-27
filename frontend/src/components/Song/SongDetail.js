@@ -2,19 +2,29 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
+import DeleteSong from './DeleteSongAlert';
+import DeleteSongModal from './DeleteSongModal';
+import EditSongModal from './EditSongModal';
+
 
 const SongDetail = ()=>{
     const dispatch = useDispatch()
     const {songId} = useParams()
     const song = useSelector(state => state.songs.song);
+    const sessionUser = useSelector(state => state.session.user);
+
     const [isLoaded, setIsLoaded] = useState(false)
 
     // console.log("song", song)
     // console.log('songObj', Object.values(song))
 
       useEffect(()=>{
-        dispatch(songActions.getSongDetail(songId)).then(()=>setIsLoaded(true))
+        dispatch(songActions.getSongDetail(songId))
+                .then(()=>{
+                    setIsLoaded(true)
+        })
       },[dispatch,songId])
+
 
 
 
@@ -31,6 +41,12 @@ const SongDetail = ()=>{
                         <img src='https://cdn.ywwpay.com/zb_users/upload/2022/07/20220706000744165703726471194.jpg' />
                     </div>
                     <div className='song-create-time'>
+                    {(sessionUser.id === song.userId) ? (
+                        <>
+                            <EditSongModal song={song}/>
+                            <DeleteSongModal song={song} albumId={song.albumId} user={sessionUser}/>
+                        </>
+                    ):<></>}
 
                     </div>
                 </div>

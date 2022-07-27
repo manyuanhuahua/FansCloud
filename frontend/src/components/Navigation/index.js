@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignupFormPage';
-import SongsBrowser from '../songBrowser/SongBrowser';
+import SongsBrowser from '../Song/SongBrowser';
 import CreateAlbumForm from '../Album/CreateAlbumForm';
 import './Navigation.css';
-import CreateSongModal from '../songBrowser/CreateSongModal';
+import CreateSongModal from '../Song/CreateSongModal';
 import UploadBotton from '../currentUserpage/UploadButton';
 import DemoUser from './demoUser';
 

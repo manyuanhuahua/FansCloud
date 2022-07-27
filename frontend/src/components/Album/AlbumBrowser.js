@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import * as albumActions from '../../store/album'
+import SongList from '../Song/SongList';
 
 const AlbumsBrowser = ()=>{
     const dispatch = useDispatch()
     const albumList = useSelector(state => state.albums.albums);
+    const songList = useSelector(state => state.songs.songs);
+
     const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)
     // console.log('songList', songList)

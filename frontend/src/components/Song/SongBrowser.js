@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
+import SongList from './SongList';
 
 const SongsBrowser = ()=>{
     const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const SongsBrowser = ()=>{
                             </div>
                             <div className='song-title'>{song.title}</div>
                             <div className='song-text'>Top 50</div>
+                            <SongList songs={songList}/>
                         </div>
                     </NavLink>
                 )

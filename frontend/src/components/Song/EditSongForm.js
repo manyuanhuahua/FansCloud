@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import * as songActions from '../../store/song'
+import * as songActions from '../../store/album'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-function CreateSongForm(){
+function EditSongForm({song, album, hideModal}){
     const history = useHistory()
     const dispatch = useDispatch();
-    const {albumId} = useParams
+    const sessionUser = useSelector(state=>state.session.user);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [audioUrl, setaudioUrl] = useState("");
@@ -14,43 +14,42 @@ function CreateSongForm(){
     const [errors, setErrors] = useState([]);
     const [showForm, setShowForm] = useState(true)
 
+
+
     // console.log("outside submit")
 
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       setErrors([]);
-
-        const newSong = {
+      hideModal()
+        const updateAlbum = {
+            ...album,
             title,
             description,
-            audioUrl,
             previewImage
         }
-        return dispatch(songActions.createSong(albumId,newSong))
-            .catch(async (res) => {
-               const data  = await res.json();
 
-            // const data  = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        })
+        const updaedAlbum = await dispatch(songActions.editAlbum(updateAlbum));
 
+        if(updaedAlbum){
+            hideModal()
+        }
+          };
 
+    const handleCancelClick = (e) => {
+        e.preventDefault();
+        setErrors({});
+        hideModal()
       };
 
-    // const handleCancelClick = (e) => {
-    //     e.preventDefault();
-    //     setErrors({});
-    //     setShowForm(false)
-    //   };
 
 
 
 
-
-    return showForm && (
+    return (
         <section className="new-form-holder centered middled">
-          <form className="create-song-form" onSubmit={handleSubmit}>
+        <form className="create-album-form" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
           </ul>
@@ -68,21 +67,15 @@ function CreateSongForm(){
             onChange={(e)=>setDescription(e.target.value)} />
           <input
             type="text"
-            placeholder="Audio Url"
-            required
-            value={audioUrl}
-            onChange={(e)=>setaudioUrl(e.target.value)} />
-          <input
-            type="text"
-            placeholder="Song profile image"
+            placeholder="Album profile image"
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button type="submit">Create New Song</button>
-          {/* <button type="button" onClick={handleCancelClick} >Cancel</button> */}
+          <button type="submit">Upload Album</button>
+          <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>
       );
 }
 
-export default CreateSongForm;
+export default EditSongForm;

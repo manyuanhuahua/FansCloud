@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
+import MainAudioPlayer from '../AudioPlayer/MainAudio';
 import DeleteSong from './DeleteSongAlert';
 import DeleteSongModal from './DeleteSongModal';
 import EditSongModal from './EditSongModal';
@@ -11,7 +12,12 @@ const SongDetail = ()=>{
     const dispatch = useDispatch()
     const {songId} = useParams()
     const song = useSelector(state => state.songs.song);
-    const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session.user)
+
+
+
+
+    ;
 
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -48,6 +54,9 @@ const SongDetail = ()=>{
                         </>
                     ):<></>}
 
+                    </div>
+                    <div className='song-detail-player'>
+                        <MainAudioPlayer song={song}/>
                     </div>
                 </div>
 

@@ -12,6 +12,9 @@ import CurrentUser from "./components/currentUserpage";
 import HomePage from "./components/HomePage";
 import CreateAlbumForm from "./components/Album/CreateAlbumForm";
 import AlbumDetail from "./components/Album/AlbumDetail";
+import MainAudioPlayer from "./components/AudioPlayer/MainAudio";
+import CurrentUserSongs from "./components/currentUserpage/CurrentUserSongs";
+import CurrentUserAlbums from "./components/currentUserpage/CurrentUserAlbums";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,14 +48,21 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/albums/:albumId">
+        <Route exact path="/albums/:albumId">
           <AlbumDetail />
+        </Route>
+        <Route exact path="/currentUser/songs">
+          <CurrentUserSongs />
+        </Route>
+        <Route exact path="/currentUser/albums">
+          <CurrentUserAlbums />
         </Route>
         {/* <Route path="/">
           <HomePage />
         </Route> */}
       </Switch>
       )};
+
     </>
   )
       }

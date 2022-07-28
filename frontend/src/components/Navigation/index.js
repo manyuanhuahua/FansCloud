@@ -1,63 +1,76 @@
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect,useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignupFormPage';
-import SongsBrowser from '../Song/SongBrowser';
-import CreateAlbumForm from '../Album/CreateAlbumForm';
+import CurrentUser from '../currentUserpage/UploadButton'
+
+
+
 import './Navigation.css';
-import CreateSongModal from '../Song/CreateSongModal';
+
 import UploadBotton from '../currentUserpage/UploadButton';
 import DemoUser from './demoUser';
+import UserNav from '../currentUserpage/UserNav';
 
 
 function Navigation({ isLoaded }){
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
-
+    const [showSongs, setShowSongs] = useState(false)
+    const [showAlbums, setShowAlbums] = useState(false)
   // console.log(sessionUser)
     let sessionLinks;
 
-    if (sessionUser && Object.keys(sessionUser).length >0) {
-    sessionLinks = (
-      <>
-        <div className='profile-nav'>
-        {/* <NavLink to="/albums/new" >Upload</NavLink> */}
-        <UploadBotton />
-        {/* <CreateSongModal /> */}
-        <ProfileButton user={sessionUser} />
+    // if (sessionUser && Object.keys(sessionUser).length >0) {
+    // sessionLinks = (
+    //   <>
+    //     <div className='profile-nav'>
+    //     {/* <NavLink to="/albums/new" >Upload</NavLink> */}
+    //     <UploadBotton />
+    //     {/* <CreateSongModal /> */}
+    //     <ProfileButton user={sessionUser} />
+
+
+    //     </div>
+    //   </>
+
+    // );
+    // }else{
+    //     sessionLinks=(
+    //         <>
+    //         <div>
+
+    //             {/* <DemoUser /> */}
+
+
+    //         </div>
+    //         </>
+    //     )
+    // }
+
+    return (!sessionUser) ? (
+      <div className='user-mainContainer'>
+            <div className='user-top-banner'>
+                  <img src='https://cdn.iconscout.com/icon/free/png-256/soundcloud-4069940-3365459.png'></img>
+                  <NavLink exact to="/">Home</NavLink>
+                  <LoginFormModal />
+                  <SignUpFormModal />
+                  <DemoUser />
+
+          </div>
+        <div className='banner-right'>
 
         </div>
-      </>
-
-    );
-    }else{
-        sessionLinks=(
-            <>
-            <div>
-                <LoginFormModal />
-                <SignUpFormModal />
-                {/* <DemoUser /> */}
-                {/* <NavLink to='/signup'>Create account</NavLink> */}
-
-            </div>
-            </>
-        )
-    }
-
-    return (
-      <>
-        <div>
-          <NavLink exact to="/">Home</NavLink>
-          {isLoaded && sessionLinks}
-        </div>
 
 
-      </>
+      </div>
 
 
+      ):(
+        <UserNav />
       );
-    }
 
+              }
 export default Navigation;

@@ -3,27 +3,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
 
-const CurrentUserSongs = ({songList, isLoaded})=>{
+const CurrentUserSongs = ()=>{
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
-    // const [isLoaded, setIsLoaded] = useState(false)
+    const yourSongs = useSelector(state => state.songs.songs);
+    const [isLoaded, setIsLoaded] = useState(false)
+
+
 
     // console.log('currentUserSong', songList)
 
-    const yourSongs = songList.filter((song)=> song.userId === sessionUser.id);
+    useEffect(()=>{
+        dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
+      },[dispatch])
 
     // const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)
     // console.log('currentUserSong', yourSongs)
 
-    // useEffect(()=>{
-    //     dispatch(()=>setIsLoaded(true))
-    // },[dispatch])
 
 
       return isLoaded && (
             <div>
-                {yourSongs.map((song)=>{
+                {yourSongs.filter((song)=> song.userId === sessionUser.id)
+                    .map((song)=>{
                 return (
                     <NavLink key={song.id} to={`/songs/${song.id}`}>
                         <div className='content-entry' key={song.id}>

@@ -8,7 +8,7 @@ const CurrentUserAlbums = ()=>{
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
-    const yourAlbums = useSelector(state => state.albums.albums.filter((album)=> album.userId === sessionUser.id));
+    const yourAlbums = useSelector(state => state.albums.albums);
 
     // const yourAlbums = albumList.filter((album)=> album.userId === sessionUser.id);
 
@@ -20,7 +20,8 @@ const CurrentUserAlbums = ()=>{
 
       return isLoaded && (
         <div>
-            {yourAlbums.map((album)=>{
+            {yourAlbums.filter((album)=> album.userId === sessionUser.id)
+                      .map((album)=>{
             return (
                 <NavLink key={album.id} to={`/albums/${album.id}`}>
                     <div className='content-entry' key={album.id}>

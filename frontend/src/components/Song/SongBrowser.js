@@ -28,7 +28,7 @@ const SongsBrowser = ()=>{
                             </div>
                             <div className='song-title'>{song.title}</div>
                             <div className='song-text'>Top 50</div>
-                            <SongList songs={songList}/>
+                            {/* <SongList songs={songList}/> */}
                         </div>
                     </NavLink>
                 )

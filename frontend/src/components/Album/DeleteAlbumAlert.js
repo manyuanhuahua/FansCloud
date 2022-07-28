@@ -21,7 +21,7 @@ const DeleteAlbumAlert = ({album,hideModal})=>{
       e.preventDefault();
 
 
-      hideModal()
+        hideModal()
 
         // setErrors([]);
 

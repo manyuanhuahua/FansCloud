@@ -11,7 +11,8 @@ function DeleteAlbumModal({album}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Delete</button>
+      <i className="fa-solid fa-trash-can" onClick={() => setShowModal(true)}></i>
+      {/* <button >Delete</button> */}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeleteAlbumAlert hideModal={()=>setShowModal(false)} album={album} />

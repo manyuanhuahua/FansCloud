@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignupFormPage';
 import * as songActions from '../../store/song'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+import MainAudioPlayer from '../AudioPlayer/MainAudio';
+import ToggleButton from '../AudioPlayer/ToggleButton';
 
 
 function HomePage(){
     const dispatch = useDispatch()
     const songList = useSelector(state => state.songs.songs);
     const sessionUser = useSelector(state => state.session.user);
-
+    const [isPlay, setIsPlay] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
 
     let songShows= [];
@@ -33,30 +37,41 @@ function HomePage(){
 
 
     return (
-        <>
+
+
+
+        <div className='song-trending'>
 
         {isLoaded && copyList() &&
-            songShows.map((song)=>{
+            songShows.map((song, index)=>{
                 return (
-                    <NavLink key={song.id} to={`/songs/${song.id}`}>
-                        <div className='song-entry' key={song.id}>
-                            <div className='song-entry-image'>
-                                <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
+                    <div className='song-list-container'>
+                        <li className='songItem' key={index}>
+
+                            <NavLink key={song.id} to={`/songs/${song.id}`}>
+                            <div className='song-playlist'>
+                                <span className='song-title'>{song.title}</span>
+                                <span className='song-text'>Top 50</span>
                             </div>
-                            <div className='song-title'>{song.title}</div>
-                            <div className='song-text'>Top 50</div>
-                        </div>
+                            <div className='song-entry-image'>
+                                <img src={song.previewImage} />
+                            </div>
                     </NavLink>
+                    </li>
+
+                    </div>
+
                 )
             })}
         <NavLink to='/songs'>Explore All Songs</NavLink>
-        {(!sessionUser) && (
+        {/* {(!sessionUser) && (
             <div>
                 <LoginFormModal />
                 <SignUpFormModal />
             </div>
-        )}
-        </>
+        )} */}
+        {/* <ToggleButton /> */}
+        </div>
     )
 
     }

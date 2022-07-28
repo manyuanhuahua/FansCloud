@@ -1,52 +1,55 @@
-// import { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { NavLink, Route, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, Route, useHistory, useParams } from 'react-router-dom';
+import * as sessionActions from "../../store/session"
 
 
 
-
-// const DemoUser = ()=>{
-//      const history = useHistory()
-    // const dispatch = useDispatch();
+const DemoUser = ()=>{
+    const history = useHistory()
+    const dispatch = useDispatch();
     // const [credential, setCredential] = useState("");
     // const [password, setPassword] = useState("");
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
-//
+    const demo = {
+      credential: 'JohnSmith',
+      password: 'password'
+    }
 
-//     const [isLoaded, setIsLoaded] = useState(true)
+    const handleClick = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login(demo.credential, demo.password )).catch(
+          async (res) => {
+            // console.log("in the catch")
 
-//     const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   setErrors([]);
-    //   return dispatch(sessionActions.login({ credential, password })).catch(
-    //     async (res) => {
-    //       // console.log("in the catch")
+            const data  = await res.json();
 
-    //       const data  = await res.json();
+            // console.log("data.error", data.errors)
 
-    //       // console.log("data.error", data.errors)
+            if (data && data.errors) setErrors(data.errors);
 
-    //       if (data && data.errors) setErrors(data.errors);
-
-    //     }
-    //     ).then((you)=>history.push('/currentUser'));
-    //   };
-
-//       return  isLoaded && (
-//             <div>
-
-//                     <button className='user-nav' onClick={}>DemoUser</button>
-
-
-//                 </div>
+          }
+          ).then(()=>history.push('/currentUser'));
+        };
 
 
 
+      return  (
+            <div>
 
-//       )
+                    <button className='user-nav' onClick={handleClick}>DemoUser</button>
 
 
-// }
+            </div>
 
-// export default DemoUser;
+
+
+
+      )
+
+
+}
+
+export default DemoUser;

@@ -41,6 +41,7 @@ const AlbumDetail = ()=>{
       return isLoaded && (
             //top banner
             <div className='album-top-banner'>
+                <div className='banner-background'>
                 <img src='https://scpic.chinaz.net/files/pic/pic9/202103/hpic3749.jpg' alt='' className='album-banner-background-img'></img>
                 <div className='banner-content'>
                     <div className='detail-left-top' key={album.id}>
@@ -53,6 +54,8 @@ const AlbumDetail = ()=>{
                         <h6>{album.id}</h6>
                         <span>track</span>
                     </div>
+                </div>
+
                 </div>
                 <div className='detail-right'>
                     <img src={album.previewImage}/>

@@ -11,7 +11,7 @@ import CurrentUser from '../currentUserpage/UploadButton'
 import './Navigation.css';
 
 import UploadBotton from '../currentUserpage/UploadButton';
-import DemoUser from './demoUser';
+
 import UserNav from '../currentUserpage/UserNav';
 
 
@@ -23,51 +23,21 @@ function Navigation({ isLoaded }){
   // console.log(sessionUser)
     let sessionLinks;
 
-    // if (sessionUser && Object.keys(sessionUser).length >0) {
-    // sessionLinks = (
-    //   <>
-    //     <div className='profile-nav'>
-    //     {/* <NavLink to="/albums/new" >Upload</NavLink> */}
-    //     <UploadBotton />
-    //     {/* <CreateSongModal /> */}
-    //     <ProfileButton user={sessionUser} />
 
-
-    //     </div>
-    //   </>
-
-    // );
-    // }else{
-    //     sessionLinks=(
-    //         <>
-    //         <div>
-
-    //             {/* <DemoUser /> */}
-
-
-    //         </div>
-    //         </>
-    //     )
-    // }
 
     return (!sessionUser) ? (
       <div className='user-mainContainer'>
-            <div className='user-top-banner'>
-                  <img src='https://cdn.iconscout.com/icon/free/png-256/soundcloud-4069940-3365459.png'></img>
+            <div className='left-banner'>
+                  <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'></img>
                   <NavLink exact to="/">Home</NavLink>
-                  <LoginFormModal />
-                  <SignUpFormModal />
-                  <DemoUser />
-
           </div>
-        <div className='banner-right'>
+        <div className='right-banner'>
+            <div className='login'><LoginFormModal /></div>
+            <div className='signup'><SignUpFormModal /></div>
+            {/* <div className='demouser'><DemoUser /></div> */}
 
         </div>
-
-
       </div>
-
-
       ):(
         <UserNav />
       );

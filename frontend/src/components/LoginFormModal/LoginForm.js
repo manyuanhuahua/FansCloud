@@ -11,6 +11,29 @@ function LoginForm(){
     const [errors, setErrors] = useState([]);
     // console.log("outside submit")
 
+    const demo = {
+      credential: 'JohnSmith',
+      password: 'password'
+    }
+
+    const handleDemo = (e) => {
+      e.preventDefault();
+      setErrors([]);
+      return dispatch(sessionActions.login(demo)).catch(
+        async (res) => {
+          // console.log("in the catch")
+
+          const data  = await res.json();
+
+          // console.log("data.error", data.errors)
+
+          if (data && data.errors) setErrors(data.errors);
+
+        }
+        ).then((you)=>history.push('/currentUser'));
+      };
+
+
     const handleSubmit = (e) => {
       e.preventDefault();
       setErrors([]);
@@ -25,7 +48,8 @@ function LoginForm(){
           if (data && data.errors) setErrors(data.errors);
 
         }
-        ).then((you)=>history.push('/currentUser'));
+        ).then(()=>(!errors.length) ? history.push('/currentUser') : history.push('/')
+       );
       };
 
 
@@ -56,10 +80,8 @@ function LoginForm(){
               required
             />
           </label>
-          <button type="submit">Log In
-            {/* <NavLink exact to="/session/currentUser"></NavLink> */}
-            {/* {isLoaded && sessionLinks} */}
-          </button>
+          <button type="submit">Log In</button>
+          <button type="submit" onClick={handleDemo}>Demo User</button>
         </form>
       );
 }

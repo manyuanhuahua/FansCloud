@@ -1,0 +1,67 @@
+.user-mainContainer {
+    background: linear-gradient(transparent, rgba(0,0,0,0));
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+
+    height: 46px;
+    justify-content: space-between;
+
+}
+
+.user-mainContainer .left-banner{
+    /* background-color: darkorange; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 20px;
+    right: 30px;
+    width: 200px;
+
+
+
+}
+
+
+.user-mainContainer .left-banner .logo{
+    /* position: absolute; */
+    width: 184px;
+    height: 46px;
+    /* max-height: 46px; */
+
+}
+
+.user-mainContainer .left-banner img{
+    /* position: absolute; */
+
+    max-height: 46px;
+    /* max-height: 46px; */
+
+}
+
+.user-mainContainer .right-banner{
+    /* background-color: darkorange; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    top: 20px;
+    right: 30px;
+
+}
+
+.left-banner a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.right-banner {
+    margin-right: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+

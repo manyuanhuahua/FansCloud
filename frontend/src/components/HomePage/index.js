@@ -8,6 +8,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import MainAudioPlayer from '../AudioPlayer/MainAudio';
 import ToggleButton from '../AudioPlayer/ToggleButton';
+import './homepage.css'
 
 
 function HomePage(){
@@ -33,46 +34,59 @@ function HomePage(){
 
 
 
-                    {/* <NavLink to='/signup'>Create account</NavLink> */}
+
 
 
     return (
+        <div className='mainpage-container'>
+            <div className='top-box'>
+                {/* <img src='https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg' /> */}
+                <div className='banner-text'>
 
-
-
-        <div className='song-trending'>
-
-        {isLoaded && copyList() &&
-            songShows.map((song, index)=>{
-                return (
-                    <div className='song-list-container'>
-                        <li className='songItem' key={index}>
-
-                            <NavLink key={song.id} to={`/songs/${song.id}`}>
-                            <div className='song-playlist'>
-                                <span className='song-title'>{song.title}</span>
-                                <span className='song-text'>Top 50</span>
-                            </div>
-                            <div className='song-entry-image'>
-                                <img src={song.previewImage} />
-                            </div>
-                    </NavLink>
-                    </li>
-
-                    </div>
-
-                )
-            })}
-        <NavLink to='/songs'>Explore All Songs</NavLink>
-        {/* {(!sessionUser) && (
-            <div>
-                <LoginFormModal />
-                <SignUpFormModal />
+                <h2>What's next in music is first on SoundCloud</h2>
+                <p>Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</p>
+                </div>
             </div>
-        )} */}
-        {/* <ToggleButton /> */}
-        </div>
-    )
+            <div className='mid-box'>
+                <h2>Hear what's trending for free in the SoundCloud community</h2>
+                <div className='song-trending'>
+                    {isLoaded && copyList() &&
+                        songShows.map((song, index)=>{
+                            return (
+                                <div className='song-list-container'>
+                                        <img className='song-entry-image' src={song.previewImage} />
+                                    <div className='song-content'>
+                                    <NavLink key={song.id} to={`/songs/${song.id}`}>
+                                        <span className='song-title'>{song.title}</span>
+                                        <span className='song-text'>Top 50</span>
+                                    </NavLink>
+                                    </div>
+
+
+                            </div>
+                        )})}
+                </div>
+                        <div className='explore-bar'>
+                            <NavLink to='/songs'>Explore All Songs</NavLink>
+                        </div>
+
+            </div>
+
+            <div className='bottom-box'>
+
+            </div>
+
+            <div className='foot-box'>
+
+            </div>
+
+
+
+</div>
+                )
+
+
+
 
     }
 

@@ -20,7 +20,7 @@ const CurrentUserAlbums = ()=>{
 
       return isLoaded && (
         <div>
-            {yourAlbums.filter((album)=> album.userId === sessionUser.id)
+            {yourAlbums.filter((album)=> album.userId === sessionUser?.id)
                       .map((album)=>{
             return (
                 <NavLink key={album.id} to={`/albums/${album.id}`}>
@@ -29,7 +29,7 @@ const CurrentUserAlbums = ()=>{
                             <img src={album.previewImage} />
                         </div>
                         <div className='content-title'>{album.title}</div>
-                        <div className='content-text'>{sessionUser.username}</div>
+                        <div className='content-text'>{sessionUser?.username}</div>
                     </div>
                 </NavLink>
             )

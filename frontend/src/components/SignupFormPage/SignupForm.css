@@ -1,0 +1,16 @@
+.signup-button {
+    border: none;
+    background: #f50;
+    color: #fff;
+    border-color: #f50;
+    height: 30px;
+    border: 1px solid #f50;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 100;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+}

@@ -47,7 +47,7 @@ const SongDetail = ()=>{
                         <img src={song.previewImage} />
                     </div>
                     <div className='song-create-time'>
-                    {(sessionUser.id === song.userId) ? (
+                    {(sessionUser?.id === song.userId) ? (
                         <>
                             <EditSongModal song={song}/>
                             <DeleteSongModal song={song} albumId={song.albumId} user={sessionUser}/>

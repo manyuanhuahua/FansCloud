@@ -41,13 +41,13 @@ const SongList = ({albumId})=>{
 
                 </li>
 
-                <i className="fa-solid fa-circle-play" onClick={()=>setMainSong(song?.song)}></i>
+                <i className="fa-solid fa-circle-play" onClick={()=>setMainSong(song)}></i>
 
             </div>
         )
     })}
-
     <MainAudioPlayer song={currentSong}/>
+
 </div>
       )
 

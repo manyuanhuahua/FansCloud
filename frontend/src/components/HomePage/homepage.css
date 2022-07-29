@@ -1,6 +1,6 @@
-body {
+/* body {
     background-color: beige;
-}
+} */
 
 .top-box h2 {
    margin-bottom: 8px;
@@ -139,7 +139,7 @@ body {
 
 .song-content .song-title{
     color: #333;
-    font-family: 'Varela Round', sans-serif;;
+    font-family: 'Varela Round', sans-serif;
 }
 
 .song-content .song-text{
@@ -151,4 +151,160 @@ body {
 
 .song-content {
     height: 42px;
+}
+
+.bottom-box {
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.box-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 70px;
+}
+
+.social-media .phone {
+    height: 280px;
+    /* width: 480px; */
+    /* background-size: contain; */
+    margin-top: 60px;
+
+}
+
+.text {
+    width: 325px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 45px;
+    flex-wrap: nowrap;
+    padding: 0 20px;
+}
+
+.text h2 {
+    font-size: 36px;
+    margin-bottom: 17px;
+    font-family: 'Varela Round', sans-serif;
+    color: #333;
+    font-weight: 100;
+    width: 325px;
+}
+
+.text span {
+    font-size: 24px;
+    margin-bottom: 17px;
+    font-family: 'Varela Round', sans-serif;
+    color: #333;
+    font-weight: 150;
+    width: 325px;
+}
+
+.box-mid {
+    background-image: url(https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists-798050ae.jpg);
+    height: 350px;
+    background-size: cover;
+    max-width: 100%;
+
+}
+
+.text h3 {
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 100;
+}
+
+.text p {
+    color: #f2f2f2;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 100;
+    width: 320px;
+    font-size: 18px;
+}
+
+
+.box-mid .text {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    margin-left: 270px;
+}
+
+.box-bottom {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   height: 375px;
+   border-bottom: 1px solid #ccc;;
+}
+
+.bottom-signup h2{
+    font-size: 36px;
+    font-weight: 100;
+    font-family: 'Varela Round', sans-serif;
+    color:#333;
+}
+
+.bottom-signup h3{
+    font-size: 24px;
+    font-weight: 100;
+    font-family: 'Varela Round', sans-serif;
+    color:#333;
+    margin-top: 7px;
+}
+
+.login-button-two {
+    color: #333;
+    font-size: 16px;
+    padding: 10px 15px;
+    height: 40px;
+    position: relative;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 100;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.signup-button-two{
+    font-size: 18px;
+    height: 46px;
+    padding: 13px 23px;
+    background-color: #f50;
+    border:1px solid #e5e5e5;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 100;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.bottom-loging span{
+    font-size: 12px;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.bottom-loging{
+    margin-top: 10px;
+
+}
+
+.foot-box {
+    padding: 15px 0;
+    color:#999;
+    font-size: 12px;
+    font-family: 'Varela Round', sans-serif;
+    text-align: center;
 }

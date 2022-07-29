@@ -57,10 +57,7 @@ function App() {
         <Route exact path="/currentUser/albums">
           <CurrentUserAlbums />
         </Route>
-        {/* <Route path="/">
-          <HomePage />
-        </Route> */}
-      </Switch>
+        </Switch>
       )};
 
     </>

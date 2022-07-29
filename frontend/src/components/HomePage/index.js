@@ -1,14 +1,15 @@
 import React, { useEffect,useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginFormModal from '../LoginFormModal';
-import SignUpFormModal from '../SignupFormPage';
+import { Modal } from '../../context/Modal';
+import SignupForm from '../SignupFormPage/SignupForm';
 import * as songActions from '../../store/song'
-import AudioPlayer from 'react-h5-audio-player';
+import LoginForm from '../LoginFormModal/LoginForm';
 import 'react-h5-audio-player/lib/styles.css';
 import MainAudioPlayer from '../AudioPlayer/MainAudio';
 import ToggleButton from '../AudioPlayer/ToggleButton';
 import './homepage.css'
+
 
 
 function HomePage(){
@@ -17,6 +18,9 @@ function HomePage(){
     const sessionUser = useSelector(state => state.session.user);
     const [isPlay, setIsPlay] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     let songShows= [];
     useEffect(()=>{
@@ -70,14 +74,55 @@ function HomePage(){
                             <NavLink to='/songs'>Explore All Songs</NavLink>
                         </div>
 
+
             </div>
 
             <div className='bottom-box'>
+                <div className='box-top'>
+                    <div className='social-media'>
+                        <img className='phone' src='https://a-v2.sndcdn.com/assets/images/never_stop_listening@1x-9c5264ff.jpg'/>
+                    </div>
+                    <div className='text'>
+                        <h2>Never stop listening</h2>
+                        {/* <img class='color' src='https://image.shutterstock.com/image-illustration/abstract-layout-wavy-lines-cmyk-260nw-62119561.jpg'/> */}
+                        <span>SoundCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</span>
+                    </div>
+                </div>
+                <div className='box-mid'>
+                    <div className='text'>
+                        <h3>Calling all creators</h3>
+                        <p>Get on SoundCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
 
+                    </div>
+                        {/* <img className='artist' src='https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists-798050ae.jpg'/> */}
+
+                </div>
+                <div className='box-bottom'>
+                        <div className='bottom-signup'>
+
+                        <h2>Thanks for listening. Now join in.</h2>
+                        <h3>Save tracks, follow artists and build playlists. All for free.</h3>
+                        <button className='signup-button-two' onClick={() => setShowSignUpModal(true)}>Create account</button>
+                            {showSignUpModal && (
+                                <Modal onClose={() => setShowSignUpModal(false)}>
+                                <SignupForm />
+                                </Modal>
+                            )}
+                        </div>
+                        <div className='bottom-loging'>
+                            <span>Already have an account? </span>
+                            <button className='login-button-two' onClick={() => setShowLoginModal(true)}>Log In</button>
+                                {showLoginModal && (
+                                        <Modal onClose={() => setShowLoginModal(false)}>
+                                        <LoginForm />
+                                        </Modal>
+                                )}
+                        </div>
+                </div>
             </div>
 
             <div className='foot-box'>
-
+                <p>Thanks for visiting!</p>
             </div>
 
 

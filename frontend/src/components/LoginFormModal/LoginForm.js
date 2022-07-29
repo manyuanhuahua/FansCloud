@@ -48,8 +48,7 @@ function LoginForm(){
 
           if (data && data.errors) setErrors(data.errors);
 
-        }).then(()=>(!errors.length) ? history.push('/currentUser') : history.push('/')
-       );
+        });
       };
 
 

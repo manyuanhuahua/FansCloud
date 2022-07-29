@@ -19,21 +19,23 @@ const AlbumsBrowser = ()=>{
 
 
       return isLoaded && (
-            <div>
-                {/* {console.log("return songList", songList)} */}
+            <div className='albums-listing-main-container'>
+                <div className='left-title'>
+                    <h2>Your Album List</h2>
+                </div>
+                <div className='right-lists'>
                 {albumList.map((album)=>{
                 return (
                     <NavLink key={album.id} to={`/albums/${album.id}`}>
+                        <img className='song-entry-image' src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
                         <div className='song-entry' key={album.id}>
-                            <div className='song-entry-image'>
-                                <img src='https://pub-static.fotor.com/assets/projects/pages/14d2718d0d83473080f686bf299011ba/purple-music-album-3c5ef7b7d3a340f094bd962272001520.jpg' />
-                            </div>
                             <div className='song-title'>{album.title}</div>
                             <div className='song-text'>Top 50</div>
                         </div>
                     </NavLink>
                 )
                 })}
+                </div>
         </div>
       )
 

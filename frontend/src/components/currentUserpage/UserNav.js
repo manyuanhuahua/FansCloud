@@ -43,18 +43,18 @@ const UserNav = ()=>{
               <div className='user-top-banner'>
                 <div className='banner-left'>
                   <ul>
-                    <li>
+                    {/* <li>
                       <img src='https://cdn.iconscout.com/icon/free/png-256/soundcloud-4069940-3365459.png'></img>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <Link  to='/'>Overview</Link>
-                    </li>
-                    <li>
-                      <Link to='/currentUser/songs'>Songs</Link>
+                    </li> */}
+                    {/* <li>
+                      <Link to='/currentUser/songs'>Songs</Link> */}
                       {/* <CurrentUserSongs showAlbums={showAlbums} showSongs={showSongs}/> */}
-                    </li>
+                    {/* </li> */}
                     <li>
-                      <Link to='/currentUser/albums'>Albums</Link>
+                      <Link to='/currentUser/albums'>Overview</Link>
                       {/* <CurrentUserAlbums /> */}
                     </li>
                     <li>

@@ -37,21 +37,28 @@ const CurrentUser = ({showAlbums, showSongs})=>{
 
       return  isLoaded && (sessionUser && Object.keys(sessionUser).length >0) && (
 
-        <>
-
-                <p>this is current user page</p>
-
+        <div className='user-page-main-container'>
+              <div className='left-box'>
+                  <div className='user-profile'>
+                    <img className='profile-img' src='https://ktla.com/wp-content/uploads/sites/4/2020/05/GettyImages-1146390210.jpg' />
+                  </div>
+                  <h2>{sessionUser.username}</h2>
+              </div>
+                {/* <p>this is current user page</p> */}
+              <div className='right-box'>
+                   <CurrentUserAlbums albumList={albumList} isLoaded={isLoaded}/>
+              </div>
 
                 <div className='user-library-container'>
                     <div>
-                        {showSongs && (<CurrentUserSongs songList={songList} isLoaded={isLoaded}/>)}
-                        {showAlbums && (<CurrentUserAlbums albumList={albumList} isLoaded={isLoaded}/>)}
+                        {/* {showSongs && (<CurrentUserSongs songList={songList} isLoaded={isLoaded}/>)} */}
+
                     </div>
                 </div>
-      </>
+      </div>
 
 
-            
+
 
       )
 

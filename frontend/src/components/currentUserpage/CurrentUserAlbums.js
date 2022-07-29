@@ -19,15 +19,16 @@ const CurrentUserAlbums = ()=>{
 
 
       return isLoaded && (
-        <div>
+        <div className='current-user-albums'>
             {yourAlbums.filter((album)=> album.userId === sessionUser?.id)
                       .map((album)=>{
             return (
                 <NavLink key={album.id} to={`/albums/${album.id}`}>
+                    <div className='img-box'>
+                      <img className='album-content-entry-image' src={album.previewImage} />
+                    </div>
+
                     <div className='content-entry' key={album.id}>
-                        <div className='content-entry-image'>
-                            <img src={album.previewImage} />
-                        </div>
                         <div className='content-title'>{album.title}</div>
                         <div className='content-text'>{sessionUser?.username}</div>
                     </div>

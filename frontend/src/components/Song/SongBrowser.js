@@ -40,12 +40,12 @@ const SongsBrowser = ()=>{
                 )
                 })}
         </div>
-        <div className='mid-container'>
+        {/* <div className='mid-container'>
 
         </div>
         <div className='mid-container'>
 
-        </div>
+        </div> */}
         </div>
       )
 

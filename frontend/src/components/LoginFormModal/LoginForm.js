@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
+import './LoginForm.css';
 
 function LoginForm(){
     const history = useHistory()
@@ -30,13 +31,13 @@ function LoginForm(){
           if (data && data.errors) setErrors(data.errors);
 
         }
-        ).then((you)=>history.push('/currentUser'));
+        ).then(()=>history.push('/currentUser'));
       };
 
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      setErrors([]);
+      // setErrors([]);
       return dispatch(sessionActions.login({ credential, password })).catch(
         async (res) => {
           // console.log("in the catch")
@@ -47,8 +48,7 @@ function LoginForm(){
 
           if (data && data.errors) setErrors(data.errors);
 
-        }
-        ).then(()=>(!errors.length) ? history.push('/currentUser') : history.push('/')
+        }).then(()=>(!errors.length) ? history.push('/currentUser') : history.push('/')
        );
       };
 
@@ -58,30 +58,32 @@ function LoginForm(){
 
 
     return (
-        <form onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
-          <label>
-            Username or Email
-            <input
+        <form className='login-form' onSubmit={handleSubmit}>
+          <div className='form-content'>
+
+
+            <input id='credential'
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
+              placeholder='Your email address or username'
               required
             />
-          </label>
-          <label>
-            Password
-            <input
+
+            <input id='password'
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder='Please Enter Your Password'
               required
             />
-          </label>
-          <button type="submit">Log In</button>
+
+          <button id='login-button-click' type="submit">Log In</button>
           <button type="submit" onClick={handleDemo}>Demo User</button>
+         </div>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
         </form>
       );
 }

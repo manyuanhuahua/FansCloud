@@ -46,11 +46,10 @@ const SignupForm = () =>{
   }
     return (
         <form className="signup-form" onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-          </ul>
-          <label>
-            Username
+
+          <div className='form-content'>
+
+            <div className="form-input">
             <input
               type="text"
               placeholder="Please input your username"
@@ -58,9 +57,8 @@ const SignupForm = () =>{
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-          </label>
-          <label>
-            First Name
+
+
             <input
               type="text"
               placeholder="Please input your first name"
@@ -68,9 +66,8 @@ const SignupForm = () =>{
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
-          </label>
-          <label>
-            Last Name
+
+
             <input
               type="text"
               placeholder="Please input your last name"
@@ -78,7 +75,45 @@ const SignupForm = () =>{
               onChange={(e) => setLastName(e.target.value)}
               required
             />
-          </label>
+
+
+            <input
+              type="text"
+              placeholder="Please input your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+
+
+            <input
+              type="password"
+              placeholder="Please create your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+
+            <input
+              type="password"
+              placeholder="Please confirm your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+
+            <input
+              type="text"
+              placeholder="Define your profile image here"
+              value={previewImage}
+              onChange={(e) => setPreviewImage(e.target.value)}
+              required
+            />
+            </div>
+          <div id="role">
+
           <label>
             Not a creator
             <input
@@ -99,48 +134,13 @@ const SignupForm = () =>{
               required
             />
           </label>
-          <label>
-            Email
-            <input
-              type="text"
-              placeholder="Please input your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </label>
+            </div>
 
-          <label>
-            Password
-            <input
-              type="password"
-              placeholder="Please create your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Confirm Password
-            <input
-              type="password"
-              placeholder="Please confirm your password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </label>
-            <label>
-            Profile Image
-            <input
-              type="text"
-              placeholder="Define your profile image here"
-              value={previewImage}
-              onChange={(e) => setPreviewImage(e.target.value)}
-              required
-            />
-          </label>
-          <button type="submit">Sign Up</button>
+         </div>
+         <ul>
+            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+          </ul>
+          <button className='signup-button-click' type="submit">Sign Up</button>
         </form>
       );
     }

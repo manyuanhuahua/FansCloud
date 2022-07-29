@@ -1,5 +1,5 @@
 .user-mainContainer {
-    background: linear-gradient(transparent, rgba(0,0,0,0));
+    /* background: linear-gradient(transparent, rgba(0,0,0,0)); */
     background-color: black;
     display: flex;
     flex-direction: row;
@@ -63,5 +63,3 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
 }
-
-

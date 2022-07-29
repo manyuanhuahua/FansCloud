@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
-import MainAudioPlayer from '../AudioPlayer/MainAudio';
+// import MainAudioPlayer from '../AudioPlayer/MainAudio';
 import * as songActions from '../../store/song'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 const SongList = ({albumId})=>{
     const dispatch = useDispatch()
@@ -19,34 +21,39 @@ const SongList = ({albumId})=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
       },[dispatch,albumId])
 
-      const setMainSong=(song)=>{
-        setCurrentSong(song)
-      }
+    //   const setMainSong=(song)=>{
+    //     setCurrentSong(song)
+    //   }
 
       return isLoaded && (
         <div className='audioList-container'>
         {songList.filter((song)=>song.albumId === albumId)
             .map((song, index)=>{
         return (
-            <div className='menu-song' key={song?.id}
-            >
-                <li className='songItem'>
-                    <img src={song.previewImage}/>
+            <div className='menu-song' key={song?.id}>
+                    <div className='img-box'>
+
+                        <img className='song-img' src={song.previewImage}/>
+                    </div>
                     <span>{index+1}</span>
-                    <h5>
+
                         <Link className='detial-title' to={`/songs/${song.id}`}>{song.title}-<span className='song-subtitle'>{sessionUser.username}</span></Link>
-
                         {/* <div onClick={()=>setIsPlay(!isPlay)}><i class="fa-solid fa-circle-play" id={index} /></div> */}
-                    </h5>
 
-                </li>
 
-                <i className="fa-solid fa-circle-play" onClick={()=>setMainSong(song)}></i>
+                    <div>
+                    <AudioPlayer
+                             autoPlay={false}
+                            src={song.audioUrl}
+                            layout='horizontal'
+                            customAdditionalControls={[]}
+                      />
+                    </div>
 
+                    {/* <MainAudioPlayer song={song}/> */}
             </div>
         )
     })}
-    <MainAudioPlayer song={currentSong}/>
 
 </div>
       )

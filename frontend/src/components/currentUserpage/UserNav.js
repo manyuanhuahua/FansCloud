@@ -47,7 +47,7 @@ const UserNav = ()=>{
                       <img src='https://cdn.iconscout.com/icon/free/png-256/soundcloud-4069940-3365459.png'></img>
                     </li>
                     <li>
-                      <Link  >Overview</Link>
+                      <Link  to='/'>Overview</Link>
                     </li>
                     <li>
                       <Link to='/currentUser/songs'>Songs</Link>

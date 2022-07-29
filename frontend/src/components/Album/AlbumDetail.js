@@ -7,7 +7,7 @@ import SongList from '../Song/SongList';
 import EditAlbumModal from './EditAlbumModal';
 import CreateSongModal from '../Song/CreateSongModal';
 import DeleteAlbumModal from './DeleteAlbumModal';
-
+import "./album.css"
 
 const AlbumDetail = ()=>{
     const dispatch = useDispatch()
@@ -40,27 +40,27 @@ const AlbumDetail = ()=>{
 
       return isLoaded && (
             //top banner
-            <div className='album-top-banner'>
-                <div className='banner-background'>
-                <img src='https://scpic.chinaz.net/files/pic/pic9/202103/hpic3749.jpg' alt='' className='album-banner-background-img'></img>
-                <div className='banner-content'>
-                    <div className='detail-left-top' key={album.id}>
-                        <div className='top-content'>
-                            <span className='detial-title'>{album.title}</span>
-                            <span className='detail-creator'><Link to="/currentUser">{album.Artist.username}</Link></span>
-                        </div>
+            <div className='album-detail'>
+                <div className='album-top-box'>
+                    <div className='top-box-left'>
+                            <div className='left-top'>
+                                <div className='img-cropper'>
+                                    <img className='player-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-DWToqLKUNiKibSfOoTx8UrBcM9CVJ8gag&usqp=CAU' />
+                                </div>
+                                <div className='text'>
+                                    <span className='detial-title'>{album?.title}</span>
+                                    <span className='detail-creator'><Link to="/currentUser">{album?.Artist.username}</Link></span>
+                                </div>
+
+                            </div>
                     </div>
-                    <div className='detail-left-bottom'>
-                        <h6>{album.id}</h6>
-                        <span>track</span>
+                    <div className='top-box-right'>
+                            <img className='album-cover' src={album?.previewImage}/>
                     </div>
-                </div>
 
                 </div>
-                <div className='detail-right'>
-                    <img src={album.previewImage}/>
-                </div>
-            <div className='album-mid-nav'>
+
+                <div className='mid-box'>
 
                      <EditAlbumModal album={album}/>
 
@@ -68,18 +68,22 @@ const AlbumDetail = ()=>{
                      <DeleteAlbumModal album={album}/>
                      <CreateSongModal albumId={album.id}/>
 
-            </div>
-
-            <div className='album-main-container'>
-                <div className='profie-box'>
-                    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8czzbrLzXJ9R_uhKyMiwj1iGxKhJtH7pwlQ&usqp=CAU'></img>
-                    <span>{album.Artist.username}</span>
                 </div>
-                <div className='songsContainer'>
+
+                <div className='content-container'>
+                    <div className='center-box'>
+
+                    <div className='content-left'>
+                        <img className='user-profile' src='https://www.pumpkin.care/dog-breeds/wp-content/uploads/2021/03/Corgi-Hero-1200x628.png'></img>
+                        <span>{album?.Artist.username}</span>
+
+                    </div>
+                     <div className='songsContainer'>
                     <SongList songs={songList} albumId={album.id}/>
 
+                    </div>
+                    </div>
                 </div>
-            </div>
                  <div>
                  </div>
 

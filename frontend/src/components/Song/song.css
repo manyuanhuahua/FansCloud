@@ -61,3 +61,42 @@
     font-weight: 100;
     font-size: 12px;
 }
+
+.audioList-container {
+    display: flex;
+    flex-direction: column;
+    /* background-color: bisque; */
+}
+
+
+.audioList-container .menu-song .song-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.audioList-container .menu-song {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px;
+}
+
+
+  .menu-song span{
+    font-size: 12px;
+    font-weight: 600;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+    color: #999;
+  }
+
+
+  .menu-song a{
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+  }

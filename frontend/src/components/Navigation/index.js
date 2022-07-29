@@ -34,7 +34,7 @@ function Navigation({ isLoaded }){
         <div className='right-banner'>
             <div className='login'><LoginFormModal /></div>
             <div className='signup'><SignUpFormModal /></div>
-            {/* <div className='demouser'><DemoUser /></div> */}
+           
 
         </div>
       </div>

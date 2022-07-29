@@ -100,3 +100,43 @@
     text-align: center;
     font-family: 'Varela Round', sans-serif;
   }
+
+
+.song-detail-entry {
+    background-color:#f3f3f3e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.song-detail-entry .cover-img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.song-detail-entry .song-detail-player{
+    margin-top: 20px;
+    width: 600px;
+    height: 100px;
+    /* object-fit: cover; */
+}
+
+.song-detail-entry .detail-content h2{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+    color: #333;
+    margin: 10px;
+}
+
+.song-detail-entry .detail-content h3{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+    color: #999;
+    margin-top: 0;
+
+
+}

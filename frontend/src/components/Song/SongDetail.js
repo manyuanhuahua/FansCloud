@@ -6,6 +6,7 @@ import MainAudioPlayer from '../AudioPlayer/MainAudio';
 import DeleteSong from './DeleteSongAlert';
 import DeleteSongModal from './DeleteSongModal';
 import EditSongModal from './EditSongModal';
+import "./song.css"
 
 
 const SongDetail = ()=>{
@@ -36,15 +37,15 @@ const SongDetail = ()=>{
 
       return isLoaded && (
 
-            <div className='detial-container'>
 
-                <div className='detail-entry' key={song.id}>
+
+                <div className='song-detail-entry' key={song.id}>
+                    <div className='detail-image'>
+                        <img className='cover-img'src={song.previewImage} />
+                    </div>
                     <div className='detail-content'>
                         <h2 className='detial-title'>{song.title}</h2>
                         <h3 className='detail-text'>{song.Artist.username}</h3>
-                    </div>
-                    <div className='detail-image'>
-                        <img src={song.previewImage} />
                     </div>
                     <div className='song-create-time'>
                     {(sessionUser?.id === song.userId) ? (
@@ -60,7 +61,7 @@ const SongDetail = ()=>{
                     </div>
                 </div>
 
-            </div>
+
 
       )
 

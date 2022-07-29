@@ -58,7 +58,7 @@ function App() {
           <CurrentUserAlbums />
         </Route>
         </Switch>
-      )};
+      )}
 
     </>
   )

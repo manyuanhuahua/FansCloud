@@ -23,7 +23,7 @@
 
 }
 
-.banner-left {
+/* .banner-left {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,9 +31,9 @@
   background-color: #333333;
   height: 20px;
 
-}
+} */
 
-.banner-left ul {
+/* .banner-left ul {
   display: flex;
   align-items: center;
   padding-left: 0;
@@ -56,20 +56,22 @@
   text-decoration: none;
   color: #999999;
   font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-}
+  font-family: 'Varela Round', sans-serif;
 
-.banner-left ul li:hover,
+} */
+
+/* .banner-left ul li:hover,
 .banner-left ul li.active:hover
 {
   color: white;
-}
+} */
 
 .menu-song li h5{
   font-size: 12px;
   margin-right: 10px;
   color: #999;
-  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;;
+  font-family: 'Varela Round', sans-serif;
+
 }
 .menu-song li span{
   font-size: 12px;

@@ -49,13 +49,13 @@ function ProfileButton({ user }) {
                 <div className="dd_left">
                     <ul>
                       <li>
-                      <i class="fa-solid fa-cloud-music" />
+                      <i class="fa-solid fa-user-secret" />
                       </li>
                       <li>
-                      <i class="fa-solid fa-image-polaroid-user" />
+                      <i class="fa-solid fa-id-card" />
                       </li>
                       <li>
-                      <i class="fa-solid fa-envelope-dot" />
+                      <i class="fa-solid fa-inbox" />
                       </li>
                       <li>
                       <i class="fa-solid fa-right-from-bracket" />

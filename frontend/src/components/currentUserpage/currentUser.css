@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: row;
     background-color: #eee;
+    justify-content: space-evenly;
+    align-items: center;
     /* justify-content: space-around; */
 }
 
@@ -38,7 +40,7 @@
 .current-user-albums {
     display: grid;
     /* width: 940px; */
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
     grid-gap: 30px;
     align-items: center;
     text-align: center;
@@ -85,6 +87,7 @@
     align-items: center;
     /* justify-content: space-evenly; */
     color: #eee;
+
  }
 
  .profile-button-right-box .nav-right ul li.nr_li{
@@ -96,7 +99,7 @@
  }
 
  .profile-button-right-box .nav-right ul li.nr_li:hover{
-    color:antiquewhite
+    color:antiquewhite;
  }
 
  .profile-button-right-box .nav-right ul li img {
@@ -133,9 +136,16 @@
     list-style-type: none;
 }
 
+.profile-button-right-box .dd_menu .dd_left ul{
+    display: flex;
+    flex-direction: column;
+}
+
 .profile-button-right-box .dd_menu .dd_left li{
-    color: #fff;
+    /* color: #fff; */
     list-style-type: none;
+    margin-top: 5px;
+
 
 }
 
@@ -148,6 +158,18 @@
 .profile-button-right-box .dd_menu .dd_right {
     padding: 15px 20px;
     height: auto;
+    background-color: #fff;
+   font-family: 'Varela Round', sans-serif;
+   /* right: 0; */
+    /* text-decoration: none; */
+    /* width:50px; */
+}
+
+
+.profile-button-right-box .dd_menu .dd_right a{
+   text-decoration: none;
+   text-align: center;
+    /* text-decoration: none; */
     /* width:50px; */
 }
 
@@ -161,11 +183,33 @@
     content: '';
     position: absolute;
     top: -20px;
-    right: 30px;
+    right: 80px;
     border: 10px solid;
     border-color: transparent transparent #fff transparent;
 }
 
 .profile-button-right-box {
     width: fit-content;
+}
+
+.upload-album-modal button{
+    border: none;
+    background: transparent;
+    color: #fff;
+    border-color: #ccc;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 300;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+}
+
+.profile-button-right-box .dd_menu{
+    /* border: 2px solid #868686; */
+    right: 20px;
 }

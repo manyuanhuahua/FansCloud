@@ -73,3 +73,99 @@
     object-fit: cover;
     padding-top:5px;
  }
+
+ .profile-button-right-box .nav-right > ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+ }
+
+ .profile-button-right-box .user-button{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    color: #eee;
+ }
+
+ .profile-button-right-box .nav-right ul li.nr_li{
+    margin-right: 25px;
+    cursor: pointer;
+    color: #999;
+    font-size: 20px;
+    position: relative;
+ }
+
+ .profile-button-right-box .nav-right ul li.nr_li:hover{
+    color:antiquewhite
+ }
+
+ .profile-button-right-box .nav-right ul li img {
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+ }
+
+ .profile-button-right-box .user-button .nr_img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+
+  }
+
+.profile-button-right-box .dd_menu {
+    position: absolute;
+    top:47px;
+    right: -20px;
+    display: flex;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(221, 216, 216, 0.867);
+    border-radius: 15px;
+}
+
+
+
+.profile-button-right-box .dd_menu .dd_left{
+    background: #eee;
+    padding: 15px 10px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    list-style-type: none;
+}
+
+.profile-button-right-box .dd_menu .dd_left li{
+    color: #fff;
+    list-style-type: none;
+
+}
+
+.profile-button-right-box .dd_menu .dd_right li{
+    list-style-type: none;
+    margin: 5px 0;
+
+}
+
+.profile-button-right-box .dd_menu .dd_right {
+    padding: 15px 20px;
+    height: auto;
+    /* width:50px; */
+}
+
+.profile-button-right-box .dd_menu .li {
+    margin-bottom: 10px;
+    color: #868686;
+
+}
+
+.profile-button-right-box .dd_menu::before{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 30px;
+    border: 10px solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.profile-button-right-box {
+    width: fit-content;
+}

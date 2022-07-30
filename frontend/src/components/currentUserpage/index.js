@@ -8,7 +8,7 @@ import ProfileButton from './ProfileButton';
 import CreateAlbumForm from '../Album/CreateAlbumForm';
 import CurrentUserAlbums from './CurrentUserAlbums';
 import CurrentUserSongs from './CurrentUserSongs';
-
+import "./currentUser.css"
 
 
 const CurrentUser = ({showAlbums, showSongs})=>{

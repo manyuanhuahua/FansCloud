@@ -38,11 +38,25 @@ const UserNav = ()=>{
     //     dispatch(createAlbum())
     // }
 
-      return (
-            <div className='user-mainContainer'>
-              <div className='user-top-banner'>
-                <div className='banner-left'>
-                  <ul>
+    return (
+      <div className='user-mainContainer'>
+            {/* <div className='user-top-banner'> */}
+            <div className='left-banner'>
+                  <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'/>
+                  <Link to='/currentUser'>Overview</Link>
+                </div>
+                <div className='right-banner'>
+                  <div className='upload-album-button'>
+                  <UploadBotton />
+                  </div>
+                  <ProfileButton user={sessionUser} />
+                </div>
+
+
+
+
+
+
                     {/* <li>
                       <img src='https://cdn.iconscout.com/icon/free/png-256/soundcloud-4069940-3365459.png'></img>
                     </li> */}
@@ -53,27 +67,21 @@ const UserNav = ()=>{
                       <Link to='/currentUser/songs'>Songs</Link> */}
                       {/* <CurrentUserSongs showAlbums={showAlbums} showSongs={showSongs}/> */}
                     {/* </li> */}
-                    <li>
-                      <Link to='/currentUser/albums'>Overview</Link>
-                      {/* <CurrentUserAlbums /> */}
-                    </li>
-                    <li>
-                    <UploadBotton />
-                    </li>
-                    <li>
-                    <ProfileButton user={sessionUser} />
-                    </li>
-                </ul>
 
-                </div>
+                      {/* <CurrentUserAlbums /> */}
+
+
+
+
+
                         {/* <CurrentUser showSongs={showSongs} showAlbums={showAlbums} /> */}
 
 
 
 
 
-                </div>
 
+            {/* </div> */}
             </div>
 
       )

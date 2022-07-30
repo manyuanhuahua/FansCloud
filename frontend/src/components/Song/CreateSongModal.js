@@ -7,14 +7,15 @@ function CreateSongModal({albumId}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <>
-      <button onClick={() => setShowModal(true)}>Add Song</button>
+    <div>
+    <i class="fa-solid fa-circle-plus" onClick={() => setShowModal(true)}></i>
+    {/* <i class="fa-solid fa-cloud-music" onClick={() => setShowModal(true)}></i> */}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateSongForm hideModal={()=>setShowModal(false)} albumId={albumId}/>
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

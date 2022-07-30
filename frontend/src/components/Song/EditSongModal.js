@@ -11,7 +11,7 @@ function EditSongModal({song}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit</button>
+      <button className='edit-song-button' onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSongForm hideModal={()=>setShowModal(false)} song={song}/>

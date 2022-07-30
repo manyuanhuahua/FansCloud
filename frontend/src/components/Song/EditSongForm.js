@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-
+import "./song.css"
 function EditSongForm({song, album, hideModal}){
     const history = useHistory()
     const dispatch = useDispatch();
@@ -59,11 +59,11 @@ function EditSongForm({song, album, hideModal}){
 
 
     return (
-        <section className="new-form-holder centered middled">
-        <form className="create-album-form" onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-          </ul>
+        // <section className="new-form-holder centered middled">
+          <form className="create-song-form" onSubmit={handleSubmit}>
+          <div className='form-content'>
+
+
           <input
             type="text"
             placeholder="Title"
@@ -87,11 +87,14 @@ function EditSongForm({song, album, hideModal}){
             placeholder="Song profile image"
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
-
-          <button type="submit">Update Song</button>
+          </div>
+          <ul>
+            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+          </ul>
+          <button id='update-song-button-click' type="submit">Update Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
-      </section>
+      // </section>
       );
 }
 

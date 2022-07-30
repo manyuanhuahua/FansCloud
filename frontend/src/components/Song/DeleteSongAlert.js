@@ -50,15 +50,22 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
 
       return  (
        <form>
-          <div>Delete Song</div>
+          <div className='delete-song-form'>
+            <h2>Delete Song</h2>
+
+
           {/* {errors && (
             <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
           </ul>
           )} */}
           <p>Are you sure you want to delete {song.title}? This action cannot be undone.</p>
+          <div className='button-group'>
+
           <button type="button" onClick={handleCancelClick} >Cancel</button>
           <button type="button" onClick={handleDeleteClick}>Delete</button>
+          </div>
+          </div>
        </form>
 
       )

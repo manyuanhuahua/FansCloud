@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as albumActions from '../../store/album'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-
+import "./album.css"
 function EditAlbumForm({album, hideModal}){
     const history = useHistory()
     const dispatch = useDispatch();
@@ -80,7 +80,7 @@ function EditAlbumForm({album, hideModal}){
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button type="submit">Upload Album</button>
+          <button id='edit-album-button' type="submit">Upload Album</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>

@@ -86,8 +86,15 @@
     align-items: center;
     height: 20px;
     margin: 10px;
-    width: 300px;
+    width: 400px;
     border-bottom: 1px solid rgba(159, 171, 166, 0.5);
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.album-detail .mid-box span{
+    /* padding-left: 10px; */
+    text-align: center;
 }
 
 .album-detail .content-container {
@@ -140,4 +147,128 @@
     /* align-items: center; */
     /* margin: 10px 400px; */
     padding-right: 20px;
+}
+
+
+
+
+.create-album-form {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 0;
+    /* position: absolute; */
+    /* margin: 30px; */
+    box-sizing: border-box;
+
+    padding: 25px;
+}
+
+.create-album-form input {
+    border-radius: 5px;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    box-sizing: border-box;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    margin: 3px 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.create-album-form button {
+    border-radius: 5px;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    box-sizing: border-box;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    margin: 3px 0;
+    font-family: 'Varela Round', sans-serif;
+    border: 1px solid #fff;
+    font-weight: 100;
+    cursor: pointer;
+
+}
+
+.create-album-form .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    height: 220px;
+    /* background-color: #f50; */
+
+}
+
+.create-album-form ul {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#upload-album-button-click {
+    background-color: #f50;
+    color: #fff;
+}
+
+#edit-album-button {
+    background-color: #f50;
+    color: #fff;
+}
+
+
+
+.delete-album-form {
+    width: 600px;
+    box-sizing: border-box;
+    padding: 20px;
+    height: auto;
+    /* background-color: #f50; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.delete-album-form h2 {
+    margin: 0;
+    color: #f50;
+}
+
+.delete-album-form p {
+    margin: 10px;
+    color: #333;
+}
+
+.delete-album-form button {
+    background: transparent;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 400;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+    margin: 0 20px;
+    color: #333;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
 }

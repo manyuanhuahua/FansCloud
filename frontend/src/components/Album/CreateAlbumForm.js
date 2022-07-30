@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as albumActions from '../../store/album'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
+import "./album.css"
 
 function CreateAlbumForm({hideModal}){
     const history = useHistory()
@@ -51,33 +52,36 @@ function CreateAlbumForm({hideModal}){
 
 
     return (
-        <section className="new-form-holder centered middled">
-        <form className="create-album-form" onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-          </ul>
-          <input
-            type="text"
-            placeholder="Title"
-            required
-            value={title}
-            onChange={(e)=>setTitle(e.target.value)} />
-          <input
-            type="text"
-            placeholder="Description"
-            required
-            value={description}
-            onChange={(e)=>setDescription(e.target.value)} />
-          <input
-            type="text"
-            placeholder="Album profile image"
-            value={previewImage}
-            onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button type="submit">Upload Album</button>
-          <button type="button" onClick={handleCancelClick} >Cancel</button>
+        <form className="create-album-form" onSubmit={handleSubmit}>
+          <div className='form-content'>
+
+            <input
+              type="text"
+              placeholder="Please Add Your Album Title"
+              required
+              value={title}
+              onChange={(e)=>setTitle(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Please Add Your Album Description"
+              required
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Please Add Your Album profile image"
+              value={previewImage}
+              onChange={(e)=>setPreviewImage(e.target.value)} />
+
+            <button id='upload-album-button-click' type="submit">Upload Album</button>
+            <button type="button" onClick={handleCancelClick} >Cancel</button>
+          </div>
+            <ul>
+              {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+            </ul>
         </form>
-      </section>
+
       );
 }
 

@@ -52,39 +52,41 @@ function CreateSongForm({hideModal,albumId}){
 
 
     return (
-        <section className="new-form-holder centered middled">
+        // <section className="new-form-holder centered middled">
           <form className="create-song-form" onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-          </ul>
-          <input
-            type="text"
-            placeholder="Title"
-            required
-            value={title}
-            onChange={(e)=>setTitle(e.target.value)} />
-          <input
-            type="text"
-            placeholder="Description"
-            required
-            value={description}
-            onChange={(e)=>setDescription(e.target.value)} />
-          <input
-            type="text"
-            placeholder="Audio Url"
-            required
-            value={audioUrl}
-            onChange={(e)=>setaudioUrl(e.target.value)} />
-          <input
-            type="text"
-            placeholder="Song profile image"
-            value={previewImage}
-            onChange={(e)=>setPreviewImage(e.target.value)} />
+            <div className='form-content'>
 
-          <button type="submit">Create New Song</button>
+            <input
+              type="text"
+              placeholder="Title"
+              required
+              value={title}
+              onChange={(e)=>setTitle(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Description"
+              required
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Audio Url"
+              required
+              value={audioUrl}
+              onChange={(e)=>setaudioUrl(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Song profile image"
+              value={previewImage}
+              onChange={(e)=>setPreviewImage(e.target.value)} />
+            </div>
+            <ul>
+              {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+            </ul>
+          <button id='upload-song-button-click' type="submit">Create New Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
-      </section>
+      // </section>
       );
 }
 

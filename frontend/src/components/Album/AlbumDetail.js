@@ -63,10 +63,12 @@ const AlbumDetail = ()=>{
                 <div className='mid-box'>
 
                      <EditAlbumModal album={album}/>
-
-
+                        <span>Edit Album</span>
                      <DeleteAlbumModal album={album}/>
+                     <span>Delete Album</span>
+
                      <CreateSongModal albumId={album.id}/>
+                     <span>Add Songs</span>
 
                 </div>
 

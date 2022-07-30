@@ -11,7 +11,7 @@ function DeleteSongModal({song,albumId,user}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Delete</button>
+      <button id='delete-song-button' onClick={() => setShowModal(true)}>Delete</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeleteSongAlert hideModal={()=>setShowModal(false)} song={song} albumId={albumId} user={user}/>

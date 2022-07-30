@@ -39,15 +39,20 @@ const DeleteAlbumAlert = ({album,hideModal})=>{
 
       return  (
        <form>
-          <div>Delete Album</div>
+          <div className='delete-album-form'>
+            <h2>Delete Album</h2>
           {/* {errors && (
             <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
           </ul>
           )} */}
-          <p>Are you sure you want to delete {album.title}? This action cannot be undone.</p>
-          <button type="button" onClick={handleCancelClick} >Cancel</button>
-          <button type="button" onClick={handleDeleteClick}>Delete</button>
+            <p>Are you sure you want to delete {album.title}? This action cannot be undone.</p>
+            <div className='button-group'>
+              <button type="button" onClick={handleCancelClick} >Cancel</button>
+              <button type="button" onClick={handleDeleteClick}>Delete</button>
+            </div>
+          </div>
+
        </form>
 
       )

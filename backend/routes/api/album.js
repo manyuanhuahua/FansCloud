@@ -25,10 +25,10 @@ const validateAlbumSong = [
         .withMessage('Audio is required.'),
     check('audioUrl')
         .custom(async function(audioUrl){
-            const existedAudioUrl = await Album.findOne({where:{audioUrl}})
+            const existedAudioUrl = await Song.findOne({where:{audioUrl}})
             if(existedAudioUrl) return Promise.reject('Audio link is also exist')
         })
-        .withMessage('Album with that audio already exists'),
+        .withMessage('Song with that audio already exists'),
 
     check('description')
         .exists({ checkFalsy: true })

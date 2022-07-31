@@ -23,7 +23,7 @@ function EditSongForm({song, album, hideModal}){
       e.preventDefault();
 
       setErrors([]);
-      hideModal()
+
         const updateSong = {
             ...song,
             title,
@@ -32,7 +32,7 @@ function EditSongForm({song, album, hideModal}){
             previewImage
         }
 
-        return dispatch(songActions.editSong(updateSong, songId))
+        dispatch(songActions.editSong(updateSong, songId)).then(()=>hideModal())
                 .catch(async (res) => {
                     const data  = await res.json();
 
@@ -89,11 +89,11 @@ function EditSongForm({song, album, hideModal}){
             value={previewImage}
             onChange={(e)=>setPreviewImage(e.target.value)} />
           </div>
+          <button id='update-song-button-click' type="submit">Update Song</button>
+          <button type="button" onClick={handleCancelClick} >Cancel</button>
           <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
           </ul>
-          <button id='update-song-button-click' type="submit">Update Song</button>
-          <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       // </section>
       );

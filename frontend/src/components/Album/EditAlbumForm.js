@@ -20,7 +20,7 @@ function EditAlbumForm({album, hideModal,editModal,setEditModal}){
       e.preventDefault();
 
       setErrors([]);
-      hideModal()
+
         const updateAlbum = {
             ...album,
             title,
@@ -28,7 +28,7 @@ function EditAlbumForm({album, hideModal,editModal,setEditModal}){
             previewImage
         }
 
-        return dispatch(albumActions.editAlbum(updateAlbum)).catch(
+      dispatch(albumActions.editAlbum(updateAlbum)).then(()=>hideModal()).catch(
               async (res) => {
             // console.log("in the catch")
 

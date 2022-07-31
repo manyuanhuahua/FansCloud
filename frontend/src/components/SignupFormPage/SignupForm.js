@@ -46,8 +46,8 @@ const SignupForm = () =>{
   }
     return (
         <form className="signup-form" onSubmit={handleSubmit}>
-
           <div className='form-content'>
+
 
             <div className="form-input">
             <input
@@ -136,11 +136,11 @@ const SignupForm = () =>{
           </label>
             </div>
 
-         </div>
-         <ul>
-            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-          </ul>
           <button className='signup-button-click' type="submit">Sign Up</button>
+            <ul>
+            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+            </ul>
+         </div>
         </form>
       );
     }

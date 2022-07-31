@@ -20,9 +20,9 @@
     width: 450px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    height: 500px;
+    height: 550px;
     background-color: #fff;
     border-radius: 0;
     /* position: absolute; */
@@ -59,7 +59,7 @@
 } */
 
 .form-input {
-    margin-top: 60px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

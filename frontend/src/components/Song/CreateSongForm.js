@@ -70,7 +70,7 @@ function CreateSongForm({hideModal,albumId}){
               onChange={(e)=>setDescription(e.target.value)} />
             <input
               type="text"
-              placeholder="Audio Url"
+              placeholder="Audio Url(mp3)"
               required
               value={audioUrl}
               onChange={(e)=>setaudioUrl(e.target.value)} />

@@ -21,13 +21,14 @@ function CreateAlbumForm({hideModal,isUpload, setIsUpload}){
       e.preventDefault();
 
       setErrors([]);
-      hideModal()
+      // hideModal()
         const newAlbum = {
             title,
             description,
             previewImage
         }
-          return dispatch(albumActions.createAlbum(newAlbum)).catch(
+
+      dispatch(albumActions.createAlbum(newAlbum)).then(()=> hideModal()).catch(
             async (res) => {
               // console.log("in the catch")
 

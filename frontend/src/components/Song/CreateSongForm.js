@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
@@ -19,24 +19,25 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     // const [showForm, setShowForm] = useState(true)
 
 
-
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       setErrors([]);
-      hideModal()
-        const newSong = {
-            title,
-            description,
-            audioUrl,
-            previewImage
-        }
-        return dispatch(songActions.createSong(albumId,newSong)).catch(
+      const newSong = {
+        title,
+        description,
+        audioUrl,
+        previewImage
+      }
+      dispatch(songActions.createSong(albumId,newSong)).then(()=>{
+          hideModal()
+        }).catch(
           async (res) => {
                const data  = await res.json();
 
             // const data  = await res.json();
             if (data && data.errors) setErrors(data.errors);
+            // console.log("indispatch",data.errors)
         })
 
 
@@ -48,7 +49,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
         hideModal()
       };
 
-
+      // console.log("outdispatch",errors)
 
 
 
@@ -81,12 +82,11 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
               value={previewImage}
               onChange={(e)=>setPreviewImage(e.target.value)} />
             </div>
-            <ul>
-              {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-            </ul>
           <button id='upload-song-button-click' type="submit" onClick={()=>setCreateModal(!createModal)}>Create New Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
-        </form>
+            <ul>
+              {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+            </ul>        </form>
       // </section>
       );
 }

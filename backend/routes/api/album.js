@@ -13,10 +13,22 @@ const validateAlbumSong = [
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Song title is required.'),
+    check('title')
+        .custom(async function(title){
+            const existedTitle = await Song.findOne({where:{title}})
+            if(existedTitle) return Promise.reject('Title is also exist')
+        })
+        .withMessage('Song with that title already exists'),
 
     check('audioUrl')
         .exists({ checkFalsy: true })
         .withMessage('Audio is required.'),
+    check('audioUrl')
+        .custom(async function(audioUrl){
+            const existedAudioUrl = await Album.findOne({where:{audioUrl}})
+            if(existedAudioUrl) return Promise.reject('Audio link is also exist')
+        })
+        .withMessage('Album with that audio already exists'),
 
     check('description')
         .exists({ checkFalsy: true })
@@ -28,6 +40,12 @@ const validateAlbum = [
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Album title is required.'),
+    check('title')
+        .custom(async function(title){
+            const existedTitle = await Album.findOne({where:{title}})
+            if(existedTitle) return Promise.reject('Title is also exist')
+        })
+        .withMessage('Album with that title already exists'),
 
     check('previewImage')
         .exists({ checkFalsy: true })

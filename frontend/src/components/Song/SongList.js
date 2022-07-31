@@ -37,7 +37,7 @@ const SongList = ({albumId})=>{
                     </div>
                     <span>{index+1}</span>
 
-                        <Link className='detial-title' to={`/songs/${song.id}`}>{song.title}-<span className='song-subtitle'>{sessionUser.username}</span></Link>
+                        <Link className='detial-title' to={`/songs/${song.id}`}>{song.title}-<span className='song-subtitle'>{sessionUser?.username}</span></Link>
                         {/* <div onClick={()=>setIsPlay(!isPlay)}><i class="fa-solid fa-circle-play" id={index} /></div> */}
 
 

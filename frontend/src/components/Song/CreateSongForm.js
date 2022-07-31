@@ -3,7 +3,7 @@ import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 
-function CreateSongForm({hideModal,albumId}){
+function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const history = useHistory()
     const dispatch = useDispatch();
     // const albumId = useParams()
@@ -14,6 +14,7 @@ function CreateSongForm({hideModal,albumId}){
     const [audioUrl, setaudioUrl] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
+
     // const albumId = album.id
     // const [showForm, setShowForm] = useState(true)
 
@@ -83,7 +84,7 @@ function CreateSongForm({hideModal,albumId}){
             <ul>
               {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
             </ul>
-          <button id='upload-song-button-click' type="submit">Create New Song</button>
+          <button id='upload-song-button-click' type="submit" onClick={()=>setCreateModal(!createModal)}>Create New Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       // </section>

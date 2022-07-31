@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import "./album.css"
 
-function CreateAlbumForm({hideModal}){
+function CreateAlbumForm({hideModal,isUpload, setIsUpload}){
     const history = useHistory()
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state.session.user);
@@ -38,7 +38,8 @@ function CreateAlbumForm({hideModal}){
               if (data && data.errors) setErrors(data.errors);
 
             }
-            );
+            )
+            // .then(()=>history.push('/currentUser'));
           };
 
     const handleCancelClick = (e) => {
@@ -74,7 +75,7 @@ function CreateAlbumForm({hideModal}){
               value={previewImage}
               onChange={(e)=>setPreviewImage(e.target.value)} />
 
-            <button id='upload-album-button-click' type="submit">Upload Album</button>
+            <button id='upload-album-button-click' type="submit" onClick={()=>setIsUpload(!isUpload)}>Upload Album</button>
             <button type="button" onClick={handleCancelClick} >Cancel</button>
           </div>
             <ul>

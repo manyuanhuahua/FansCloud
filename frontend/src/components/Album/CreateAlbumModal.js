@@ -3,9 +3,9 @@ import { Modal } from '../../context/Modal';
 import CreateAlbumForm from './CreateAlbumForm';
 
 
-function CreateAlbumModal() {
+function CreateAlbumModal({isUpload, setIsUpload}) {
   const [showModal, setShowModal] = useState(false);
-  
+
 
 
 
@@ -14,7 +14,7 @@ function CreateAlbumModal() {
       <button onClick={() => setShowModal(true)}>Upload</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateAlbumForm hideModal={()=>setShowModal(false)}/>
+          <CreateAlbumForm hideModal={()=>setShowModal(false)} isUpload={isUpload}  setIsUpload={setIsUpload}/>
         </Modal>
       )}
     </>

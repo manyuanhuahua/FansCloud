@@ -46,42 +46,11 @@ const UserNav = ()=>{
                   <Link to='/currentUser'>Overview</Link>
                 </div>
                 <div className='right-banner'>
-                  <div className='upload-album-button'>
-                  <UploadBotton />
-                  </div>
+                  {/* <div className='upload-album-button'>
+                  <UploadBotton isUpload={isUpload} setIsUpload={setIsUpload}/>
+                  </div> */}
                   <ProfileButton user={sessionUser} />
                 </div>
-
-
-
-
-
-
-                    {/* <li>
-                      <img src='https://cdn.iconscout.com/icon/free/png-256/soundcloud-4069940-3365459.png'></img>
-                    </li> */}
-                    {/* <li>
-                      <Link  to='/'>Overview</Link>
-                    </li> */}
-                    {/* <li>
-                      <Link to='/currentUser/songs'>Songs</Link> */}
-                      {/* <CurrentUserSongs showAlbums={showAlbums} showSongs={showSongs}/> */}
-                    {/* </li> */}
-
-                      {/* <CurrentUserAlbums /> */}
-
-
-
-
-
-                        {/* <CurrentUser showSongs={showSongs} showAlbums={showAlbums} /> */}
-
-
-
-
-
-
-            {/* </div> */}
             </div>
 
       )

@@ -5,6 +5,7 @@ import { NavLink, useHistory, useParams } from 'react-router-dom';
 import "./song.css"
 function EditSongForm({song, album, hideModal}){
     const history = useHistory()
+    const {songId} = useParams()
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state.session.user);
     const [title, setTitle] = useState(song.title);
@@ -31,7 +32,7 @@ function EditSongForm({song, album, hideModal}){
             previewImage
         }
 
-        return dispatch(songActions.editSong(updateSong))
+        return dispatch(songActions.editSong(updateSong, songId))
                 .catch(async (res) => {
                     const data  = await res.json();
 

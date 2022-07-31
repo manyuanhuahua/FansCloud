@@ -14,6 +14,8 @@ const SongDetail = ()=>{
     const {songId} = useParams()
     const song = useSelector(state => state.songs.song);
     const sessionUser = useSelector(state => state.session.user)
+  const [showModal, setShowModal] = useState(false);
+
 
 
 
@@ -30,7 +32,7 @@ const SongDetail = ()=>{
                 .then(()=>{
                     setIsLoaded(true)
         })
-      },[dispatch,songId])
+      },[dispatch,songId,showModal])
 
 
 
@@ -50,7 +52,7 @@ const SongDetail = ()=>{
                     <div className='song-create-time'>
                     {(sessionUser?.id === song.userId) ? (
                         <>
-                            <EditSongModal song={song}/>
+                            <EditSongModal song={song} showModal={showModal} setShowModal={setShowModal}/>
                             <DeleteSongModal song={song} albumId={song.albumId} user={sessionUser}/>
                         </>
                     ):<></>}

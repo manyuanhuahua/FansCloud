@@ -5,7 +5,7 @@ const GET_ALBUMS="album/getAlbums"
 const CREATE_ALBUM="album/createAlbum"
 const LOAD_ALBUM_DETAIL="album/loadAlbumDetail"
 const REMOVE_ALBUM="album/removeAlbum"
-
+const EDIT_ALBUM = "album/updateAlbum"
 
 
 
@@ -25,6 +25,13 @@ const addAlbum = (album) =>{
     return {
         type: CREATE_ALBUM,
         album
+    }
+}
+
+const updateAlbum = (album) =>{
+    return {
+        type: EDIT_ALBUM,
+        album,
     }
 }
 
@@ -58,7 +65,7 @@ export const editAlbum = (album)=> async dispatch =>{
     })
     if (response.ok) {
         const editedalbum = await response.json();
-        dispatch(addAlbum(album));
+        dispatch(updateAlbum(album));
         return editedalbum;
       }
 }
@@ -133,15 +140,23 @@ const albumsReducer = (state = initialState, action)=>{
         }
         case CREATE_ALBUM:{
 
-            if(!state[action.album.id]){
-                newState = {
-                    ...state,
-                    [action.album.id]:action.album
-                };
+            const newState = {
+                ...state,
+                [action.album.id]: action.album
             }
-
             return newState
         }
+
+        case EDIT_ALBUM:{
+
+           return {
+            ...state,
+            [action.album.id]: {
+              ...state[action.album.id],
+              ...action.album
+            }
+          };
+       }
 
         case REMOVE_ALBUM:{
             const newStae = {...state}

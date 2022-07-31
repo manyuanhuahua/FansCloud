@@ -6,8 +6,7 @@ import SignupForm from '../SignupFormPage/SignupForm';
 import * as songActions from '../../store/song'
 import LoginForm from '../LoginFormModal/LoginForm';
 import 'react-h5-audio-player/lib/styles.css';
-import MainAudioPlayer from '../AudioPlayer/MainAudio';
-import ToggleButton from '../AudioPlayer/ToggleButton';
+
 import './homepage.css'
 
 
@@ -34,13 +33,6 @@ function HomePage(){
         return songShows
       }
 
-
-
-
-
-
-
-
     return (
         <div className='mainpage-container'>
             <div className='top-box'>
@@ -58,10 +50,10 @@ function HomePage(){
                         songShows.map((song, index)=>{
                             return (
                                 <div className='song-list-container'>
-                                        <img className='song-entry-image' src={song.previewImage} />
+                                        <img className='song-entry-image' src={song?.previewImage} />
                                     <div className='song-content'>
-                                    <NavLink key={song.id} to={`/songs/${song.id}`}>
-                                        <span className='song-title'>{song.title}</span>
+                                    <NavLink to={`/songs/${song?.id}`}>
+                                        <span className='song-title'>{song?.title}</span>
                                         <span className='song-text'>Top 50</span>
                                     </NavLink>
                                     </div>

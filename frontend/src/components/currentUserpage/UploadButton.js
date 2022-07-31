@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 import CreateAlbumModal from "../Album/CreateAlbumModal";
 import "./currentUser.css"
 
-function UploadBotton() {
+function UploadBotton({isUpload, setIsUpload}) {
   return (
-    <div class='upload-album-modal'>
-    <CreateAlbumModal />
+    <div className='upload-album-modal'>
+    <CreateAlbumModal isUpload={isUpload} setIsUpload={setIsUpload}/>
   </div>
   );
 }

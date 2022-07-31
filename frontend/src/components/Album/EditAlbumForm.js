@@ -3,7 +3,7 @@ import * as albumActions from '../../store/album'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import "./album.css"
-function EditAlbumForm({album, hideModal}){
+function EditAlbumForm({album, hideModal,editModal,setEditModal}){
     const history = useHistory()
     const dispatch = useDispatch();
     const sessionUser = useSelector(state=>state.session.user);
@@ -39,7 +39,8 @@ function EditAlbumForm({album, hideModal}){
               if (data && data.errors) setErrors(data.errors);
 
           }
-          ).then(()=>history.push(`/currentUser`));
+          )
+          // .then(()=>history.push(`/currentUser`));
 
         // if(updaedAlbum){
         //     hideModal()
@@ -78,9 +79,10 @@ function EditAlbumForm({album, hideModal}){
             type="text"
             placeholder="Album profile image"
             value={previewImage}
+            required
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button id='edit-album-button' type="submit">Upload Album</button>
+          <button id='edit-album-button' type="submit" onClick={()=>setEditModal(!editModal)}>Upload Album</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>

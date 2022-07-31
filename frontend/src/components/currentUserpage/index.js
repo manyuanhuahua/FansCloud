@@ -15,6 +15,7 @@ const CurrentUser = ({showAlbums, showSongs})=>{
     const dispatch = useDispatch()
     const songList = useSelector(state => state.songs.songs);
     const albumList = useSelector(state => state.albums.albums);
+    const [isUpload, setIsUpload] = useState(false)
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -29,7 +30,7 @@ const CurrentUser = ({showAlbums, showSongs})=>{
 
       useEffect(()=>{
         dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
-      },[dispatch])
+      },[dispatch,isUpload])
 
     // const createAlbum = () =>{
     //     dispatch(createAlbum())
@@ -43,10 +44,13 @@ const CurrentUser = ({showAlbums, showSongs})=>{
                     <img className='profile-img' src='https://ktla.com/wp-content/uploads/sites/4/2020/05/GettyImages-1146390210.jpg' />
                   </div>
                   <h2>{sessionUser.username}</h2>
+                  <div className='upload-album-button'>
+                  <UploadBotton isUpload={isUpload} setIsUpload={setIsUpload}/>
+                  </div>
               </div>
                 {/* <p>this is current user page</p> */}
               <div className='right-box'>
-                   <CurrentUserAlbums albumList={albumList} isLoaded={isLoaded}/>
+                   <CurrentUserAlbums albumList={albumList} isLoaded={isLoaded} isUpload={isUpload} setIsUpload={setIsUpload}/>
               </div>
 
                 <div className='user-library-container'>

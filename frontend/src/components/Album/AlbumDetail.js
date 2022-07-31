@@ -14,6 +14,9 @@ const AlbumDetail = ()=>{
     const {albumId} = useParams()
     const album = useSelector(state => state.albums.album);
     const songList = useSelector(state => state.songs.songs);
+    const [showModal, setShowModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
+    const [createModal, setCreateModal] = useState(false);
 
     // const yourSongs = useSelector(state => state.songs.songs.filter((song)=> song.albumId === albumId));
 
@@ -25,11 +28,11 @@ const AlbumDetail = ()=>{
 
     useEffect(()=>{
         dispatch(albumActions.getAlbumDetail(albumId)).then(()=>setIsLoaded(true))
-    },[dispatch,albumId])
+    },[dispatch,albumId,editModal])
 
     useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
-    },[dispatch])
+    },[dispatch,createModal])
     // const  = album.Songs
 
     // console.log("albumSong", albumSongs)
@@ -62,12 +65,12 @@ const AlbumDetail = ()=>{
 
                 <div className='mid-box'>
 
-                     <EditAlbumModal album={album}/>
+                     <EditAlbumModal album={album} editModal={editModal} setEditModal={setEditModal}/>
                         <span>Edit Album</span>
-                     <DeleteAlbumModal album={album}/>
+                     <DeleteAlbumModal album={album} />
                      <span>Delete Album</span>
 
-                     <CreateSongModal albumId={album.id}/>
+                     <CreateSongModal albumId={album.id} createModal={createModal} setCreateModal={setCreateModal}/>
                      <span>Add Songs</span>
 
                 </div>

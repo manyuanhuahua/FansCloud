@@ -26,7 +26,7 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
         // setErrors([]);
 
         return dispatch(songActions.deleteSong(songId, albumId))
-                  .then(()=>history.push('/currentUser'))
+                  .then(()=>history.push(`/albums/${albumId}`))
         //       .catch(async (res) => {
         //        const data  = await res.json();
 

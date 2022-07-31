@@ -4,6 +4,7 @@ const LOAD_SONGS = "song/loadSong"
 const LOAD_SONG_DETAIL = "song/loadSongDetail"
 const ADD_SONG = "song/addSong"
 const REMOVE_SONG="song/removeSong"
+const EDIT_SONG = "song/updateSong"
 
 
 const loadSong = songs => ({
@@ -24,6 +25,13 @@ const addSong = (albumId, song) =>{
     }
 }
 
+const updateSong = (song) =>{
+    return {
+        type: EDIT_SONG,
+        song,
+    }
+}
+
 const removeSong = (songId, albumId) => ({
     type: REMOVE_SONG,
     songId,
@@ -41,7 +49,7 @@ const removeSong = (songId, albumId) => ({
     })
     if (response.ok) {
         const editedSong = await response.json();
-        dispatch(addSong(song));
+        dispatch(updateSong(song));
         return editedSong;
       }
 }
@@ -112,6 +120,8 @@ export const createSong = (albumId,song) => async dispatch=>{
 }
 
 
+
+
 const initialState = {
     songs: null,
 }
@@ -142,22 +152,26 @@ const songsReducer = (state = initialState, action)=>{
 
         case ADD_SONG:{
 
-            if(!state[action.id]){
-                newState = {
-                    ...state,
-                    [action.song.id]:action.song
-                };
+            
+            newState = {...state}
+
+                newState[action.id] = action.song
+
                 return newState;
             }
+
+        case EDIT_SONG:{
+                newState = {...state}
+
+                newState[action.song.id] = action.song
+
+                    return newState;
+                }
+
+
             // console.log("add song newState", newState)
-            // return {
-            //   ...state,
-            //   [action.song.id]: {
-            //     ...state[action.song.id],
-            //     ...action.song
-            //   }
-            // };
-          }
+
+
 
           case REMOVE_SONG:{
             const newStae = {...state}

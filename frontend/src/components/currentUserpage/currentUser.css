@@ -28,6 +28,14 @@
     margin-top: 30px;
 }
 
+/* .user-page-main-container .left-box {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 30px;
+} */
+
 /* .user-page-main-container .right-box{ */
     /* display: grid; */
     /* width: 940px; */
@@ -195,10 +203,10 @@
 .upload-album-modal button{
     border: none;
     background: transparent;
-    color: #fff;
+    color: #333;
     border-color: #ccc;
     height: 30px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #333;
     cursor: pointer;
     font-size: 14px;
     border-radius: 3px;

@@ -41,23 +41,23 @@ function ProfileButton({ user }) {
         {showMenu && (
         <div className="nav-right">
           <ul className="slide">
-            <li className="nr-li">
+            <li className="nr-li" key='menubutton'>
               <i class="fa-thin fa-user-robot"/>
             </li>
-            <li className="nr-li">
+            <li className="nr-li" key='menu'>
               <div className="dd_menu">
                 <div className="dd_left">
                     <ul>
-                      <li>
+                      <li key='profile'>
                       <i class="fa-solid fa-user-secret" />
                       </li>
-                      <li>
+                      <li key='name'>
                       <i class="fa-solid fa-id-card" />
                       </li>
-                      <li>
+                      <li key='email'>
                       <i class="fa-solid fa-inbox" />
                       </li>
-                      <li>
+                      <li key='log-out'>
                       <i class="fa-solid fa-right-from-bracket" />
                       </li>
 
@@ -65,10 +65,10 @@ function ProfileButton({ user }) {
                 </div>
                 <div className="dd_right">
                   <ul>
-                    <li><Link to='/currentUser'>Profile</Link></li>
-                    <li><span>{user?.username}</span></li>
-                    <li><span>{user?.email}</span></li>
-                    <li><Link onClick={logout}>Log Out</Link></li>
+                    <li key='textProfile'><Link to='/currentUser'>Profile</Link></li>
+                    <li key='textName'><span>{user?.username}</span></li>
+                    <li key='textEmail'><span>{user?.email}</span></li>
+                    <li key='textLogout'><a onClick={logout}>Log Out</a></li>
                   </ul>
 
                 </div>

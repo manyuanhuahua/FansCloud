@@ -17,6 +17,12 @@ const validateSong = [
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Song title is required.'),
+    // check('title')
+    //     .custom(async function(email){
+    //         const existedEmail = await User.findOne({where:{email,}})
+    //         if(existedEmail) return Promise.reject('Email is also exist')
+    //     })
+    //     .withMessage('User with that email already exists'),
 
     check('audioUrl')
         .exists({ checkFalsy: true })

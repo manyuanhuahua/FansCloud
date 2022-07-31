@@ -7,7 +7,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import "./song.css"
 
-const SongList = ({albumId})=>{
+const SongList = ({albumId,createModal})=>{
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user);
@@ -20,7 +20,7 @@ const SongList = ({albumId})=>{
 
     useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
-      },[dispatch,albumId])
+      },[dispatch,albumId,createModal])
 
     //   const setMainSong=(song)=>{
     //     setCurrentSong(song)

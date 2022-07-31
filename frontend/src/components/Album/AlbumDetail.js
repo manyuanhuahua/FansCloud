@@ -84,7 +84,7 @@ const AlbumDetail = ()=>{
 
                     </div>
                      <div className='songsContainer'>
-                    <SongList songs={songList} albumId={album.id}/>
+                    <SongList songs={songList} albumId={album.id} createModal={createModal}/>
 
                     </div>
                     </div>

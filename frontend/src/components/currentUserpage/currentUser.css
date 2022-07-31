@@ -177,6 +177,7 @@
 .profile-button-right-box .dd_menu .dd_right a{
    text-decoration: none;
    text-align: center;
+   cursor: pointer;
     /* text-decoration: none; */
     /* width:50px; */
 }

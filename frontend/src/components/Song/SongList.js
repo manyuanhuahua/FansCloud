@@ -5,6 +5,7 @@ import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import "./song.css"
 
 const SongList = ({albumId})=>{
     const dispatch = useDispatch()
@@ -35,13 +36,16 @@ const SongList = ({albumId})=>{
 
                         <img className='song-img' src={song.previewImage}/>
                     </div>
+                    <div className='song-text'>
+
                     <span>{index+1}</span>
 
                         <Link className='detial-title' to={`/songs/${song.id}`}>{song.title}-<span className='song-subtitle'>{sessionUser?.username}</span></Link>
                         {/* <div onClick={()=>setIsPlay(!isPlay)}><i class="fa-solid fa-circle-play" id={index} /></div> */}
+                    </div>
 
 
-                    <div>
+                    <div className='songlist-audioPlayer'>
                     <AudioPlayer
                              autoPlay={false}
                             src={song.audioUrl}

@@ -21,10 +21,13 @@
     right: 30px;
     width: 200px;
 
-
-
 }
 
+.user-mainContainer .left-banner a{
+    /* background-color: darkorange; */
+    margin-right: 20px;
+
+}
 
 .user-mainContainer .left-banner .logo{
     /* position: absolute; */

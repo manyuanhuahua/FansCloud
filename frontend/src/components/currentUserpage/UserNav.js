@@ -9,6 +9,7 @@ import CreateAlbumForm from '../Album/CreateAlbumForm';
 import CurrentUserAlbums from './CurrentUserAlbums';
 import CurrentUserSongs from './CurrentUserSongs';
 import "./currentUser.css"
+import { Nav } from 'react-bootstrap';
 
 
 
@@ -42,9 +43,13 @@ const UserNav = ()=>{
       <div className='user-mainContainer'>
             {/* <div className='user-top-banner'> */}
             <div className='left-banner'>
+
                   <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'/>
-                  <Link to='/currentUser'>Overview</Link>
-                </div>
+                  <div className='left-banner-text'>
+                    <Link to='/currentUser'>Overview</Link>
+                    <Link to='/songs'>Songs</Link>
+                  </div>
+            </div>
                 <div className='right-banner'>
                   {/* <div className='upload-album-button'>
                   <UploadBotton isUpload={isUpload} setIsUpload={setIsUpload}/>

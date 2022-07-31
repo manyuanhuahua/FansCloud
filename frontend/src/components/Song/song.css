@@ -69,6 +69,14 @@
 }
 
 
+.menu-song {
+    display: grid;
+    grid-template-columns: repeat(9,1fr);
+    align-items: center;
+    margin: 10px;
+    width:820px
+}
+
 .audioList-container .menu-song .song-img {
     width: 80px;
     height: 80px;
@@ -76,16 +84,10 @@
     grid-column: 1/2;
 }
 
-.audioList-container .menu-song {
-    display: grid;
-    grid-template-columns: repeat(9,1fr);
-    align-items: center;
-    margin: 10px;
-}
 
 
 
-  .menu-song span{
+.menu-song span{
     font-size: 12px;
     font-weight: 600;
     margin: 10px;
@@ -96,15 +98,14 @@
 
   }
 
-  .menu-song .song-text{
-
+.menu-song .song-text{
+    margin-left: 20px;
     grid-column: 2/5;
-
+    /* justify-content: center; */
   }
 
-  .menu-song .songlist-audioPlayer{
+.menu-song .songlist-audioPlayer{
     grid-column: 5/10;
-
   }
 
   .menu-song a{

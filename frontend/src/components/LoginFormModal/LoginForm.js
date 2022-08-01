@@ -37,7 +37,7 @@ function LoginForm(){
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      // setErrors([]);
+      setErrors([]);
       return dispatch(sessionActions.login({ credential, password })).catch(
         async (res) => {
           // console.log("in the catch")
@@ -48,7 +48,7 @@ function LoginForm(){
 
           if (data && data.errors) setErrors(data.errors);
 
-        });
+        }).then(()=>history.push('/currentUser'));
       };
 
 

@@ -39,7 +39,7 @@ const SignupForm = () =>{
                             // console.log("data.error", data.errors)
 
                             if (data && data.errors) setErrors(data.errors);
-                      })
+                      }).then(()=>history.push('/currentUser'))
     }
 
     return setErrors(['Confirm Password field must be the same as the Password field'])

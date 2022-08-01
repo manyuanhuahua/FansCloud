@@ -152,10 +152,10 @@ const songsReducer = (state = initialState, action)=>{
 
         case ADD_SONG:{
 
-            
+
             newState = {...state}
 
-                newState[action.id] = action.song
+                newState[action.song.id] = action.song
 
                 return newState;
             }

@@ -70,7 +70,7 @@ const AlbumDetail = ()=>{
                      <DeleteAlbumModal album={album} />
                      <span>Delete Album</span>
 
-                     <CreateSongModal albumId={albumId} createModal={createModal} setCreateModal={setCreateModal}/>
+                     <CreateSongModal albumId={album.id} createModal={createModal} setCreateModal={setCreateModal}/>
                      <span>Add Songs</span>
 
                 </div>
@@ -84,7 +84,7 @@ const AlbumDetail = ()=>{
 
                     </div>
                      <div className='songsContainer'>
-                    <SongList songs={songList} albumId={albumId} createModal={createModal}/>
+                    <SongList songs={songList} albumId={album.id} createModal={createModal}/>
 
                     </div>
                     </div>

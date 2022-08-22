@@ -13,19 +13,20 @@ import "./currentUser.css"
 
 const CurrentUser = ({showAlbums, showSongs})=>{
     const dispatch = useDispatch()
-    const songList = useSelector(state => state.songs.songs);
-    const albumList = useSelector(state => state.albums.albums);
+    const songList = useSelector(state => state.songs);
+    const albumList = useSelector(state => state.albums);
     const [isUpload, setIsUpload] = useState(false)
 
     const sessionUser = useSelector(state => state.session.user);
 
+    const [songLoaded, setSongLoaded] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
 
     // console.log(songList.length)
     // console.log('albumListcurrentUser', albumList)
 
       useEffect(()=>{
-        dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
+        dispatch(songActions.getSong()).then(()=>setSongLoaded(true))
       },[dispatch])
 
       useEffect(()=>{
@@ -36,7 +37,7 @@ const CurrentUser = ({showAlbums, showSongs})=>{
     //     dispatch(createAlbum())
     // }
 
-      return  isLoaded && (sessionUser && Object.keys(sessionUser).length >0) && (
+      return  songLoaded && isLoaded && (sessionUser && Object.keys(sessionUser).length >0) && (
 
         <div className='user-page-main-container'>
               <div className='left-box'>

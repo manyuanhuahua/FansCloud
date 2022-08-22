@@ -128,7 +128,7 @@ const albumsReducer = (state = initialState, action)=>{
         case GET_ALBUMS:{
             newState = Object.assign({},state)
             // console.log("action",action.albums)
-            newState.albums = action.albums
+            newState = action.albums
             // console.log("newState", newState)
             return newState
         };

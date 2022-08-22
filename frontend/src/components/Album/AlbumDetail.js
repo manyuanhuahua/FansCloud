@@ -13,7 +13,7 @@ const AlbumDetail = ()=>{
     const dispatch = useDispatch()
     const {albumId} = useParams()
     const album = useSelector(state => state.albums.album);
-    const songList = useSelector(state => state.songs.songs);
+    const songList = useSelector(state => state.songs);
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [createModal, setCreateModal] = useState(false);
@@ -25,13 +25,15 @@ const AlbumDetail = ()=>{
     // const albumSongs= album.Songs;
 
     const [isLoaded, setIsLoaded] = useState(false)
+    const [songLoaded, setSongLoaded] = useState(false)
+
 
     useEffect(()=>{
         dispatch(albumActions.getAlbumDetail(albumId)).then(()=>setIsLoaded(true))
     },[dispatch,albumId,editModal])
 
     useEffect(()=>{
-        dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
+        dispatch(songActions.getSong()).then(()=>setSongLoaded(true))
     },[dispatch,createModal])
     // const  = album.Songs
 
@@ -41,7 +43,7 @@ const AlbumDetail = ()=>{
 
 
 
-      return isLoaded && (
+      return isLoaded && setSongLoaded && (
             //top banner
             <div className='album-detail'>
                 <div className='album-top-box'>

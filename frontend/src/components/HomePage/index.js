@@ -13,7 +13,7 @@ import './homepage.css'
 
 function HomePage(){
     const dispatch = useDispatch()
-    const songList = useSelector(state => state.songs.songs);
+    const songList = useSelector(state => state.songs);
     const sessionUser = useSelector(state => state.session.user);
     const [isPlay, setIsPlay] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false)
@@ -33,7 +33,7 @@ function HomePage(){
         return songShows
       }
 
-    return (
+    return isLoaded && (
         <div className='mainpage-container'>
             <div className='top-box'>
                 {/* <img src='https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg' /> */}

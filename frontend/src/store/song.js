@@ -137,7 +137,7 @@ const songsReducer = (state = initialState, action)=>{
     switch(action.type){
         case LOAD_SONGS:{
             newState = Object.assign({},state)
-            newState.songs = action.songs.Songs
+            newState= action.songs.Songs
             // console.log("newState", newState)
             return newState
         };

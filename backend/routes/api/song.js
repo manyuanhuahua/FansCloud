@@ -143,7 +143,7 @@ router.delete('/:songId', requireAuth,async (req, res, next)=>{
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
-        if (artist.isArtist && id === song.userId){
+        if (id === song.userId){
 
             await song.destroy()
             res.json({
@@ -171,7 +171,7 @@ router.put('/:songId', validateSong, async(req,res,next)=>{
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
-        if (artist.isArtist && id === song.userId){
+        if (id === song.userId){
             song.update({
                 title,
                 description,

@@ -6,8 +6,8 @@ import SongList from '../Song/SongList';
 
 const AlbumsBrowser = ()=>{
     const dispatch = useDispatch()
-    const albumList = useSelector(state => state.albums.albums);
-    const songList = useSelector(state => state.songs.songs);
+    const albumList = useSelector(state => state.albums);
+    const songList = useSelector(state => state.songs);
 
     const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)

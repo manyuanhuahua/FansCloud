@@ -6,7 +6,7 @@ import * as songActions from '../../store/song'
 const CurrentUserSongs = ()=>{
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
-    const yourSongs = useSelector(state => state.songs.songs);
+    const yourSongs = useSelector(state => state.songs);
     const [isLoaded, setIsLoaded] = useState(false)
 
 

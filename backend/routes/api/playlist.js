@@ -73,9 +73,9 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
     }
 
 
-   
+
     const user = req.user.toJSON()
-    if( user.isArtist && user.id === playlist.userId ){
+    if(user.id === playlist.userId ){
 
 
         const songPlaylist = await SongPlaylist.create({
@@ -131,7 +131,7 @@ router.put('/:playlistId', requireAuth, validatePlaylist, async (req, res, next)
     const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(playlist){
-        if(artist.isArtist && playlist.userId === id){
+        if(playlist.userId === id){
         playlist.update({
             name,
             previewImage
@@ -157,7 +157,7 @@ router.delete('/:playlistId',requireAuth,async(req, res, next)=>{
     const artist = await User.findByPk(id)
 
     if(playlist){
-        if(artist.isArtist && playlist.userId === id){
+        if(playlist.userId === id){
         await playlist.destroy()
         res.json({
             message: "Successfully deleted",

@@ -9,7 +9,7 @@ const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
-    const yourAlbums = useSelector(state => state.albums.albums);
+    const yourAlbums = useSelector(state => state.albums);
     // const [isUpload, setIsUpload] = useState(false)
 
 
@@ -17,7 +17,7 @@ const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
 
     useEffect(()=>{
         dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
-      },[dispatch, isUpload])
+      },[dispatch,isUpload])
     // console.log('yourAlbums',yourAlbums)
 
 
@@ -34,7 +34,7 @@ const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
 
                         <div className='content-entry' key={album.id}>
                             <div className='content-title'>{album.title}</div>
-                            <div className='content-text'>{sessionUser?.username}</div>
+                            <div className='content-text'>{sessionUser.username}</div>
                         </div>
                     </NavLink>
                 )

@@ -37,7 +37,7 @@ router.put('/:commentId',requireAuth, validateComment, async(req, res, next)=>{
 
     const { body } = req.body
     if(comment){
-        if(artist.isArtist && id === comment.userId){
+        if(id === comment.userId){
             comment.update({
                 body
             })
@@ -61,7 +61,7 @@ router.delete('/:commentId',requireAuth, async(req, res, next)=>{
     const userId = req.user.toJSON().id
     const artist = await User.findByPk(userId)
     if(comment){
-        if(artist.isArtist && comment.userId === userId){
+        if(comment.userId === userId){
             await comment.destroy()
             res.json({
                 message: "Successfully deleted",

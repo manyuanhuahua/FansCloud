@@ -11,7 +11,7 @@ const SongList = ({albumId,createModal})=>{
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
     const sessionUser = useSelector(state => state.session.user);
-    const songList = useSelector(state => state.songs.songs);
+    const songList = useSelector(state => state.songs);
     const [isPlay, setIsPlay] = useState(false)
     const [currentSong, setCurrentSong] = useState("")
 

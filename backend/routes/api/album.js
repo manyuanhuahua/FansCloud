@@ -71,7 +71,7 @@ router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next
     const artist = await User.findByPk(id)
     if(album){
         // check if current user is the album's owner and if it is an artist
-        if (artist.isArtist && id === album.userId){
+        if (id === album.userId){
             const song = await Song.create({
                 'userId': album.userId,
                 'albumId': album.id,
@@ -137,7 +137,7 @@ router.put('/:albumId',requireAuth, validateAlbum, async (req, res, next)=>{
     const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(album){
-        if (artist.isArtist && id === album.userId){
+        if (id === album.userId){
             album.update({
                 title,
                 description,
@@ -161,7 +161,7 @@ router.delete('/:albumId', requireAuth, async (req, res, next)=>{
     const id = req.user.toJSON().id
     const artist = await User.findByPk(id)
     if(album){
-        if (artist.isArtist && id === album.userId){
+        if (id === album.userId){
             await album.destroy()
             res.json({
                 message: "Successfully deleted",

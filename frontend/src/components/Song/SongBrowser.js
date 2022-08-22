@@ -7,7 +7,7 @@ import "./song.css"
 
 const SongsBrowser = ()=>{
     const dispatch = useDispatch()
-    const songList = useSelector(state => state.songs.songs);
+    const songList = useSelector(state => state.songs);
     const [isLoaded, setIsLoaded] = useState(false)
     // console.log(songList.length)
     // console.log('songList', songList)

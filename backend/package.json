@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
@@ -14,8 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
@@ -30,11 +28,8 @@
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
-    "dotenv-cli": "^5.1.0",
-    "install": "^0.13.0",
-    "nodeman": "^1.1.2",
+    "dotenv-cli": "^6.0.0",
     "nodemon": "^2.0.19",
-    "npm": "^8.18.0",
     "sqlite3": "^5.0.11"
   }
 }

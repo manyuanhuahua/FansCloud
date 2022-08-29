@@ -13,8 +13,6 @@ function CreateAlbumForm({hideModal,isUpload, setIsUpload}){
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
 
-
-
     // console.log("outside submit")
 
     const handleSubmit = async (e) => {
@@ -31,14 +29,10 @@ function CreateAlbumForm({hideModal,isUpload, setIsUpload}){
       dispatch(albumActions.createAlbum(newAlbum)).then(()=> hideModal()).catch(
             async (res) => {
               // console.log("in the catch")
-
               const data  = await res.json();
-
               // console.log("data.error", data.errors)
-
               if (data && data.errors) setErrors(data.errors);
-
-            }
+              }
             )
             // .then(()=>history.push('/currentUser'));
           };

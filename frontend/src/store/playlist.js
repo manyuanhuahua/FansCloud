@@ -1,108 +1,105 @@
 import { csrfFetch } from "./csrf";
 
 
-const GET_ALBUMS="album/getAlbums"
-const CREATE_ALBUM="album/createAlbum"
-const LOAD_ALBUM_DETAIL="album/loadAlbumDetail"
-const REMOVE_ALBUM="album/removeAlbum"
-const EDIT_ALBUM = "album/updateAlbum"
+const GET_PLAYLISTS="album/getPlaylists"
+const CREATE_PLAYLIST="album/createPlaylist"
+const LOAD_PLAYLIST_DETAIL="album/loadPlaylistDetail"
+const REMOVE_PLAYLIST="album/removePlaylist"
+const EDIT_PLAYLIST = "album/updatePlaylist"
 
 
 
-const loadAlbums = (albums) => {
+const loadPlaylists = (playlists) => {
   return {
-    type: GET_ALBUMS,
-    albums
+    type: GET_PLAYLISTS,
+    playlists
   }
 }
 
-const loadAlbumDetail = album =>{
+const loadPlaylistDetail = playlist =>({
+    type: LOAD_PLAYLIST_DETAIL,
+    playlist
+})
+
+const addPlaylist = (playlist) =>{
     return {
-        type: LOAD_ALBUM_DETAIL,
-        album
+        type: CREATE_PLAYLIST,
+        playlist
     }
 }
 
-const addAlbum = (album) =>{
+const updatePlaylist = (playlist) =>{
     return {
-        type: CREATE_ALBUM,
-        album
+        type: EDIT_PLAYLIST ,
+        playlist,
     }
 }
 
-const updateAlbum = (album) =>{
-    return {
-        type: EDIT_ALBUM,
-        album,
-    }
-}
-
-const removeAlbum = (albumId) => ({
-    type: REMOVE_ALBUM,
-    albumId,
+const removePlaylist = (playlistId) => ({
+    type: REMOVE_PLAYLIST,
+    playlistId,
   });
 
-export const deleteAlbum =(albumId)=>async dispatch=>{
-    const response = await csrfFetch(`/api/albums/${albumId}`,{
+export const deletePlaylist =(playlistId)=>async dispatch=>{
+    const response = await csrfFetch(`/api/playlists/${playlistId}`,{
         method: `DELETE`,
     });
     if(response.ok){
-        const { deletedAlbumId: albumId } = await response.json()
-        dispatch(removeAlbum(albumId));
+        const { deletedPlaylistId: playlistId } = await response.json()
+        dispatch(removePlaylist(playlistId));
         // console.log(data)
-        return albumId
+        return playlistId
     }
 
 }
 
 
 
-export const editAlbum = (album)=> async dispatch =>{
-    const response = await csrfFetch(`/api/albums/${album.id}`,{
+export const editPlaylist = (playlist)=> async dispatch =>{
+    const response = await csrfFetch(`/api/albums/${playlist.id}`,{
         method:'PUT',
         headers:{
             'Content-Type': 'application/json'
           },
-        body: JSON.stringify(album)
+        body: JSON.stringify(playlist)
     })
     if (response.ok) {
-        const editedalbum = await response.json();
-        dispatch(updateAlbum(album));
-        return editedalbum;
+        const editedPlaylist = await response.json();
+        dispatch(updatePlaylist(playlist));
+        return editedPlaylist;
       }
 }
 
 
-export const getalbums = () => async dispatch => {
+export const getPlaylists = () => async dispatch => {
 
-    const response = await csrfFetch(`/api/albums`);
+    const response = await csrfFetch(`/api/playlists`);
     if (response.ok) {
-        const albums = await response.json();
-        dispatch(loadAlbums(albums));
+        const playlists = await response.json();
+        dispatch(loadPlaylists(playlists));
         // console.log("getalbums",albums)
         // return response
     }
   };
 
-  export const getAlbumDetail = (id) => async dispatch =>{
-    const response = await csrfFetch(`/api/albums/${id}`)
+  export const getPlaylistDetail = (id) => async dispatch =>{
+    const response = await csrfFetch(`/api/playlists/${id}`)
 
     if(response.ok){
-        const album = await response.json();
+        const playlist = await response.json();
 
-        dispatch(loadAlbumDetail(album))
+        dispatch(loadPlaylistDetail(playlist))
     }
-    return response
 }
 
 
 
-export const createAlbum = (album) => async dispatch=>{
+export const createPlaylist = (playlist) => async dispatch=>{
         const {
             title,
             description,
             previewImage,
-        } = album;
+        } = playlist;
 
         const res = await csrfFetch(`/api/albums/new`,{
             method:'POST',
@@ -121,16 +118,18 @@ export const createAlbum = (album) => async dispatch=>{
         }
     }
 
-const initialState = {}
+const initialState = {
+    playlists: null,
+}
 
-const albumsReducer = (state = initialState, action)=>{
+const playlistsReducer = (state = initialState, action)=>{
     let newState;
     switch(action.type){
         case GET_ALBUMS:{
             newState = Object.assign({},state)
-
+            // console.log("action",action.albums)
             newState = action.albums
-
+            // console.log("newState", newState)
             return newState
         };
         case LOAD_ALBUM_DETAIL:{
@@ -153,7 +152,6 @@ const albumsReducer = (state = initialState, action)=>{
            return {
             ...state,
             [action.album.id]: {
-                
               ...state[action.album.id],
               ...action.album
             }
@@ -171,4 +169,4 @@ const albumsReducer = (state = initialState, action)=>{
     }
 }
 
-export default albumsReducer;
+export default playlistsReducer;

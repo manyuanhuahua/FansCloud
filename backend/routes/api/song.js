@@ -6,7 +6,7 @@ const {User, Song, Comment} = require('../../db/models')
 const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation');
 const { ResultWithContext } = require('express-validator/src/chain');
-const { query } = require('express-validator/check');
+const { query } = require('express-validator');
 
 // const { Op } = require('sequelize');
 

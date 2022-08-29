@@ -28,7 +28,20 @@ const validatePlaylist = [
 router.get('/',async(req, res, next)=>{
     const playlists = await Playlist.findAll()
     if(playlists){
-        res.json(playlists)
+        let obj = {}
+        for (let playlist of playlists){
+            const user = await User.findByPk(playlist.userId)
+            obj[playlist.id] ={
+                id: playlist.id,
+                creator: {
+                    id:user.id,
+                    username:user.username
+                },
+                name:playlist.name,
+                previewImage:playlist.previewImage
+            }
+        }
+        res.json(obj)
     }else{
         res.json({})
     }
@@ -45,7 +58,16 @@ router.post('/new', requireAuth, validatePlaylist, async(req, res, next)=>{
         name,
         previewImage
     })
-    res.json(playlist)
+    res.json({
+        [playlist.id]:{
+            id:playlist.id,
+            creator:req.user.toJSON(),
+            name:playlist.name,
+            previewImage:playlist.previewImage,
+            updatedAt:playlist.updatedAt,
+            createdAt:playlist.createdAt
+        }
+    })
 })
 
 
@@ -76,7 +98,6 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
 
     const user = req.user.toJSON()
     if(user.id === playlist.userId ){
-
 
         const songPlaylist = await SongPlaylist.create({
             playlistId: parseInt(playlistId),
@@ -111,8 +132,25 @@ router.get('/:playlistId', async (req, res, next)=>{
         },
 
     })
+    const user = await User.findByPk(playlist.userId)
     if(playlist){
-        res.json(playlist)
+        res.json({
+            [playlist.id]:{
+                id:playlist.id,
+                user:{
+                    userId: user.id,
+                    username:user.username,
+                    previewImage:user.previewImage
+                },
+                name:playlist.name,
+                previewImage:playlist.previewImage,
+                createdAt:playlist.createdAt,
+                updatedAt:playlist.updateAt,
+                songs:playlist.Songs,
+                trackNum: (playlist.Songs).length
+            }
+
+        })
     }else{
         const err = new Error( "Playlist couldn't be found")
         err.status = 404
@@ -158,12 +196,12 @@ router.delete('/:playlistId',requireAuth,async(req, res, next)=>{
 
     if(playlist){
         if(playlist.userId === id){
-        await playlist.destroy()
-        res.json({
-            message: "Successfully deleted",
-            statusCode: 200
-        })}else{
-            return next(properAuth())
+            await playlist.destroy()
+            res.json({
+                message: "Successfully deleted",
+                statusCode: 200
+            })}else{
+                return next(properAuth())
         }
     }else{
         const err = new Error("Playlist couldn't be found")

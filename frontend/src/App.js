@@ -1,20 +1,17 @@
 import React, { useState, useEffect,useSelector } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-// import LoginFormPage from "./components/LoginFormModal";
-import SignupFormPage from "./components/SignupFormPage";
+
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 import SongsBrowser from "./components/Song/SongBrowser";
 import SongDetail from "./components/Song/SongDetail";
-import CreateSongForm from "./components/Song/CreateSongForm";
 import CurrentUser from "./components/currentUserpage";
 import HomePage from "./components/HomePage";
-import CreateAlbumForm from "./components/Album/CreateAlbumForm";
 import AlbumDetail from "./components/Album/AlbumDetail";
-import MainAudioPlayer from "./components/AudioPlayer/MainAudio";
 import CurrentUserSongs from "./components/currentUserpage/CurrentUserSongs";
 import CurrentUserAlbums from "./components/currentUserpage/CurrentUserAlbums";
+import PlaylistLists from "./components/Playlist/PlaylistList";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +53,9 @@ function App() {
         </Route>
         <Route exact path="/currentUser/albums">
           <CurrentUserAlbums />
+        </Route>
+        <Route exact path="/playlists">
+          <PlaylistLists />
         </Route>
         </Switch>
       )}

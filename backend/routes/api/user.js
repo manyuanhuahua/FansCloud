@@ -80,8 +80,13 @@ router.post('/',validateSignup,async (req,res)=>{
   })
 })
 
-
-
+//get all users
+// router.get('/',validateSignup,async (req,res)=>{
+//     const users= await User.findAll()
+//     if(users){
+//         return
+//     }
+// })
 
 
 

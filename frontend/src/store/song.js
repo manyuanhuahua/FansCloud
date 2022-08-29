@@ -122,9 +122,7 @@ export const createSong = (albumId,song) => async dispatch=>{
 
 
 
-const initialState = {
-    songs: null,
-}
+const initialState = {}
 
 // const sortList = (list) => {
 //     return list.sort((songA, songB) => {

@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     songs:songsReducer,
     albums: albumsReducer,
-    playlists: playlistsReducer
+    playlists: playlistsReducer,
 });
 
 let enhancer;

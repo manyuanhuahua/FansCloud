@@ -21,7 +21,23 @@ const validateComment = [
 router.get('/', async (req,res,next)=>{
     const comments = await Comment.findAll()
     if(comments){
-        res.json(comments)
+        let obj = {}
+        for(let comment of comments){
+            const user = await User.findByPk(comment.userId)
+            obj[comment.id]={
+                id:comment.id,
+                user:{
+                    id: user.id,
+                    username:user.username,
+                    previewImage: user.previewImage
+                },
+                body:comment.body,
+                createdAt:comment.createdAt,
+                updatedAt:comment.updatedAt
+            }
+
+        }
+        res.json(obj)
     }else{
         res.json({})
     }

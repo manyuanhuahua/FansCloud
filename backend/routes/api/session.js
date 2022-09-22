@@ -129,23 +129,25 @@ router.get('/albums', requireAuth, async (req,res,next)=>{
 })
 
 router.get('/playlists', requireAuth, async (req,res,next)=>{
+
   const userId = req.user.toJSON().id
   const playlists = await Playlist.findAll({
     where:{
-      userId
+      userId: req.user.id
     },
     include:{
         model: Song,
         through:{
             attributes:{}
         }
-    },
+    }
 
 })
 
-  if(playlists){
 
+  if(playlists){
     return res.json({playlists})
+
   }else{
     return res.json({})
 }

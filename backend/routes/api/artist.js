@@ -109,7 +109,7 @@ router.get('/:userId/playlists', async (req, res, next)=>{
             userId
         }
     })
-    console.log(playlists)
+
     if(playlists.length){
         res.json({
             Playlists: playlists

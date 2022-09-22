@@ -66,7 +66,7 @@ router.post('/new', requireAuth, validatePlaylist, async(req, res, next)=>{
             previewImage:playlist.previewImage,
             updatedAt:playlist.updatedAt,
             createdAt:playlist.createdAt
-        
+
     })
 })
 
@@ -107,7 +107,7 @@ router.post('/:playlistId/new', requireAuth, async(req, res, next)=>{
 
 
         // const test = await SongPlaylist.findByPk(5)
-        console.log(songPlaylist.toJSON())
+
         res.json({
             id: songPlaylist.id,
             playlistId: songPlaylist.playlistId,
@@ -167,7 +167,7 @@ router.put('/:playlistId', requireAuth, validatePlaylist, async (req, res, next)
     const playlist = await Playlist.findByPk(playlistId)
 
     const id = req.user.toJSON().id
-    const artist = await User.findByPk(id)
+
     if(playlist){
         if(playlist.userId === id){
         playlist.update({

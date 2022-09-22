@@ -21,25 +21,15 @@ const formWaveSurferOptions = ref => ({
   normalize: true,
 
   partialRender: true,
-  xhr: {
-    cache: "default",
-    mode: "cors",
-    method: "GET",
-    credentials: "include",
-    headers: [
-      { key: "cache-control", value: "no-cache" },
-      { key: "pragma", value: "no-cache" }
-    ]
-  }
+
+
 
 });
 
 
 
 const ListPlayer = ({ audio }) => {
-  // const url = "https://www.mfiles.co.uk/mp3-downloads/franz-schubert-standchen-serenade.mp3"
-  // const url = audio
-  const url = 'https://mp3.filmisongs.com/go.php?id=Bang%20Bang%20Song%20Download%20Mp3%20Jessie%20J%20Ft%20Ariana%20Grande,%20Nicki%20Minaj.mp3'
+  const url = audio
 
 
 

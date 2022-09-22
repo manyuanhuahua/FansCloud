@@ -13,7 +13,7 @@ function EditPlaylistForm({playlist, hideModal,editModal,setEditModal}){
 
 
 
-    // console.log("outside submit")
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -26,18 +26,21 @@ function EditPlaylistForm({playlist, hideModal,editModal,setEditModal}){
             previewImage
         }
 
-      dispatch(editPlaylistThunk(updatePlaylist)).then(()=>hideModal()).catch(
-              async (res) => {
-            // console.log("in the catch")
-
-              const data  = await res.json();
-
-            // console.log("data.error", data.errors)
-
-              if (data && data.errors) setErrors(data.errors);
-
+      dispatch(editPlaylistThunk(updatePlaylist)).then(
+        async (res) => {
+          if (res.errors) {
+              setErrors(res.errors)
           }
-          )
+          else {
+
+
+              hideModal()
+
+              history.push(`/playlists`);
+          }
+
+      })
+
           // .then(()=>history.push(`/currentUser`));
 
         // if(updaedAlbum){
@@ -74,7 +77,7 @@ function EditPlaylistForm({playlist, hideModal,editModal,setEditModal}){
             required
             onChange={(e)=>setPreviewImage(e.target.value)} />
 
-          <button id='edit-album-button' type="submit" onClick={()=>setEditModal(!editModal)}>Update Playlist</button>
+          <button id='edit-album-button' type="submit" onClick={handleSubmit}>Update Playlist</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
         </form>
       </section>

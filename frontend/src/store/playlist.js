@@ -80,6 +80,7 @@ export const editPlaylistThunk = (playlist)=> async dispatch =>{
 
     if (response.ok) {
         const editedPlaylist = await response.json();
+
         dispatch(editPlaylist(editedPlaylist));
     }
     return response;
@@ -103,7 +104,7 @@ export const getPlaylistsThunk = () => async dispatch => {
     if (response.ok) {
         const playlists = await response.json();
         // console.log("inthunk----", response)
-        dispatch(getUserPlaylists(playlists));
+        dispatch(getUserPlaylists({playlists}));
     }
     return response
   };
@@ -123,18 +124,20 @@ export const getPlaylistsThunk = () => async dispatch => {
 
 
 export const createPlaylistThunk = (playlist) => async dispatch=>{
+    // console.log('inthunk0000',playlist)
         const res = await csrfFetch(`/api/playlists/new`,{
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(playlist),
         });
+        const newPlaylist = await res.json()
+        console.log('inthunk--res0000',newPlaylist)
         if(res.ok){
             // console.log(newAlbum)
 
-            const newPlaylist = await res.json()
             dispatch(createPlaylist(newPlaylist))
         }
-        return res
+        // return res
     }
 
 export const addSongToPlaylistThunk = (playlistId,songId) => async dispatch=>{
@@ -169,7 +172,7 @@ const playlistsReducer = (state = initialState, action)=>{
         case GET_USER_PLAYLISTS:{
             newState = {}
 
-            newState = action.playlists.playlists
+            newState = action.playlists.playlists.playlists
             // console.log("newState", newState)
             return newState
         };
@@ -181,22 +184,18 @@ const playlistsReducer = (state = initialState, action)=>{
         }
         case CREATE_PLAYLIST:{
 
-            newState = {}
-
+            newState = {...state};
             newState[action.playlist.id] = action.playlist
 
             return newState;
         }
 
         case EDIT_PLAYLIST:{
+            newState = {...state};
+            newState[action.playlist.id] = action.playlist
 
-           return {
-            ...state,
-            [action.playlist.id]: {
-              ...state[action.playlist.id],
-              ...action.playlist
-            }
-          };
+            return newState;
+
        }
        case ADD_SONG_TO_PLAYLIST:{
         const newState = {}

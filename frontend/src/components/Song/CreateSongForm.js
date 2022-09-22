@@ -34,11 +34,12 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
         audioUrl:audioFile,
         previewImage
       }
-      console.log('audio----',newSong)
+      // console.log('audio----',newSong)
 
       dispatch(createSongThunk(albumId,newSong)).then((res)=>{
-          console.log('audio----',res)
+          // console.log('audio----',res)
           hideModal()
+          history.back()
         }).catch(
           async (res) => {
                const data  = await res.json();

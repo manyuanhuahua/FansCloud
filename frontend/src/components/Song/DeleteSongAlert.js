@@ -14,8 +14,7 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
 
     const songId = song.id
 
-    console.log('song', song.id)
-    console.log('user', user)
+
 
     const handleDeleteClick = async (e) => {
       e.preventDefault();

@@ -8,8 +8,12 @@ import AudioPlayer, { RHAP_UI }  from 'react-h5-audio-player';
 
 import { Modal } from '../../context/Modal';
 import CreatePlaylistForm from './CreatePlaylistForm';
-import DeletePlaylistModal from './DeletePlaylistModal';
-import EditPlaylistModal from './EditPlaylistModal';
+// import DeletePlaylistModal from './DeletePlaylistModal';
+// import EditPlaylistModal from './EditPlaylistModal';
+import EditPlaylistForm from './EditPlaylistForm';
+import DeletePlaylistAlert from './DeletePlaylistAlert';
+
+
 
 
 const PlaylistLists = ()=>{
@@ -24,14 +28,16 @@ const PlaylistLists = ()=>{
     const [showPlayer,setShowPlayer] = useState(false)
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [selected, setSelected] = useState({})
 
 
-    console.log('playlist-0----',isLoaded)
+
 
 
     useEffect(()=>{
         dispatch(getUserPlaylistsThunk()).then(()=>setIsLoaded(true))
-      },[dispatch])
+      },[dispatch,editModal,deleteModal])
 
 
       const handleClickNext = (songs) => {
@@ -63,7 +69,7 @@ const PlaylistLists = ()=>{
         </div>
           {/* <p>this is current user page</p> */}
         <div className='playlist-gallery-box'>
-                {playlists.map((playlist)=>{
+                {Object.values(playlists).map((playlist)=>{
                     return (
                         <div className='current-user-playlists'>
                             <div className='playlist-gallery-left'>
@@ -76,9 +82,28 @@ const PlaylistLists = ()=>{
                                         setSelectedSonglist(playlist.Songs);
                                         setShowPlayer(true)
                                     }}>Listen</button>
-                                    <EditPlaylistModal playlist={playlist} editModal={editModal} setEditModal={setEditModal}/>
-                                    <DeletePlaylistModal playlist={playlist}/>
+                                    <i className="fa-solid fa-pen" onClick={()=>{
+                                        setSelected(playlist);
+                                        setEditModal(true)}} />
+                                    {editModal && (
+                                        <Modal onClose={() => setEditModal(false)}>
+                                        <EditPlaylistForm hideModal={()=>setEditModal(false)} playlist={selected} editModal={editModal} setEditModal={setEditModal}/>
+                                        </Modal>
+                                    )}
+
+                                    <i className="fa-solid fa-trash-can" onClick={()=>{setSelected(playlist);setDeleteModal(true)}} />
+                                        {/* <button >Delete</button> */}
+                                        {deleteModal && (
+                                            <Modal onClose={() => setDeleteModal(false)}>
+                                            <DeletePlaylistAlert hideModal={()=>setDeleteModal(false)} playlist={selected} />
+                                            </Modal>
+                                        )}
+                                    {/* <EditReviewModal review={review} editModal={editModal} setEditModal={setEditModal} /> */}
+                                    {/* <DeleteReviewModal review={review} deleteModal={deleteModal} setDeleteModal={setDeleteModal} /> */}
                                 </div>
+                                    {/* <EditPlaylistModal playlist={playlist} editModal={editModal} setEditModal={setEditModal}/>
+                                    <DeletePlaylistModal playlist={playlist} deleteModal={deleteModal} setDeleteModal={setDeleteModal}/> */}
+
 
                             </div>
                             <div className='playlist-gallery-right'>

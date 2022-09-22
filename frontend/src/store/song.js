@@ -80,16 +80,7 @@ export const deleteSong =(songId, albumId)=>async dispatch=>{
 
 export const getSong = () => async dispatch => {
 
-    const response = await csrfFetch(`/api/songs`
-    //cors policy debug
-    // {headers:{
-    //     'Access-Control-Allow-Credentials':'true',
-    //     'Access-Control-Allow-Origin':'http://localhost:3000',
-    //     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, PATCH, DELETE',
-    //     'Access-Control-Allow-Headers': 'Content-Type',
-
-    //   }}
-    );
+    const response = await csrfFetch(`/api/songs`);
     if (response.ok) {
         const songs = await response.json();
         dispatch(loadSong(songs));

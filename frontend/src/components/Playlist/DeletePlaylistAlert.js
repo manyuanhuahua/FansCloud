@@ -24,9 +24,19 @@ const DeletePlaylistAlert = ({playlist,hideModal})=>{
         hideModal()
 
         // setErrors([]);
-
         return dispatch(deletePlaylistThunk(playlist.id))
-                  .then(()=>history.push('/playlists'))
+        .then(
+            async (res) => {
+                if (res.errors) {
+                    setErrors(res.errors)
+                }
+                else {
+                    hideModal()
+
+                    history.push('/playlists');
+                }
+
+            })
 
       };
 

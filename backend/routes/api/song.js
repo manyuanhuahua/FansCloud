@@ -7,6 +7,7 @@ const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation');
 const { ResultWithContext } = require('express-validator/src/chain');
 const { query } = require('express-validator');
+const {singlePublicFileUpload,singleMulterUpload} = require('../../awsS3')
 
 // const { Op } = require('sequelize');
 
@@ -234,7 +235,20 @@ router.post('/:songId/comments/new',requireAuth, validateComment, async(req, res
     }
 })
 
+router.post('/upload',singleMulterUpload("audioUrl"),async(req, res, next)=>{
 
+    // console.log("in backend---",req.file)
+
+    const audioUrl = await singlePublicFileUpload(req.file)
+    // console.log("in backend route---",audioUrl)
+
+
+    return res.json({audioUrl:audioUrl})
+
+
+    // return "msg"
+
+})
 
 
 

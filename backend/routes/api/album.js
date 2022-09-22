@@ -6,6 +6,7 @@ const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation')
 const {requireAuth, properAuth}=require('../../utils/auth')
 const { Sequelize } = require('sequelize');
+const {singleMulterUpload, singlePublicFileUpload} = require('../../awsS3')
 
 const router = express.Router();
 
@@ -57,10 +58,13 @@ const validateAlbum = [
     handleValidationErrors
 ];
 
+// router.post('/:albumId/new',requireAuth, validateAlbumSong,async(req, res, next)=>{
 
-router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next)=>{
+router.post('/:albumId/new',async(req, res, next)=>{
     const { albumId } = req.params
+
     const { title, description, audioUrl, previewImage } = req.body
+    // const audioUrl = await singlePublicFileUpload(req.file)
     const album = await Album.findOne({
         where:{
             id: albumId
@@ -68,7 +72,7 @@ router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next
     })
 
     const id = req.user.toJSON().id
-    const artist = await User.findByPk(id)
+
     if(album){
         // check if current user is the album's owner and if it is an artist
         if (id === album.userId){
@@ -92,6 +96,9 @@ router.post('/:albumId/new',requireAuth, validateAlbumSong, async(req, res, next
     }
 })
 
+
+
+
 router.get('/', async (req,res,next)=>{
     const albums = await Album.findAll()
     if(albums){
@@ -100,6 +107,7 @@ router.get('/', async (req,res,next)=>{
         res.json({})
     }
 })
+
 
 router.get('/:albumId', async (req, res, next)=>{
     const {albumId} = req.params
@@ -135,7 +143,7 @@ router.put('/:albumId',requireAuth, validateAlbum, async (req, res, next)=>{
     const { title, description, previewImage} = req.body
 
     const id = req.user.toJSON().id
-    const artist = await User.findByPk(id)
+
     if(album){
         if (id === album.userId){
             album.update({

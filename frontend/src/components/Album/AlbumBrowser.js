@@ -14,7 +14,7 @@ const AlbumsBrowser = ()=>{
     // console.log('songList', songList)
 
     useEffect(()=>{
-        dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
+        dispatch(albumActions.getallbums()).then(()=>setIsLoaded(true))
       },[dispatch])
 
 

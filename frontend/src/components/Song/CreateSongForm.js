@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import * as songActions from '../../store/song'
+import { createSongThunk } from '../../store/song';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
+import {uploadFilesThunk} from "../../store/aws"
+import UploadSong from './UploadSong';
+import { csrfFetch } from '../../store/csrf';
 
 function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const history = useHistory()
@@ -14,6 +17,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const [audioUrl, setaudioUrl] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
+    const [audioFile,setAudioFile] = useState("");
 
     // const albumId = album.id
     // const [showForm, setShowForm] = useState(true)
@@ -22,14 +26,18 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const handleSubmit = async (e) => {
       e.preventDefault();
 
+
       setErrors([]);
       const newSong = {
         title,
         description,
-        audioUrl,
+        audioUrl:audioFile,
         previewImage
       }
-      dispatch(songActions.createSong(albumId,newSong)).then(()=>{
+      console.log('audio----',newSong)
+
+      dispatch(createSongThunk(albumId,newSong)).then((res)=>{
+          console.log('audio----',res)
           hideModal()
         }).catch(
           async (res) => {
@@ -43,6 +51,8 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
 
       };
 
+
+
     const handleCancelClick = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -50,14 +60,63 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
       };
 
       // console.log("outdispatch",errors)
+      const updateAudio = (e) => {
+        const file = e.target.files[0];
+        setaudioUrl(file);
+      };
 
+      const handleUpload = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("audioUrl", audioUrl);
+
+        const res = await csrfFetch('/api/songs/upload', {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: formData,
+      });
+
+        const audio = await res.json()
+        console.log("in frontend----",audio.audioUrl)
+        setAudioFile(audio.audioUrl)
+        // if (file) setaudioUrl(file);
+        // dispatch(fetch()).then((res)=>{
+        //   console.log('audio----',res)
+        //   // hideModal()
+        // }).catch(
+        //   async (res) => {
+        //        const data  = await res.json();
+
+        //     // const data  = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        //     // console.log("indispatch",data.errors)
+        // })
+
+      };
 
 
     return (
-        // <section className="new-form-holder centered middled">
+      <>
+
+
+            <form onSubmit={handleUpload}>
+            <input
+              type="file"
+              placeholder="Audio Url(mp3)"
+
+
+              accept=".mp3"
+              onChange={updateAudio}
+              />
+              {/* <UploadSong /> */}
+
+              <button type="submit">Upload Audio</button>
+            </form>
           <form className="create-song-form" onSubmit={handleSubmit}>
             <div className='form-content'>
-
             <input
               type="text"
               placeholder="Title"
@@ -70,24 +129,30 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
               required
               value={description}
               onChange={(e)=>setDescription(e.target.value)} />
-            <input
-              type="text"
+
+            {/* <input
+              type="file"
               placeholder="Audio Url(mp3)"
               required
-              value={audioUrl}
-              onChange={(e)=>setaudioUrl(e.target.value)} />
+              // value={"audioUrl"}
+              accept=".mp3"
+              onChange={updateAudio} /> */}
+              {/* <UploadSong /> */}
             <input
               type="text"
               placeholder="Song profile image"
               value={previewImage}
               onChange={(e)=>setPreviewImage(e.target.value)} />
             </div>
+
           <button id='upload-song-button-click' type="submit" onClick={()=>setCreateModal(!createModal)}>Create New Song</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
             <ul>
               {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
             </ul>        </form>
-      // </section>
+
+            </>
+
       );
 }
 

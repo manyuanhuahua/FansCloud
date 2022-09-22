@@ -32,7 +32,7 @@ const UserNav = ()=>{
       },[dispatch])
 
       useEffect(()=>{
-        dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
+        dispatch(albumActions.getallbums()).then(()=>setIsLoaded(true))
       },[dispatch])
 
     // const createAlbum = () =>{
@@ -43,11 +43,12 @@ const UserNav = ()=>{
       <div className='user-mainContainer'>
             {/* <div className='user-top-banner'> */}
             <div className='left-banner'>
-
                   <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'/>
                   <div className='left-banner-text'>
-                    <Link to='/currentUser'>Overview</Link>
-                    <Link to='/songs'>Songs</Link>
+                    <Link to='/explore'>explore</Link>
+                    <Link to='/songs'>songs</Link>
+                    <Link to='/albums'>Albums</Link>
+                    <Link to='/playlists'>Playlists</Link>
                   </div>
             </div>
                 <div className='right-banner'>

@@ -12,7 +12,7 @@ import "./album.css"
 const AlbumDetail = ()=>{
     const dispatch = useDispatch()
     const {albumId} = useParams()
-    const album = useSelector(state => state.albums.album);
+    const album = useSelector(state => state.albums);
     const songList = useSelector(state => state.songs);
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -86,7 +86,7 @@ const AlbumDetail = ()=>{
 
                     </div>
                      <div className='songsContainer'>
-                    <SongList songs={songList} albumId={album.id} createModal={createModal}/>
+                        <SongList songs={songList} albumId={album.id} createModal={createModal}/>
 
                     </div>
                     </div>

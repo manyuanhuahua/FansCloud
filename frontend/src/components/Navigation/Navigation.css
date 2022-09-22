@@ -3,7 +3,7 @@
     background-color: black;
     display: flex;
     flex-direction: row;
-
+    width: 100%;
     height: 46px;
     justify-content: space-between;
     z-index: 1;
@@ -15,17 +15,18 @@
     /* background-color: darkorange; */
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: space-around; */
     align-items: center;
     top: 20px;
     right: 30px;
-    width: 200px;
+    width: 100%;
 
 }
 
 .user-mainContainer .left-banner a{
     /* background-color: darkorange; */
-    margin-right: 20px;
+    margin-right: 10px;
+    padding-left: 10px;
 
 }
 
@@ -39,6 +40,7 @@
 
 .user-mainContainer .left-banner img{
     /* position: absolute; */
+    padding-left: 10px;
 
     max-height: 46px;
     /* max-height: 46px; */

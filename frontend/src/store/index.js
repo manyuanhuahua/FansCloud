@@ -4,11 +4,13 @@ import sessionReducer from './session';
 import songsReducer from './song';
 import albumsReducer from './album';
 import playlistsReducer from './playlist'
+import awsReducer from './aws';
 const rootReducer = combineReducers({
     session: sessionReducer,
     songs:songsReducer,
     albums: albumsReducer,
     playlists: playlistsReducer,
+    aws:awsReducer
 });
 
 let enhancer;

@@ -39,7 +39,13 @@ const removeSong = (songId, albumId) => ({
 
   });
 
-  export const editSong = (song)=> async dispatch =>{
+
+
+
+
+
+
+export const editSong = (song)=> async dispatch =>{
     const response = await csrfFetch(`/api/songs/${song.id}`,{
         method:'PUT',
         headers:{
@@ -74,7 +80,16 @@ export const deleteSong =(songId, albumId)=>async dispatch=>{
 
 export const getSong = () => async dispatch => {
 
-    const response = await csrfFetch(`/api/songs`);
+    const response = await csrfFetch(`/api/songs`
+    //cors policy debug
+    // {headers:{
+    //     'Access-Control-Allow-Credentials':'true',
+    //     'Access-Control-Allow-Origin':'http://localhost:3000',
+    //     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, PATCH, DELETE',
+    //     'Access-Control-Allow-Headers': 'Content-Type',
+
+    //   }}
+    );
     if (response.ok) {
         const songs = await response.json();
         dispatch(loadSong(songs));
@@ -94,23 +109,14 @@ export const getSongDetail = (id) => async dispatch =>{
     }
 }
 
-export const createSong = (albumId,song) => async dispatch=>{
-    const {
-        title,
-        description,
-        audioUrl,
-        previewImage,
-    } = song;
+export const createSongThunk = (albumId,song) => async dispatch=>{
 
     const res = await csrfFetch(`/api/albums/${albumId}/new`,{
         method:'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            title,
-            description,
-            audioUrl,
-            previewImage,
-        }),
+        headers:{
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(song),
     });
     if(res.ok){
         const newSong = await res.json()
@@ -121,14 +127,8 @@ export const createSong = (albumId,song) => async dispatch=>{
 
 
 
-
 const initialState = {}
 
-// const sortList = (list) => {
-//     return list.sort((songA, songB) => {
-//       return songA.id - songB.id;
-//     }).map((song) => song.id);
-//   };
 
 const songsReducer = (state = initialState, action)=>{
     let newState;
@@ -176,6 +176,8 @@ const songsReducer = (state = initialState, action)=>{
             delete newStae[action.songId]
             return newStae
           }
+
+
         default:
             return state;
     }

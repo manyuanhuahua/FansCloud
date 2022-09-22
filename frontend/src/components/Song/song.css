@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: auto;
 }
 
 .top-title {
@@ -26,6 +27,7 @@
     grid-gap: 20px;
     align-content: space-between;
     justify-content: space-around;
+    justify-items: center;
     /* margin: 10px 200px; */
     box-sizing: border-box;
     /* margin-bottom: 30px; */
@@ -44,15 +46,24 @@
 
 .song-entry{
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .top-container a{
     text-decoration:none;
+    width: 200px;
+    height: 268px;
+
 }
 
 .song-entry .song-title{
     color: #333;
     font-family: 'Varela Round', sans-serif;
+    width: 200px;
+
+
 }
 
 .song-entry .song-text{
@@ -74,7 +85,10 @@
     grid-template-columns: repeat(9,1fr);
     align-items: center;
     margin: 10px;
-    width:820px
+    width:820px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e7e5d0;
+
 }
 
 .audioList-container .menu-song .song-img {
@@ -100,14 +114,16 @@
 
 .menu-song .song-text{
     margin-left: 20px;
-    grid-column: 2/5;
+    grid-column: 2/4;
     /* justify-content: center; */
   }
 
 .menu-song .songlist-audioPlayer{
-    grid-column: 5/10;
+    grid-column: 4/10;
   }
-
+.rhap_volume-container {
+    width: 80px;
+}
   .menu-song a{
     color: #333;
     text-decoration: none;

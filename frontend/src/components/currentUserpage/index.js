@@ -11,7 +11,7 @@ import CurrentUserSongs from './CurrentUserSongs';
 import "./currentUser.css"
 
 
-const CurrentUser = ({showAlbums, showSongs})=>{
+const CurrentAlbums = ({showAlbums, showSongs})=>{
     const dispatch = useDispatch()
     const songList = useSelector(state => state.songs);
     const albumList = useSelector(state => state.albums);
@@ -30,7 +30,7 @@ const CurrentUser = ({showAlbums, showSongs})=>{
       },[dispatch])
 
       useEffect(()=>{
-        dispatch(albumActions.getalbums()).then(()=>setIsLoaded(true))
+        dispatch(albumActions.getallbums()).then(()=>setIsLoaded(true))
       },[dispatch,isUpload])
 
     // const createAlbum = () =>{
@@ -70,4 +70,4 @@ const CurrentUser = ({showAlbums, showSongs})=>{
 
 }
 
-export default CurrentUser;
+export default CurrentAlbums;

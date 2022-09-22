@@ -31,7 +31,7 @@ function LoginForm(){
           if (data && data.errors) setErrors(data.errors);
 
         }
-        ).then(()=>history.push('/currentUser'));
+        ).then(()=>history.push('/explore'));
       };
 
 
@@ -48,7 +48,7 @@ function LoginForm(){
 
           if (data && data.errors) setErrors(data.errors);
 
-        }).then(()=>history.push('/currentUser'));
+        }).then(()=>history.push('/explore'));
       };
 
 

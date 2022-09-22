@@ -5,5 +5,9 @@ module.exports={
     jwtConfig: {
         secret: process.env.JWT_SECRET,
         expiresIn: process.env.JWT_EXPIRES_IN
+    },
+    aws:{
+        access:process.env.AWS_ACCESS_KEY,
+        secret:process.env.AWS_SECRET_ACCESS_KEY
     }
 };

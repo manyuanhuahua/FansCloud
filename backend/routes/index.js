@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const {aws} = require('../config')
 // router.get('/hello/world', function(req,res){
 //     res.cookie('SCRF-TOKEN', req.csrfToken());
 //     res.send('Hello world!');
@@ -65,7 +65,17 @@ router.get('/api/csrf/restore',(req, res)=>{
     })
 })
 
+router.get('/api/awskey', async(req, res, next)=>{
 
+  access = aws.access
+  secret = aws.secret
+
+  return res.json(
+    {
+      access:access,
+      secret:secret
+    })
+})
 
 
 

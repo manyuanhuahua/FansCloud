@@ -49,7 +49,7 @@ function HomePage(){
                     {isLoaded && copyList() &&
                         songShows.map((song, index)=>{
                             return (
-                                <div className='song-list-container'>
+                                <div className='song-list-container' key={index}>
                                         <img className='song-entry-image' src={song?.previewImage} />
                                     <div className='song-content'>
                                     <NavLink to={`/songs/${song?.id}`}>

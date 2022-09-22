@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 
 const GET_ALBUMS="album/getAlbums"
+const GET_YOUR_ALBUMS="album/GET_YOUR_ALBUMS"
 const CREATE_ALBUM="album/createAlbum"
 const LOAD_ALBUM_DETAIL="album/loadAlbumDetail"
 const REMOVE_ALBUM="album/removeAlbum"
@@ -15,6 +16,13 @@ const loadAlbums = (albums) => {
     albums
   }
 }
+
+const getYourAlbums = (albums) => {
+    return {
+      type: GET_YOUR_ALBUMS,
+      albums
+    }
+  }
 
 const loadAlbumDetail = album =>{
     return {
@@ -73,7 +81,7 @@ export const editAlbum = (album)=> async dispatch =>{
 }
 
 
-export const getalbums = () => async dispatch => {
+export const getallbums = () => async dispatch => {
 
     const response = await csrfFetch(`/api/albums`);
     if (response.ok) {
@@ -83,6 +91,18 @@ export const getalbums = () => async dispatch => {
         // return response
     }
   };
+
+  export const getYourALbumsThunk = () => async dispatch => {
+
+    const response = await csrfFetch(`/api/session/albums`);
+    if (response.ok) {
+        const albums = await response.json();
+        dispatch(getYourAlbums(albums));
+        // console.log("getalbums",albums)
+        // return response
+    }
+  };
+
 
   export const getAlbumDetail = (id) => async dispatch =>{
     const response = await csrfFetch(`/api/albums/${id}`)
@@ -133,10 +153,15 @@ const albumsReducer = (state = initialState, action)=>{
 
             return newState
         };
+        case GET_YOUR_ALBUMS:{
+            newState = {}
+            newState = action.albums
+            return newState
+        }
         case LOAD_ALBUM_DETAIL:{
             newState = {}
             // console.log("action.song", action.song)
-            newState.album = action.album
+            newState = action.album
             return newState
         }
         case CREATE_ALBUM:{
@@ -153,7 +178,7 @@ const albumsReducer = (state = initialState, action)=>{
            return {
             ...state,
             [action.album.id]: {
-                
+
               ...state[action.album.id],
               ...action.album
             }

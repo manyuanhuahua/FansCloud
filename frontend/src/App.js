@@ -6,12 +6,13 @@ import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 import SongsBrowser from "./components/Song/SongBrowser";
 import SongDetail from "./components/Song/SongDetail";
-import CurrentUser from "./components/currentUserpage";
+import CurrentAlbums from "./components/currentUserpage";
 import HomePage from "./components/HomePage";
 import AlbumDetail from "./components/Album/AlbumDetail";
 import CurrentUserSongs from "./components/currentUserpage/CurrentUserSongs";
 import CurrentUserAlbums from "./components/currentUserpage/CurrentUserAlbums";
 import PlaylistLists from "./components/Playlist/PlaylistList";
+import PlaylistDetail from "./components/Playlist/PlaylistDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,11 +37,11 @@ function App() {
         <Route exact path="/songs/:songId">
           <SongDetail />
         </Route>
-        <Route exact path="/you/library">
+        {/* <Route exact path="/you/library">
           <CurrentUser />
-        </Route>
-        <Route exact path="/currentUser">
-          <CurrentUser />
+        </Route> */}
+        <Route exact path="/albums">
+          <CurrentAlbums />
         </Route>
         <Route exact path="/">
           <HomePage />
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route exact path="/playlists">
           <PlaylistLists />
+        </Route>
+        <Route exact path="/playlists/:playlistId">
+          <PlaylistDetail />
         </Route>
         </Switch>
       )}

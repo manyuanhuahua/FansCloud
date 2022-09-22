@@ -104,9 +104,7 @@ router.get('/currentUser/songs',requireAuth, async (req,res)=>{
 
   if(songs.length){
 
-    return res.json({
-      Songs: songs
-    })
+    return res.json(songs)
 
 
   }else{
@@ -115,7 +113,7 @@ router.get('/currentUser/songs',requireAuth, async (req,res)=>{
 
 })
 
-router.get('/currentUser/albums', requireAuth, async (req,res,next)=>{
+router.get('/albums', requireAuth, async (req,res,next)=>{
     const userId = req.user.toJSON().id
     const albums = await Album.findAll({
       where:{
@@ -124,24 +122,30 @@ router.get('/currentUser/albums', requireAuth, async (req,res,next)=>{
     })
 
     if(albums){
-      res.json(
-        {'Albums': albums})
+      res.json(albums)
     }else{
       return res.json({})
   }
 })
 
-router.get('/currentUser/playlists', requireAuth, async (req,res,next)=>{
+router.get('/playlists', requireAuth, async (req,res,next)=>{
   const userId = req.user.toJSON().id
   const playlists = await Playlist.findAll({
     where:{
       userId
-    }
-  })
+    },
+    include:{
+        model: Song,
+        through:{
+            attributes:{}
+        }
+    },
+
+})
 
   if(playlists){
-    res.json(
-      {'Playlists': playlists})
+
+    return res.json({playlists})
   }else{
     return res.json({})
 }

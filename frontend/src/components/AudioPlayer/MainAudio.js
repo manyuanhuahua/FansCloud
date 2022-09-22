@@ -10,7 +10,7 @@ function MainAudioPlayer({song}) {
      <AudioPlayer
       autoPlay={false}
       src={song.audioUrl}
-    //   onPlay={e => console.log("onPlay")}
+      onPlay={e => console.log("onPlay")}
       // other props here
       />
   );

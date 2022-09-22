@@ -49,6 +49,7 @@ router.get('/',async(req, res, next)=>{
 
 
 
+
 router.post('/new', requireAuth, validatePlaylist, async(req, res, next)=>{
     const { name, previewImage } = req.body
     const userId = req.user.toJSON().id
@@ -59,14 +60,13 @@ router.post('/new', requireAuth, validatePlaylist, async(req, res, next)=>{
         previewImage
     })
     res.json({
-        [playlist.id]:{
             id:playlist.id,
             creator:req.user.toJSON(),
             name:playlist.name,
             previewImage:playlist.previewImage,
             updatedAt:playlist.updatedAt,
             createdAt:playlist.createdAt
-        }
+        
     })
 })
 

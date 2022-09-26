@@ -73,10 +73,13 @@ const PlaylistLists = ()=>{
                     return (
                         <div className='current-user-playlists'>
                             <div className='playlist-gallery-left'>
+                                <NavLink to={`playlists/${playlist.id}`}>
                                 <div key={playlist.id} className='img-box'>
                                     <img className='playlist-content-entry-image' src={playlist.previewImage} />
                                 </div>
-                                    <p style={{marginTop:'3px',marginBottom:'0'}}>{playlist.name}</p>
+                                </NavLink>
+                                    <p style={{marginTop:'3px',marginBottom:'0', textAlign:'center'}}>{playlist.name}</p>
+
                                 <div className='button-group'>
                                     <button onClick={()=>{
                                         setSelectedSonglist(playlist.Songs);
@@ -113,7 +116,7 @@ const PlaylistLists = ()=>{
                                             <div className='playlist-song-list'>
                                                  <NavLink key={song.id} to={`/songs/${song.id}`} style={{textDecoration:'none',color:'#333'}}>
 
-                                                <p>{index} - <span>{song.title}</span></p>
+                                                <p>{index+1} - <span>{song.title}</span></p>
                                                  </NavLink>
                                             </div>
                                         )

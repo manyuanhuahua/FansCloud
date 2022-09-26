@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import {getPlaylistDetailThunk} from '../../store/playlist'
 import CreateSongModal from '../Song/CreateSongModal';
-import AudioPlayer from 'react-h5-audio-player';
+import AudioPlayer, { RHAP_UI }  from 'react-h5-audio-player';
+
 
 
 
@@ -15,7 +16,7 @@ const PlaylistDetail = ()=>{
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [createModal, setCreateModal] = useState(false);
-
+    const [currentTrack, setTrackIndex] = useState(0)
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [songLoaded, setSongLoaded] = useState(false)
@@ -28,88 +29,66 @@ const PlaylistDetail = ()=>{
     const playlist = Object.values(playlistObj)[0]
 
 
+    const handleClickNext = (songs) => {
+        setTrackIndex((currentTrack) =>
+            currentTrack < songs.length - 1 ? currentTrack + 1 : 0
+        );
+    };
+
+    const handleEnd = (songs) => {
+      setTrackIndex((currentTrack) =>
+              currentTrack < songs.length - 1 ? currentTrack + 1 : 0
+          );
+    }
 
       return isLoaded && playlist &&(
+            <div className='playlist-detail-main'>
+                <div className='playlist-gallery-container'>
+                    <div className='playlist-gallery-left-box'>
+                        <div className='playlist-cover-img'>
+                            <img className='playlist-selected-img' src={playlist.songs[currentTrack].previewImage} />
+                        </div>
+                        <div className='playlist-selected-song-content'>
+                            <h4 >{playlist.songs[currentTrack].title}</h4>
+                            <p>{playlist.user.username}</p>
+                        </div>
+                        <div className='playlist-detail-audio-player'>
 
-            //top banner
-            <div className='playlist-detail'>
-                <div className='playlist-top-box'>
-                    <div className='top-box-left'>
-                            <div className='left-top'>
-                                <div className='img-cropper'>
-                                    <img className='player-img' src={playlist.previewImage} />
-                                </div>
-                                <div className='text'>
-                                    <span className='detial-title'>{playlist.name}</span>
-                                    <span className='detail-creator'><Link to="/currentUser">{playlist.user.username}</Link></span>
-                                </div>
-
-                            </div>
-                            <div className='left-bottom'>
-                                <div>{playlist.trackNum} TRACK</div>
-                            </div>
+                        <AudioPlayer className='playlist-audio-container'
+                                volume="0.5"
+                                src={playlist.songs[currentTrack].audioUrl}
+                                showSkipControls
+                                onClickNext={()=>{handleClickNext(playlist.songs)}}
+                                onEnded={()=>handleEnd(playlist.songs)}
+                                style={{height:'88px'}}
+                                customAdditionalControls={
+                                    [
+                                    RHAP_UI.LOOP,
+                                    ]
+                                }
+                                />
+                        </div>
                     </div>
-                    <div className='top-box-right'>
-                            <img className='playlist-cover' src={playlist.previewImage}/>
-                    </div>
+                    <div className='playlist-gallery-right'>
 
-                </div>
-
-                <div className='mid-box'>
-
-                     {/* <EditAlbumModal album={album} editModal={editModal} setEditModal={setEditModal}/>
-                        <span>Edit Album</span>
-                     <DeleteAlbumModal album={album} />
-                     <span>Delete Album</span> */}
-
-                     {/* <CreateSongModal albumId={album.id} createModal={createModal} setCreateModal={setCreateModal}/> */}
-                     <span>Add Songs</span>
-
-                </div>
-
-                <div className='content-container'>
-                    <div className='center-box'>
-
-                    <div className='content-left'>
-                        <img className='user-profile' src={playlist.user.previewImage}></img>
-                        <span>{playlist.user.username}</span>
-
-                    </div>
-                     <div className='songsContainer'>
-                     {playlist.songs.map((song, index)=>{
+                        {playlist.songs?.map((song,index)=>{
                             return (
-                                <div className='menu-song' key={song.id}>
-                                        <div className='img-box'>
-                                            <img className='song-img' src={song.previewImage}/>
-                                        </div>
-                                        <div className='song-text'>
-                                        <span>{index+1}</span>
-                                            <Link className='detial-title' to={`/songs/${song.id}`}>{song.title}-<span className='song-subtitle'></span></Link>
-                                            {/* <div onClick={()=>setIsPlay(!isPlay)}><i class="fa-solid fa-circle-play" id={index} /></div> */}
-                                        </div>
+                                <div className='playlist-gallery-right-box'>
 
-
-                                        <div className='songlist-audioPlayer'>
-                                        <AudioPlayer
-                                                autoPlay={false}
-                                                src={song.audioUrl}
-                                                layout='horizontal'
-                                                customAdditionalControls={[]}
-                                        />
-                                        </div>
-
-                                        {/* <MainAudioPlayer song={song}/> */}
+                                    <p>{index+1} - <span>{song.title}</span></p>
+                                    <NavLink key={song.id} to={`/songs/${song.id}`} style={{textDecoration:'none',color:'#333'}}>
+                                    <button>More info</button>
+                                    </NavLink>
                                 </div>
                             )
-                        })}
+                        }
+                        )
+                        }
+                    </div>
 
-                    </div>
-                    </div>
                 </div>
-                 <div>
-                 </div>
-
             </div>
+
 
       )
 

@@ -133,13 +133,89 @@
 
 
 .song-detail-entry {
-    background-color:#f3f3f3e0;
+    background-color:#edd1d8;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    height: auto;
 }
+
+.song-detail-music-player {
+    width: 350px;
+    height: 550px;
+    border-radius: 20px;
+    background: rgba(255,255, 255, 0.28);
+    box-shadow: 0 40px 100px rgba(255,255, 255, 0.18);
+    padding: 30px;
+    overflow: hidden;
+    color: #b6b196;
+    margin-top: 30px;
+}
+
+.song-detail-music-player .song-title,
+.aritst-name {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.song-detail-music-player .song-title {
+    font-size: 40px;
+    font-weight: 500;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.aritst-name {
+    font-size: 20px;
+}
+
+.song-detail-music-player .disk::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #edd1d8;
+}
+
+.song-detail-music-player .disk {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgba(255,255, 255, 0.08);
+    background-size:contain;
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
+}
+
+.song-detail-music-player .disk.play {
+    animation-play-state: running;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.song-detail-entry .detail-image{
+    box-shadow: 10px 10px 20px rgba(0,0, 0, 0.35);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
 
 .song-detail-entry .cover-img{
     width: 300px;
@@ -149,9 +225,11 @@
 }
 
 .song-detail-entry .song-detail-player{
-    margin-top: 20px;
-    width: 600px;
-    height: 100px;
+    margin-top: 40px;
+    width: auto;
+
+
+
     /* object-fit: cover; */
 }
 
@@ -307,4 +385,21 @@
     padding: 2px 15px;
     margin: 0 20px;
     color: #333;
+}
+
+.song-detail-player .rhap_container{
+    border-radius: 15px;
+    height: 85px;
+    background: rgba(255,255, 255, 0.38);
+    box-shadow: none;
+}
+
+.song-detail-player .rhap_volume-controls{
+    margin-right: 10px;
+}
+
+.song-create-time {
+    padding-top: 10px;
+    margin:auto;
+    cursor: pointer;
 }

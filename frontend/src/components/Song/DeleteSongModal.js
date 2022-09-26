@@ -11,7 +11,7 @@ function DeleteSongModal({song,albumId,user}) {
 
   return (
     <>
-      <button id='delete-song-button' onClick={() => setShowModal(true)}>Delete</button>
+      <i className="fa-solid fa-trash-can" onClick={() => setShowModal(true)} style={{color:'#85794f'}}><span style={{margin:'0 8px', fontSize:'12px'}}>Delete</span></i>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeleteSongAlert hideModal={()=>setShowModal(false)} song={song} albumId={albumId} user={user}/>

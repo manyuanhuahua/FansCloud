@@ -13,7 +13,7 @@ import CurrentUserSongs from "./components/currentUserpage/CurrentUserSongs";
 import CurrentUserAlbums from "./components/currentUserpage/CurrentUserAlbums";
 import PlaylistLists from "./components/Playlist/PlaylistList";
 import PlaylistDetail from "./components/Playlist/PlaylistDetail";
-
+import Explore from "./components/currentUserpage/explore";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,9 +37,9 @@ function App() {
         <Route exact path="/songs/:songId">
           <SongDetail />
         </Route>
-        {/* <Route exact path="/you/library">
-          <CurrentUser />
-        </Route> */}
+        <Route exact path="/explore">
+          <Explore />
+        </Route>
         <Route exact path="/albums">
           <CurrentAlbums />
         </Route>

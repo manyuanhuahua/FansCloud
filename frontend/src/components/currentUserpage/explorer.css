@@ -1,0 +1,18 @@
+.explore-main-container {
+    margin: auto;
+    width: 1200px;
+    background: #ebe8db;
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-main-container .explore-content-container{
+    border-bottom: 1px solid #e1dbcd;
+    margin:10px;
+    padding-bottom: 10px
+}
+
+.explore-main-container .explore-content-container h2{
+    margin:10px;
+    padding-left: 20px
+}

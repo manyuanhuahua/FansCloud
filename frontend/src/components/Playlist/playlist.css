@@ -1,7 +1,8 @@
 .current-playlist-main-container{
     display: flex;
     flex-direction: column;
-    background-color: #eee;
+    background: #ebe8db;
+
     justify-content: space-evenly;
     align-items: center;
     margin: auto;
@@ -30,7 +31,7 @@
 }
 
 .current-user-playlists {
-    width: 900px;
+    width: 800px;
     height: 270px;
     background: red;
     display: flex;
@@ -71,20 +72,21 @@
     width: 100%;
     overflow-y: auto;
     justify-content: flex-start;
-    margin: 20px 10px;
+    margin: 20px;
     background: #f7f4ed;
     padding: 0 10px;
+    height: 230px;
 }
 
 .current-user-playlists .playlist-gallery-right::-webkit-scrollbar{
-    width: 1.5px;
-    border-radius: .3rem;
-    background-color: #333;
+    width: 10px;
+    border-radius: .2rem;
+    background-color: #ebe8db;
 }
 
 .current-user-playlists .playlist-gallery-right::-webkit-scrollbar-thumb{
-    border-radius: .3rem;
-    background-color: #fff;
+    border-radius: .2rem;
+    background-color: #b36d61;
 }
 
 .current-user-playlists .playlist-gallery-right .playlist-song-list{
@@ -94,6 +96,7 @@
     padding: 10px;
     align-items: center;
     border-bottom: 1px solid #e9d7df;
+    letter-spacing: 1px;
 }
 
 .current-user-playlists .playlist-gallery-right .playlist-song-list span{
@@ -186,4 +189,98 @@
 #upload-Playlist-button-click {
     background-color: #f50;
     color: #fff;
+}
+
+
+.playlist-detail-main {
+    background-color:#e9d7df;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.playlist-detail-main .playlist-gallery-container{
+    width: 800px;
+    height: 350px;
+    border-radius: 20px;
+    background: rgba(255,255, 255, 0.28);
+    box-shadow: 0 40px 100px rgba(255,255, 255, 0.18);
+    padding: 30px;
+    overflow: hidden;
+    color: #b6b196;
+    margin-top: 30px;
+    display: flex;
+}
+
+.playlist-detail-main .playlist-gallery-container .playlist-gallery-left-box{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playlist-detail-main .playlist-gallery-container .playlist-gallery-left-box .rhap_container {
+    width: 100%;
+    border-radius: 10px;
+    height: 85px;
+    background: rgba(255, 250, 250, 0.68);
+    box-shadow: none;
+}
+
+.playlist-detail-main .playlist-gallery-container .playlist-gallery-left-box .playlist-cover-img{
+    width: 200px;
+    height: 200px;
+
+}
+
+.playlist-detail-main .playlist-gallery-container .playlist-gallery-left-box .playlist-cover-img .playlist-selected-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.playlist-selected-song-content h4,p{
+    margin: 10px 0;
+}
+
+.playlist-gallery-right {
+    display: flex;
+    flex-direction: column;
+    /* background: #f50; */
+    width: 50%;
+    overflow-y: auto;
+    height: 100%;
+}
+
+
+.playlist-gallery-right .playlist-gallery-right-box{
+    display: flex;
+    margin: 0 10px;
+    padding: 10px 20px;
+
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid #b6b196 ; */
+    border-left: 1px solid #b0b7ac;
+
+}
+
+.playlist-gallery-right .playlist-gallery-right-box p{
+    margin: 0;
+    padding-right:20px;
+    color:#757570;
+}
+
+.playlist-gallery-right .playlist-gallery-right-box button{
+    background: #db5a6b;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    height: 30px;
+    width: 80px;
+    border: none;
 }

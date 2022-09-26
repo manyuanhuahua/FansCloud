@@ -150,6 +150,8 @@ export const addSongToPlaylistThunk = (playlistId,songId) => async dispatch=>{
             // console.log(newAlbum)
 
             const data = await res.json()
+
+
             dispatch(addSongToPlaylist(data))
         }
         return res
@@ -196,11 +198,6 @@ const playlistsReducer = (state = initialState, action)=>{
 
             return newState;
 
-       }
-       case ADD_SONG_TO_PLAYLIST:{
-        const newState = {}
-        newState = action.songPlaylist
-        return newState
        }
         case REMOVE_PLAYLIST:{
             const newStae = {...state}

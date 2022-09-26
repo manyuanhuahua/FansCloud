@@ -3,14 +3,15 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 
-function MainAudioPlayer({song}) {
+function MainAudioPlayer({song,rotate}) {
     // const [isPlay, setIsPlay] = useState(false)
 
     return (
      <AudioPlayer
       autoPlay={false}
       src={song.audioUrl}
-      onPlay={e => console.log("onPlay")}
+      onPlay={() => rotate()}
+      onPause={()=>rotate()}
       // other props here
       />
   );

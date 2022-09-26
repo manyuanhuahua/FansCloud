@@ -11,7 +11,7 @@ function EditSongModal({song, showModal, setShowModal}) {
 
   return (
     <>
-      <button className='edit-song-button' onClick={() => {setShowModal(true)}}>Edit</button>
+       <i className="fa-solid fa-pen" onClick={() => {setShowModal(true)}} style={{color:'#85794f'}}><span style={{margin:'0 8px', fontSize:'12px'}}>Edit</span></i>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSongForm hideModal={()=>setShowModal(false)} song={song}/>

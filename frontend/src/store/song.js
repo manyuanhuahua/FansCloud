@@ -134,7 +134,7 @@ const songsReducer = (state = initialState, action)=>{
         case LOAD_SONG_DETAIL:{
             newState = {}
             // console.log("action.song", action.song)
-            newState.song = action.song
+            newState = action.song
 
             return newState
         }

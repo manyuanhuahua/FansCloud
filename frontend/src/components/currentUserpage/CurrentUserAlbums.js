@@ -35,7 +35,7 @@ const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
 
                         <div className='content-entry' key={album.id}>
                             <div className='content-title'>{album.title}</div>
-                            <div className='content-text'>{sessionUser.username}</div>
+                            {/* <div className='content-text'>{sessionUser.username}</div> */}
                         </div>
                     </NavLink>
                 )

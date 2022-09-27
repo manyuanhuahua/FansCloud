@@ -82,7 +82,7 @@ function EditSongForm({song, album, hideModal}){
             placeholder="Audio Url"
             required
             value={audioUrl}
-            onChange={(e)=>setaudioUrl(e.target.value)} />
+            readOnly />
           <input
             type="text"
             placeholder="Song profile image"

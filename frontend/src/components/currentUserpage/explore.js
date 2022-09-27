@@ -33,34 +33,42 @@ const Explore = ()=>{
       return  isLoaded && (
           <div className='explore-main-container' >
             <div className='explore-content-container'>
-                <h2>New Albums You Should Know</h2>
+                <h2 >New Albums You Should Know</h2>
                 <Carousel wrapAround={true} slidesToShow={5} dragging={true} cellSpacing={10}>
                     {[...albums].sort(() => 0.5 - Math.random()).slice(0,10).map((album)=>(
+                        <>
                         <NavLink to={`/albums/${album.id}`} >
-                            <img src={album.previewImage} style={{width:'180px',height:'180px',padding:'0 18px 30px 18px'}}/>
+                            <img src={album.previewImage} style={{width:'180px',height:'180px',padding:'5px 18px 0 18px'}}/>
                         </NavLink>
-                        )
+                            <p style={{paddingBottom:'25px',textAlign:'center',letterSpacing:'0.5px',color:'#333', textTransform:'capitalize',wordWrap:'break-word',width:'180px',margin:'auto',height:'40px'}}>{album.title}</p>
+
+                            </>)
                     )}
                 </Carousel>
             </div>
-            {/* <div className='explore-content-container'>
+            <div className='explore-content-container'>
                 <h2>Popular Playlists</h2>
                 <Carousel wrapAround={true} slidesToShow={5} dragging={true} className='slider-container'>
                     {[...Object.values(playlists)].sort(() => 0.5 - Math.random()).slice(0,10).map((playlist)=>(
+                        <>
                          <NavLink to={`/playlists/${playlist.id}`} >
-                            <img src={playlist.previewImage} style={{width:'150px',height:'150px',padding:'0 18px 30px 18px'}}/>
+                            <img src={playlist.previewImage} style={{width:'180px',height:'180px',padding:'5px 18px 0 18px'}}/>
                         </NavLink>
-                        )
+                         <p style={{paddingBottom:'25px',textAlign:'center',letterSpacing:'0.5px',color:'#333',textTransform:'capitalize',wordWrap:'break-word',width:'180px',margin:'auto',height:'40px'}}>{playlist.name}</p>
+                         </>)
                     )}
                 </Carousel>
-            </div> */}
+            </div>
             <div className='explore-content-container'>
                 <h2>FansCloud Exclusives Songs</h2>
                 <Carousel wrapAround={true} slidesToShow={5} dragging={true} className='slider-container'>
                     {[...songs].sort(() => 0.5 - Math.random()).slice(0,10).map((song)=>(
+                        <>
                         <NavLink to={`/songs/${song.id}`} >
-                            <img src={song.previewImage} style={{width:'180px',height:'180px',padding:'0 18px 30px 25px'}}/>
+                            <img src={song.previewImage} style={{width:'180px',height:'180px',padding:'5px 18px 0 18px'}}/>
                         </NavLink>
+                        <p style={{paddingBottom:'25px',textAlign:'center',letterSpacing:'0.5px',color:'#333',wordWrap:'break-word',width:'180px',margin:'auto',textTransform:'capitalize',height:'40px'}}>{song.title}</p>
+                        </>
                         )
                     )}
                 </Carousel>

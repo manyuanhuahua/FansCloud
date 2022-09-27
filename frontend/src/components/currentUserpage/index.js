@@ -41,10 +41,7 @@ const CurrentAlbums = ({showAlbums, showSongs})=>{
 
         <div className='user-page-main-container'>
               <div className='left-box'>
-                  <div className='user-profile'>
-                    <img className='profile-img' src='https://ktla.com/wp-content/uploads/sites/4/2020/05/GettyImages-1146390210.jpg' />
-                  </div>
-                  <h2>{sessionUser.username}</h2>
+                  <h2 style={{marginRight:'30px'}}>My Album List</h2>
                   <div className='upload-album-button'>
                   <UploadBotton isUpload={isUpload} setIsUpload={setIsUpload}/>
                   </div>
@@ -54,12 +51,6 @@ const CurrentAlbums = ({showAlbums, showSongs})=>{
                    <CurrentUserAlbums albumList={albumList} isLoaded={isLoaded} isUpload={isUpload} setIsUpload={setIsUpload}/>
               </div>
 
-                <div className='user-library-container'>
-                    <div>
-                        {/* {showSongs && (<CurrentUserSongs songList={songList} isLoaded={isLoaded}/>)} */}
-
-                    </div>
-                </div>
       </div>
 
 

@@ -9,6 +9,7 @@ import {addSongToPlaylistThunk,getUserPlaylistsThunk} from "../../store/playlist
 
 
 
+
 function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModal}){
     const history = useHistory()
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
       // console.log('audio----',newSong)
 
       dispatch(addSongToPlaylistThunk(playlistId,songId)).then((res)=>{
-          console.log('playlist----',res)
+
           hideModal()
           // history.back()
         }).catch(
@@ -46,7 +47,7 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
                const data  = await res.json();
 
             // const data  = await res.json();
-            if (data && data.errors) setErrors(data.errors);
+            if (data && data.errors) setErrors(['Please select a playlist!']);
             // console.log("indispatch",data.errors)
         })
 
@@ -73,8 +74,8 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
 
     return isLoaded && (
       <>
-          <form className="create-song-form" onSubmit={handleSubmit}>
-            <div className='form-content'>
+          <form className="playlist-song-form" onSubmit={handleSubmit}>
+            <div className='playlist-song-form-content'>
             <h2>Add this song to my playlist</h2>
             <select
               value={playlistId}
@@ -91,14 +92,15 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
                 <option value={playlist.id} label={playlist.name} />
               ))}
             </select>
-
+            {(!playlistId) && <ul style={{marginTop:'10px'}}>
+              {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
+            </ul>}
             </div>
 
-          <button id='upload-song-button-click' type="submit" disabled={!playlistId}>Submit</button>
+          <button id='upload-song-button-click' type="submit" >Submit</button>
           <button type="button" onClick={handleCancelClick} >Cancel</button>
-            <ul>
-              {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-            </ul>        </form>
+
+            </form>
 
             </>
 

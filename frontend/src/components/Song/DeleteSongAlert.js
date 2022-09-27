@@ -62,7 +62,7 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
           <div className='button-group'>
 
           <button type="button" onClick={handleCancelClick} >Cancel</button>
-          <button type="button" onClick={handleDeleteClick}>Delete</button>
+          <button type="button" onClick={handleDeleteClick} style={{background:'#f50',color:'#fff'}}>Delete</button>
           </div>
           </div>
        </form>

@@ -32,7 +32,7 @@
 
 .current-user-playlists {
     width: 800px;
-    height: 270px;
+    height: 290px;
     background: red;
     display: flex;
     flex-direction: row;
@@ -283,4 +283,62 @@
     height: 30px;
     width: 80px;
     border: none;
+}
+
+.playlist-song-form {
+    width: 400px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.playlist-song-form .playlist-song-form-content{
+    margin:20px;
+    height:130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playlist-song-form .playlist-song-form-content h2{
+    padding:13px 0;
+    margin: 0;
+}
+
+.playlist-song-form button{
+    background: transparent;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 400;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+    margin: 0 20px;
+    color: #333;
+    width: 150px;
+}
+
+.playlist-top-box .upload-playlist-button{
+        border: none;
+        background: transparent;
+        color: #333;
+        border-color: #ccc;
+        height: 30px;
+        border: 1px solid #333;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 3px;
+        font-weight: 300;
+        text-align: center;
+        box-sizing: border-box;
+        font-family: 'Varela Round', sans-serif;
+        padding: 2px 15px;
+        padding-top: 5px;
 }

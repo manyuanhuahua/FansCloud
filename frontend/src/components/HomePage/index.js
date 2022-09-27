@@ -39,12 +39,13 @@ function HomePage(){
                 {/* <img src='https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg' /> */}
                 <div className='banner-text'>
 
-                <h2>What's next in music is first on SoundCloud</h2>
-                <p>Upload your first track and begin your journey. SoundCloud gives you space to create, find your fans, and connect with other artists.</p>
+                <h2>What's next in music is first on FansCloud</h2>
+                <p>Upload your first track and begin your journey. FansCloud gives you space to create, find your fans, and connect with other artists.</p>
+                
                 </div>
             </div>
             <div className='mid-box'>
-                <h2>Hear what's trending for free in the SoundCloud community</h2>
+                <h2>Hear what's trending for free in the FansCloud community</h2>
                 <div className='song-trending'>
                     {isLoaded && copyList() &&
                         songShows.map((song, index)=>{
@@ -77,13 +78,13 @@ function HomePage(){
                     <div className='text'>
                         <h2>Never stop listening</h2>
                         {/* <img class='color' src='https://image.shutterstock.com/image-illustration/abstract-layout-wavy-lines-cmyk-260nw-62119561.jpg'/> */}
-                        <span>SoundCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</span>
+                        <span>FansCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</span>
                     </div>
                 </div>
                 <div className='box-mid'>
                     <div className='text'>
                         <h3>Calling all creators</h3>
-                        <p>Get on SoundCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
+                        <p>Get on FansCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
 
                     </div>
                         {/* <img className='artist' src='https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists-798050ae.jpg'/> */}

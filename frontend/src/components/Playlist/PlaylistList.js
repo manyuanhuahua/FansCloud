@@ -57,15 +57,15 @@ const PlaylistLists = ()=>{
         <div className='current-playlist-main-container'>
             <div className='playlist-top-box'>
             <h2>My playlists</h2>
-            <div className='upload-album-button'>
-            <button onClick={() => setShowModal(true)}>Upload</button>
+
+            <div className='upload-playlist-button' onClick={() => setShowModal(true)} >Upload</div>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                     <CreatePlaylistForm hideModal={()=>setShowModal(false)} />
                     </Modal>
                 )}
 
-            </div>
+            
         </div>
           {/* <p>this is current user page</p> */}
         <div className='playlist-gallery-box'>

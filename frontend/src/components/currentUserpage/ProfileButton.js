@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { NavLink, useHistory,Link } from "react-router-dom";
 import "./currentUser.css"
 
-function ProfileButton({ user }) {
+function ProfileButton() {
     const history = useHistory()
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const user = useSelector(state => state.session.user);
+
 
     const openMenu = () => {
         if (showMenu) return;
@@ -33,8 +35,8 @@ function ProfileButton({ user }) {
 
   return (
     <div className="profile-button-right-box">
-        <div className='user-button' onClick={openMenu}>
-            <img className='nr_img'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfW1gYTgGImZU-dxpl0Ez4rv8hfFj5UMOPgQ&usqp=CAU"/>
+        <div className='user-button' onClick={openMenu} style={{cursor:'pointer'}}>
+            <img className='nr_img'src={user.previewImage}/>
             {user?.username}
         </div>
 
@@ -48,9 +50,6 @@ function ProfileButton({ user }) {
               <div className="dd_menu">
                 <div className="dd_left">
                     <ul>
-                      <li key='profile'>
-                      <i class="fa-solid fa-user-secret" />
-                      </li>
                       <li key='name'>
                       <i class="fa-solid fa-id-card" />
                       </li>
@@ -65,7 +64,6 @@ function ProfileButton({ user }) {
                 </div>
                 <div className="dd_right">
                   <ul>
-                    <li key='textProfile'><Link to='/currentUser'>Profile</Link></li>
                     <li key='textName'><span>{user?.username}</span></li>
                     <li key='textEmail'><span>{user?.email}</span></li>
                     <li key='textLogout'><a onClick={logout}>Log Out</a></li>

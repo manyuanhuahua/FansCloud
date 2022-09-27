@@ -45,8 +45,8 @@ const UserNav = ()=>{
             <div className='left-banner'>
                   <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'/>
                   <div className='left-banner-text'>
-                    <Link to='/explore'>explore</Link>
-                    <Link to='/songs'>songs</Link>
+                    <Link to='/explore'>Explore</Link>
+                    <Link to='/songs'>Songs</Link>
                     <Link to='/albums'>Albums</Link>
                     <Link to='/playlists'>Playlists</Link>
                   </div>

@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
 import * as albumActions from '../../store/album'
-import UploadBotton from './UploadButton';
+
 import ProfileButton from './ProfileButton';
-import CreateAlbumForm from '../Album/CreateAlbumForm';
-import CurrentUserAlbums from './CurrentUserAlbums';
-import CurrentUserSongs from './CurrentUserSongs';
+import logo from "../../asset/fanscloud-logo.JPG"
 import "./currentUser.css"
-import { Nav } from 'react-bootstrap';
+
 
 
 
@@ -43,7 +41,7 @@ const UserNav = ()=>{
       <div className='user-mainContainer'>
             {/* <div className='user-top-banner'> */}
             <div className='left-banner'>
-                  <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'/>
+                  <img classname='logo' src={logo}/>
                   <div className='left-banner-text'>
                     <Link to='/explore'>Explore</Link>
                     <Link to='/songs'>Songs</Link>

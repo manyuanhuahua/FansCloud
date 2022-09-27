@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import {getYourALbumsThunk} from '../../store/album'
-import UploadBotton from './UploadButton';
-// import * as albumActions from '../../store/album'
-
-const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
+import { Modal } from '../../context/Modal';
+import CreateAlbumForm from '../Album/CreateAlbumForm';
+import "./currentUser.css"
+const CurrentUserAlbums = ()=>{
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setIsLoaded] = useState(false)
     const yourAlbumsObj = useSelector(state => state.albums);
     const yourAlbums = Object.values(yourAlbumsObj);
+    const [isUpload,setIsUpload] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+
 
     // const [isUpload, setIsUpload] = useState(false)
 
@@ -24,7 +27,21 @@ const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
 
 
       return isLoaded && (
-        <>
+
+          <div className='user-page-main-container'>
+              <div className='left-box'>
+                  <h2 style={{marginRight:'30px'}}>My Album List</h2>
+                  <div className='upload-album-button'>
+                  <button onClick={() => setShowModal(true)}>Upload</button>
+                      {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                          <CreateAlbumForm hideModal={()=>setShowModal(false)} isUpload={isUpload}  setIsUpload={setIsUpload}/>
+                        </Modal>
+                      )}
+                  {/* <UploadBotton isUpload={isUpload} setIsUpload={setIsUpload}/> */}
+                  </div>
+          </div>
+          <div className='right-box'>
             <div className='current-user-albums'>
                 {yourAlbums.map((album)=>{
                 return (
@@ -45,7 +62,8 @@ const CurrentUserAlbums = ({isUpload, setIsUpload})=>{
                   <UploadBotton isUpload={isUpload} setIsUpload={setIsUpload}/>
                 </div> */}
           </div>
-        </>
+          </div>
+        </div>
   )
 
 

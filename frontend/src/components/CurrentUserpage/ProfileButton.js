@@ -33,11 +33,26 @@ function ProfileButton() {
     dispatch(sessionActions.logout()).then(()=>history.push('/'));
   };
 
+  const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
+
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
+
   return (
     <div className="profile-button-right-box">
         <div className='user-button' onClick={openMenu} style={{cursor:'pointer'}}>
-            <img className='nr_img'src={user.previewImage}/>
-            {user?.username}
+            <img className="nr-img"
+              alt=""
+              src={user.previewImage? user.previewImage : defaultImg}
+              style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg',width: '30px',
+              height: '30px',
+              borderRadius: '50%',
+              objectFit:'cover',
+            }}
+              onError={imgError}
+            />
+            <p style={{marginLeft:'10px'}}>{user?.username}</p>
         </div>
 
         {showMenu && (

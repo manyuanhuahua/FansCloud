@@ -14,6 +14,7 @@ const AlbumDetail = ()=>{
     const {albumId} = useParams()
     const album = useSelector(state => state.albums);
     const songList = useSelector(state => state.songs);
+    const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [createModal, setCreateModal] = useState(false);
@@ -40,7 +41,11 @@ const AlbumDetail = ()=>{
     // console.log("albumSong", albumSongs)
     // console.log('album', album)
 
+    const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
 
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
 
 
       return isLoaded && setSongLoaded && (
@@ -64,8 +69,8 @@ const AlbumDetail = ()=>{
                     </div>
 
                 </div>
-
-                <div className='mid-box'>
+                {(sessionUser.id === album.userId) ?(
+                    <div className='mid-box'>
 
                      <EditAlbumModal album={album} editModal={editModal} setEditModal={setEditModal}/>
                         <span>Edit Album</span>
@@ -75,13 +80,19 @@ const AlbumDetail = ()=>{
                      <CreateSongModal albumId={album.id} createModal={createModal} setCreateModal={setCreateModal}/>
                      <span>Add Songs</span>
 
-                </div>
+                    </div>):(<></>)}
 
                 <div className='content-container'>
                     <div className='center-box'>
 
                     <div className='content-left'>
-                        <img className='user-profile' src='https://www.pumpkin.care/dog-breeds/wp-content/uploads/2021/03/Corgi-Hero-1200x628.png'></img>
+
+                        <img className="user-profile"
+                            alt=""
+                            src={sessionUser.previewImage? sessionUser.previewImage : defaultImg}
+                            style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
+                            onError={imgError}
+                            />
                         <span>{album?.Artist.username}</span>
 
                     </div>

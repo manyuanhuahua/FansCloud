@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignupFormPage';
-import CurrentUser from '../currentUserpage/UploadButton'
+import logo from "../../asset/fanscloud-logo.JPG"
 
 
 
 import './Navigation.css';
 
-import UploadBotton from '../currentUserpage/UploadButton';
 
-import UserNav from '../currentUserpage/UserNav';
+
+import UserNav from '../CurrentUserpage/UserNav';
 
 
 function Navigation({ isLoaded }){
@@ -28,7 +28,7 @@ function Navigation({ isLoaded }){
     return (!sessionUser) ? (
       <div className='user-mainContainer'>
             <div className='left-banner'>
-                  <img classname='logo' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpBYGG5arDXXpXOhhZR0Xh_giZVFpMjbrx_A&usqp=CAU'></img>
+                  <img classname='logo' src={logo}></img>
                   <NavLink exact to="/">Home</NavLink>
           </div>
         <div className='right-banner'>

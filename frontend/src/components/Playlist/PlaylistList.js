@@ -52,6 +52,13 @@ const PlaylistLists = ()=>{
             );
       }
 
+
+      const defaultImg = 'https://cdn.images.express.co.uk/img/dynamic/143/590x/No-Man-s-Sky-gets-alternative-covers-689362.jpg'
+
+      const imgError = (e) =>{
+            e.target.src = defaultImg
+      }
+
       return isLoaded && (
         <>
         <div className='current-playlist-main-container'>
@@ -65,7 +72,7 @@ const PlaylistLists = ()=>{
                     </Modal>
                 )}
 
-            
+
         </div>
           {/* <p>this is current user page</p> */}
         <div className='playlist-gallery-box'>
@@ -75,7 +82,7 @@ const PlaylistLists = ()=>{
                             <div className='playlist-gallery-left'>
                                 <NavLink to={`playlists/${playlist.id}`}>
                                 <div key={playlist.id} className='img-box'>
-                                    <img className='playlist-content-entry-image' src={playlist.previewImage} />
+                                    <img className='playlist-content-entry-image' src={playlist.previewImage? playlist.previewImage : defaultImg} onError={imgError}/>
                                 </div>
                                 </NavLink>
                                     <p style={{marginTop:'3px',marginBottom:'0', textAlign:'center'}}>{playlist.name}</p>

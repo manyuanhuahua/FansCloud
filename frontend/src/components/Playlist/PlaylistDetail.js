@@ -73,7 +73,7 @@ const PlaylistDetail = ()=>{
 
                         {playlist.songs?.map((song,index)=>{
                             return (
-                                <div className='playlist-gallery-right-box'>
+                                <div className='playlist-gallery-right-box' key={index}>
 
                                     <p>{index+1} - <span>{song.title}</span></p>
                                     <NavLink key={song.id} to={`/songs/${song.id}`} style={{textDecoration:'none',color:'#333'}}>

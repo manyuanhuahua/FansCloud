@@ -19,19 +19,7 @@ router.get('/:userId', async (req, res, next)=>{
     const {userId} = req.params
 
 
-//     const artist = await User.findOne(
-//        { where: {
-//         id: userId,},
-//         include:{
-//             model: Song,
-//             required: false
-//         },
-//         attributes:{
-//             include:[
-//             [sequelize.fn('COUNT', sequelize.col('Songs.id'),), "totalSongs"]],
-//         },
-//         group: 'User.id'
-// })
+
 
 const artist = await User.findByPk(userId)
 if(!artist){

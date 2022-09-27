@@ -17,10 +17,22 @@ const validatePlaylist = [
     check('name')
         .exists({ checkFalsy: true })
         .withMessage('Playlist name is required.'),
-
+    check('name')
+        .custom(async function(name){
+            if(name.length>20) return Promise.reject('Max length of name is 20')
+        })
+        .withMessage('Max length of name is 20'),
     check('previewImage')
         .exists({ checkFalsy: true })
         .withMessage('Playlist preview image is required.'),
+    check('previewImage')
+        .custom(async function(previewImage){
+        const split = previewImage.split('.')
+        const last=split[(split.length)-1]
+        const suffix = ['jpg','png','jpeg']
+        if(suffix.indexOf(last) == -1 ) return Promise.reject('Preview image need to be .jpg/.jpeg/.png format.')
+    })
+        .withMessage('Preview image need to be .jpg/.jpeg/.png format.'),
     handleValidationErrors
 ];
 
@@ -192,7 +204,6 @@ router.delete('/:playlistId',requireAuth,async(req, res, next)=>{
     const playlist = await Playlist.findByPk(playlistId)
 
     const id = req.user.toJSON().id
-    const artist = await User.findByPk(id)
 
     if(playlist){
         if(playlist.userId === id){

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background: #ebe8db;
-
+    /* height:80vh; */
     justify-content: space-evenly;
     align-items: center;
     margin: auto;
@@ -28,6 +28,7 @@
 .playlist-gallery-box{
     display: flex;
     flex-direction: column;
+    min-height:90vh;
 }
 
 .current-user-playlists {
@@ -45,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5px 20px;
+    margin: 20px;
 }
 
 .current-user-playlists .playlist-gallery-left .img-box{

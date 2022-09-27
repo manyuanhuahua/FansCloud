@@ -46,7 +46,7 @@ function CreatePlaylistForm({hideModal}){
       };
 
 
-
+      
 
 
     return (
@@ -62,7 +62,7 @@ function CreatePlaylistForm({hideModal}){
               onChange={(e)=>setName(e.target.value)} />
             <input
               type="text"
-              placeholder="Please Add Your Album profile image"
+              placeholder="Please Add Your Playlist Cover image"
               value={previewImage}
               onChange={(e)=>setPreviewImage(e.target.value)} />
 

@@ -6,14 +6,14 @@ import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 import SongsBrowser from "./components/Song/SongBrowser";
 import SongDetail from "./components/Song/SongDetail";
-import CurrentAlbums from "./components/currentUserpage";
+import CurrentAlbums from "./components/CurrentUserpage";
 import HomePage from "./components/HomePage";
 import AlbumDetail from "./components/Album/AlbumDetail";
-import CurrentUserSongs from "./components/currentUserpage/CurrentUserSongs";
-import CurrentUserAlbums from "./components/currentUserpage/CurrentUserAlbums";
+import CurrentUserSongs from "./components/CurrentUserpage/CurrentUserSongs";
+import CurrentUserAlbums from "./components/CurrentUserpage/CurrentUserAlbums";
 import PlaylistLists from "./components/Playlist/PlaylistList";
 import PlaylistDetail from "./components/Playlist/PlaylistDetail";
-import Explore from "./components/currentUserpage/explore";
+import Explore from "./components/CurrentUserpage/explore";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,7 +41,7 @@ function App() {
           <Explore />
         </Route>
         <Route exact path="/albums">
-          <CurrentAlbums />
+          <CurrentUserAlbums />
         </Route>
         <Route exact path="/">
           <HomePage />
@@ -51,9 +51,6 @@ function App() {
         </Route>
         <Route exact path="/currentUser/songs">
           <CurrentUserSongs />
-        </Route>
-        <Route exact path="/currentUser/albums">
-          <CurrentUserAlbums />
         </Route>
         <Route exact path="/playlists">
           <PlaylistLists />

@@ -57,16 +57,20 @@ const SongDetail = ()=>{
                         </div>
                             {/* <img className='cover-img'src={song.previewImage} /> */}
                     <div className='song-create-time'>
+                    {sessionUser && (
+                      <i class="fa-solid fa-circle-plus" onClick={()=>setSongPlaylistModal(true)} style={{color:'#85794f'}}>
+                        <span style={{margin:'0 8px', fontSize:'12px'}}>Add To Playlist</span>
+                      </i>)}
+                          {songPlaylistModal && (
+                                    <Modal onClose={() => setSongPlaylistModal(false)}>
+                                      <AddSongToPlaylistForm hideModal={()=>setSongPlaylistModal(false)} songPlaylistModal={songPlaylistModal}  setSongPlaylistModal={setSongPlaylistModal} />
+                                    </Modal>
+                          )}
                     {(sessionUser?.id === song.userId) ? (
                         <>
                             <EditSongModal song={song} showModal={showModal} setShowModal={setShowModal}/>
                             <DeleteSongModal song={song} albumId={song.albumId} user={sessionUser}/>
-                            <i class="fa-solid fa-circle-plus" onClick={()=>setSongPlaylistModal(true)} style={{color:'#85794f'}}><span style={{margin:'0 8px', fontSize:'12px'}}>Add To Playlist</span></i>
-                              {songPlaylistModal && (
-                                    <Modal onClose={() => setSongPlaylistModal(false)}>
-                                      <AddSongToPlaylistForm hideModal={()=>setSongPlaylistModal(false)} songPlaylistModal={songPlaylistModal}  setSongPlaylistModal={setSongPlaylistModal} />
-                                    </Modal>
-                                  )}
+
 
                         </>
                     ):<></>}

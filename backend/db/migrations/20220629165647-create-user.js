@@ -32,10 +32,6 @@ module.exports = {
         unique:false,
         allowNull:false
       },
-      isArtist: {
-        type: Sequelize.BOOLEAN,
-        allowNull:false
-      },
       previewImage:{
         type: Sequelize.STRING,
       },

@@ -20,7 +20,11 @@ const validateAlbumSong = [
             if(existedTitle) return Promise.reject('Title is also exist')
         })
         .withMessage('Song with that title already exists'),
-
+    check('title')
+        .custom(async function(title){
+            if(title.length>20) return Promise.reject('Max length of title is 20')
+        })
+        .withMessage('Max length of title is 20'),
     check('audioUrl')
         .exists({ checkFalsy: true })
         .withMessage('Audio is required.'),
@@ -34,6 +38,11 @@ const validateAlbumSong = [
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Descrtiption is required.'),
+    check('description')
+        .custom(async function(description){
+            if(description.length>20) return Promise.reject('Max length of description is 20')
+        })
+        .withMessage('Max length of description is 20'),
     handleValidationErrors
 ];
 
@@ -47,20 +56,37 @@ const validateAlbum = [
             if(existedTitle) return Promise.reject('Title is also exist')
         })
         .withMessage('Album with that title already exists'),
-
+    check('title')
+        .custom(async function(title){
+            if(title.length>20) return Promise.reject('Max length of title is 20')
+        })
+        .withMessage('Max length of title is 20'),
     check('previewImage')
         .exists({ checkFalsy: true })
         .withMessage('Album preview image is required.'),
+    check('previewImage')
+        .custom(async function(previewImage){
 
+            const split = previewImage.split('.')
+            const last=split[(split.length)-1]
+            const suffix = ['jpg','png','jpeg']
+            if(suffix.indexOf(last) == -1 ) return Promise.reject('Preview image need to be .jpg/.jpeg/.png format.')
+        })
+        .withMessage('Preview image need to be .jpg/.jpeg/.png format.'),
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Descrtiption is required.'),
+    check('description')
+        .custom(async function(description){
+            if(description.length>20) return Promise.reject('Max length of description is 20')
+        })
+        .withMessage('Max length of description is 20'),
     handleValidationErrors
 ];
 
 // router.post('/:albumId/new',requireAuth, validateAlbumSong,async(req, res, next)=>{
 
-router.post('/:albumId/new',async(req, res, next)=>{
+router.post('/:albumId/new',validateAlbumSong,async(req, res, next)=>{
     const { albumId } = req.params
 
     const { title, description, audioUrl, previewImage } = req.body
@@ -112,8 +138,9 @@ router.get('/', async (req,res,next)=>{
 router.get('/:albumId', async (req, res, next)=>{
     const {albumId} = req.params
     const album = await Album.scope('artistScope','songScope').findOne({where: { id: albumId }})
-
+    
     if(album){
+
         res.json(album)
     }else{
         const err = new Error ("Album couldn't be found")
@@ -167,7 +194,6 @@ router.delete('/:albumId', requireAuth, async (req, res, next)=>{
     const album = await Album.findByPk(albumId)
 
     const id = req.user.toJSON().id
-    const artist = await User.findByPk(id)
     if(album){
         if (id === album.userId){
             await album.destroy()

@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { createSongThunk } from '../../store/song';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
-import {uploadFilesThunk} from "../../store/aws"
-import UploadSong from './UploadSong';
+import { useHistory} from 'react-router-dom';
+
 import { csrfFetch } from '../../store/csrf';
 
 function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const history = useHistory()
     const dispatch = useDispatch();
-    // const albumId = useParams()
+
     const sessionUser = useSelector(state=>state.session.user);
 
     const [title, setTitle] = useState("");
@@ -19,8 +18,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const [errors, setErrors] = useState([]);
     const [audioFile,setAudioFile] = useState("");
 
-    // const albumId = album.id
-    // const [showForm, setShowForm] = useState(true)
+
 
 
     const handleSubmit = async (e) => {
@@ -34,19 +32,18 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
         audioUrl:audioFile,
         previewImage
       }
-      // console.log('audio----',newSong)
+
 
       dispatch(createSongThunk(albumId,newSong)).then((res)=>{
-          // console.log('audio----',res)
+
           hideModal()
           history.back()
         }).catch(
           async (res) => {
                const data  = await res.json();
 
-            // const data  = await res.json();
             if (data && data.errors) setErrors(data.errors);
-            // console.log("indispatch",data.errors)
+
         })
 
 
@@ -101,7 +98,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
               accept=".mp3"
               onChange={updateAudio}
               />
-              {/* <UploadSong /> */}
+
 
               <button type="submit">Upload Audio</button>
               </div>
@@ -121,14 +118,6 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
               value={description}
               onChange={(e)=>setDescription(e.target.value)} />
 
-            {/* <input
-              type="file"
-              placeholder="Audio Url(mp3)"
-              required
-              // value={"audioUrl"}
-              accept=".mp3"
-              onChange={updateAudio} /> */}
-              {/* <UploadSong /> */}
             <input
               type="text"
               placeholder="Song profile image"

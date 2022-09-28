@@ -19,9 +19,19 @@
     align-items: center;
     top: 20px;
     right: 30px;
-    width: 100%;
+    width: auto;
 
 }
+
+.user-mainContainer .mid-banner {
+    display: flex;
+    align-items: center;
+    width:auto;
+    justify-content: space-between;
+    text-decoration: none;
+   
+}
+
 
 .user-mainContainer .left-banner a{
     /* background-color: darkorange; */

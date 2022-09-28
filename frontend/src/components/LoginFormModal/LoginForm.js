@@ -60,7 +60,7 @@ function LoginForm(){
         <form className='login-form' onSubmit={handleSubmit}>
           <div className='form-content'>
 
-
+            <h3 style={{margin:'0'}}>WELCOME BACK!</h3>
             <input id='credential'
               type="text"
               value={credential}

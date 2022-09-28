@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject(){
-      const { id, username, email }= this // context will be the user instance
+      const { id, username, email }= this
       return { id , username, email }
     }
 
@@ -66,7 +66,6 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         len:[4,30],
         isNotEmail(value){
-          //isEmail is a built-in method
           if(Validator.isEmail(value)){
             throw new Error('Cannot be an email')
         }

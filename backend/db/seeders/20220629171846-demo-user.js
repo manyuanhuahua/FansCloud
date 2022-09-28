@@ -27,6 +27,14 @@ module.exports = {
         firstName: 'Bunny',
         lastName:'Bd',
         previewImage: 'https://static-cdn.jtvnw.net/jtv_user_pictures/0c5e295a-ae57-4998-8cd8-ce97d7dac268-profile_image-300x300.png'
+      },
+      {
+        email: 'IOmusic@gmail.com',
+        username: 'IO Music',
+        hashedPassword: bcrypt.hashSync('password'),
+        firstName: 'IO',
+        lastName:'Music',
+        previewImage: 'https://static.vecteezy.com/system/resources/previews/006/008/937/original/cute-bear-says-hello-an-image-for-a-children-s-postcard-holiday-invitations-greetings-decoration-of-a-children-s-room-flat-style-illustration-for-cover-design-notebooks-mugs-fabrics-free-vector.jpg'
       }
     ], {});
   },

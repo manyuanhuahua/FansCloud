@@ -27,9 +27,28 @@ function Navigation({ isLoaded }){
 
     return (!sessionUser) ? (
       <div className='user-mainContainer'>
-            <div className='left-banner'>
+          <div className='left-banner'>
                   <img classname='logo' src={logo}></img>
                   <NavLink exact to="/">Home</NavLink>
+
+          </div>
+          <div className='mid-banner' style={{margin:'auto'}}>
+            <Link href='http://www.ting-f.com/'
+                style={{textDecoration:'none',fontSize:'12px',color:'#fff',marginRight:'10px'}}>
+                  Meet Developer
+            </Link>
+            <a href='https://github.com/manyuanhuahua'>
+            <img
+            src='https://pnggrid.com/wp-content/uploads/2022/03/Github-Logo-White.png'
+            style={{width:'28px',height:'28px',borderRadius:'50%',marginRight:'10px'}}
+            ></img>
+            </a>
+            <a href='https://github.com/manyuanhuahua'>
+            <img
+            src='https://www.citypng.com/public/uploads/preview/hd-white-outline-linkedin-round-icon-png-31624153887ernclzsksg.png'
+            style={{width:'28px',height:'28px',borderRadius:'50%',marginRight:'10px'}}
+            ></img>
+            </a>
           </div>
         <div className='right-banner'>
             <div className='login'><LoginFormModal /></div>

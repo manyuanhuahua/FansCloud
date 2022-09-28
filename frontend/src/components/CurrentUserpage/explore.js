@@ -60,7 +60,7 @@ const Explore = ()=>{
                         <>
                          <NavLink to={`/playlists/${playlist.id}`} key={index}>
                             <img
-                            src={playlist.previewImage? playlist.previewImage : albumDefault}
+                            src={playlist.previewImage? playlist.previewImage : playlistDefault}
                             onError={(e) => e.target.src = playlistDefault}
                             style={{width:'180px',height:'180px',padding:'5px 18px 0 18px',backgroundImage:'https://kapundahigh.weebly.com/uploads/6/1/5/4/61545621/604875677.jpg'}}/>
                         </NavLink>

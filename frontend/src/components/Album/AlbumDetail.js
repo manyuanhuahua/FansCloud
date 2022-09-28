@@ -42,7 +42,7 @@ const AlbumDetail = ()=>{
     // console.log('album', album)
 
     const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
-
+    const albumDefault = 'https://i.pinimg.com/236x/8a/b8/7b/8ab87bd6999d659eb282fbed00895d86--last-fm-album-cover.jpg'
     const imgError = (e) =>{
           e.target.src = defaultImg
     }
@@ -55,17 +55,21 @@ const AlbumDetail = ()=>{
                     <div className='top-box-left'>
                             <div className='left-top'>
                                 <div className='img-cropper'>
-                                    <img className='player-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-DWToqLKUNiKibSfOoTx8UrBcM9CVJ8gag&usqp=CAU' />
+                                    <img className='player-img'
+                                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-DWToqLKUNiKibSfOoTx8UrBcM9CVJ8gag&usqp=CAU' />
                                 </div>
                                 <div className='text'>
                                     <span className='detial-title'>{album?.title}</span>
-                                    <span className='detail-creator'><Link to="/currentUser">{album?.Artist.username}</Link></span>
+                                    <span className='detail-creator' style={{width:'300px',wordWrap:'break-word'}}><Link to="/currentUser">{album.description}</Link></span>
                                 </div>
 
                             </div>
                     </div>
                     <div className='top-box-right'>
-                            <img className='album-cover' src={album?.previewImage}/>
+                            <img className='album-cover'
+                            src={album.previewImage? album.previewImage : albumDefault}
+                            onError={(e) => e.target.src = albumDefault}
+                            />
                     </div>
 
                 </div>

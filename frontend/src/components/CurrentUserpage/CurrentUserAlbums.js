@@ -24,7 +24,7 @@ const CurrentUserAlbums = ()=>{
         dispatch(getYourALbumsThunk()).then(()=>setIsLoaded(true))
       },[dispatch,isUpload])
     // console.log('yourAlbums',yourAlbums)
-
+    const albumDefault = 'https://i.pinimg.com/236x/8a/b8/7b/8ab87bd6999d659eb282fbed00895d86--last-fm-album-cover.jpg'
 
       return isLoaded && (
 
@@ -47,7 +47,10 @@ const CurrentUserAlbums = ()=>{
                 return (
                     <NavLink key={album.id} to={`/albums/${album.id}`}>
                         <div className='img-box'>
-                          <img className='album-content-entry-image' src={album.previewImage} />
+                          <img className='album-content-entry-image'
+                          src={album.previewImage? album.previewImage : albumDefault}
+                          onError={(e) => e.target.src = albumDefault}
+                          />
                         </div>
 
                         <div className='content-entry' key={album.id}>

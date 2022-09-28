@@ -81,20 +81,8 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
       });
 
         const audio = await res.json()
-        console.log("in frontend----",audio.audioUrl)
-        setAudioFile(audio.audioUrl)
-        // if (file) setaudioUrl(file);
-        // dispatch(fetch()).then((res)=>{
-        //   console.log('audio----',res)
-        //   // hideModal()
-        // }).catch(
-        //   async (res) => {
-        //        const data  = await res.json();
 
-        //     // const data  = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        //     // console.log("indispatch",data.errors)
-        // })
+        setAudioFile(audio.audioUrl)
 
       };
 
@@ -104,6 +92,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
 
 
             <form onSubmit={handleUpload}>
+            <div className='aws-box'>
             <input
               type="file"
               placeholder="Audio Url(mp3)"
@@ -115,6 +104,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
               {/* <UploadSong /> */}
 
               <button type="submit">Upload Audio</button>
+              </div>
             </form>
           <form className="create-song-form" onSubmit={handleSubmit}>
             <div className='form-content'>

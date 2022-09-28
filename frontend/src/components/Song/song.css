@@ -264,7 +264,7 @@
     /* margin: 30px; */
     box-sizing: border-box;
 
-    padding: 25px;
+    padding: 0 25px 25px 25px;
 }
 
 .create-song-form input {
@@ -322,12 +322,7 @@
     margin-bottom: 10px;
 }
 
-#update-song-button-click {
 
-    background-color: #f50;
-    color: #fff;
-    margin-bottom: 10px;
-}
 
 .edit-song-button, #delete-song-button {
     border: none;
@@ -403,4 +398,19 @@
     padding-top: 10px;
     margin:auto;
     cursor: pointer;
+}
+
+.aws-box {
+    display: flex;
+    justify-content: space-between;
+    padding:25px 25px 0 25px;
+    align-items: center;
+}
+
+.aws-box button{
+    background-color: #eea08c;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
 }

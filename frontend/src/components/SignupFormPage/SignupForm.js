@@ -14,7 +14,7 @@ const SignupForm = () =>{
     const [confirmPassword, setConfirmPassword] = useState("")
     const [firstName,setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    const [isArtist, setIsArtist] = useState(false)
+
     const [previewImage, setPreviewImage] = useState("")
     const [errors, setErrors] = useState([]);
 
@@ -27,20 +27,14 @@ const SignupForm = () =>{
         if(password === confirmPassword) {
             setErrors([]);
 
-            return dispatch(sessionActions.signup({email, username, password, firstName, lastName, isArtist, previewImage})).catch(async (res) => {
-                          // const data = await res.json();
-                          // console.log(data)
-                          // if(data.user.errors) setErrors(data.user.errors);
+            return dispatch(sessionActions.signup({email, username, password, firstName, lastName, previewImage})).then(()=>history.push('/explore')).catch(async (res) => {
 
-                          // async (res) => {
-                            // console.log("in the catch")
 
                             const data  = await res.json();
 
-                            // console.log("data.error", data.errors)
 
                             if (data && data.errors) setErrors(data.errors);
-                      }).then(()=>history.push('/explore'))
+                      })
     }
 
     return setErrors(['Confirm Password field must be the same as the Password field'])
@@ -113,30 +107,7 @@ const SignupForm = () =>{
               required
             />
             </div>
-          <div id="role">
-
-          <label>
-            Not a creator
-            <input
-              type="radio"
-              value="false"
-              onChange={(e) => setIsArtist(false)}
-              checked = {isArtist === false}
-              required
-            />
-          </label>
-          <label>
-            I am a creator
-            <input
-              type="radio"
-              value="true"
-              onChange={(e) => setIsArtist(true)}
-              checked = {isArtist === true}
-              required
-            />
-          </label>
-            </div>
-
+     
           <button className='signup-button-click' type="submit">Sign Up</button>
             <ul>
             {errors.map((error, idx) => (<li key={idx}>{error}</li>))}

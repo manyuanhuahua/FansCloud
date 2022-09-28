@@ -71,7 +71,6 @@ export const signup = (user) => async (dispatch) => {
     username,
     firstName,
     lastName,
-    isArtist,
     previewImage,
   } = user;
   const res = await csrfFetch("/api/users", {
@@ -82,7 +81,6 @@ export const signup = (user) => async (dispatch) => {
       username,
       firstName,
       lastName,
-      isArtist,
       previewImage,
     }),
   });

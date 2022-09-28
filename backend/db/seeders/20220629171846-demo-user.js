@@ -10,7 +10,6 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password'),
         firstName: 'John',
         lastName:'Smith',
-        isArtist: true,
         previewImage: 'https://p1.itc.cn/q_70/images01/20211026/a2bd2d0936f94e919a444c6adc24b6b3.jpeg'
       },
       {
@@ -19,7 +18,6 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('safepassword'),
         firstName: 'Sleepy',
         lastName:'Hallow',
-        isArtist: true,
         previewImage: 'https://s3.cloudbreakr.io/ig-profile-pic/4047655943.e0f0dec7e73e3e1e.jpeg'
       },
       {
@@ -28,7 +26,6 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password3'),
         firstName: 'Bunny',
         lastName:'Bd',
-        isArtist: false,
         previewImage: 'https://static-cdn.jtvnw.net/jtv_user_pictures/0c5e295a-ae57-4998-8cd8-ce97d7dac268-profile_image-300x300.png'
       }
     ], {});

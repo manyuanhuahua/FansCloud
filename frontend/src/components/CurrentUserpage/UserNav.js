@@ -22,8 +22,7 @@ const UserNav = ()=>{
     const [showComments, setShowComments] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
 
-    // console.log(songList.length)
-    // console.log('albumListcurrentUser', albumList)
+   
 
       useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))

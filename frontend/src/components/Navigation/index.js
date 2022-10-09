@@ -20,7 +20,7 @@ function Navigation({ isLoaded }){
     const sessionUser = useSelector(state => state.session.user);
     const [showSongs, setShowSongs] = useState(false)
     const [showAlbums, setShowAlbums] = useState(false)
-  // console.log(sessionUser)
+
     let sessionLinks;
 
 

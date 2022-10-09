@@ -19,11 +19,7 @@ const AlbumDetail = ()=>{
     const [editModal, setEditModal] = useState(false);
     const [createModal, setCreateModal] = useState(false);
 
-    // const yourSongs = useSelector(state => state.songs.songs.filter((song)=> song.albumId === albumId));
 
-
-    // console.log("songList", yourSongs)
-    // const albumSongs= album.Songs;
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [songLoaded, setSongLoaded] = useState(false)
@@ -36,10 +32,7 @@ const AlbumDetail = ()=>{
     useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setSongLoaded(true))
     },[dispatch,createModal])
-    // const  = album.Songs
-
-    // console.log("albumSong", albumSongs)
-    // console.log('album', album)
+   
 
     const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
     const albumDefault = 'https://i.pinimg.com/236x/8a/b8/7b/8ab87bd6999d659eb282fbed00895d86--last-fm-album-cover.jpg'

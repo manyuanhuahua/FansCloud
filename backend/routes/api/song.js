@@ -104,7 +104,7 @@ router.get('/',validateParams, async (req,res)=>{
     const songs = await Song.findAll({
         ...pagination
     })
-    // console.log(songs)
+
     if(songs.length){
         return res.json({
             Songs: songs,
@@ -237,10 +237,10 @@ router.post('/:songId/comments/new',requireAuth, validateComment, async(req, res
 
 router.post('/upload',singleMulterUpload("audioUrl"),async(req, res, next)=>{
 
-    // console.log("in backend---",req.file)
+
 
     const audioUrl = await singlePublicFileUpload(req.file)
-    // console.log("in backend route---",audioUrl)
+
 
 
     return res.json({audioUrl:audioUrl})

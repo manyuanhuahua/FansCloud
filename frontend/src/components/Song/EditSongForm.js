@@ -17,7 +17,7 @@ function EditSongForm({song, album, hideModal}){
 
 
 
-    // console.log("outside submit")
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();

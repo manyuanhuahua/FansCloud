@@ -93,7 +93,7 @@ export const getPlaylistsThunk = () => async dispatch => {
     if (response.ok) {
         const playlists = await response.json();
         dispatch(getPlaylists(playlists));
-        // console.log("getalbums",albums)
+
     }
     return response
   };
@@ -103,7 +103,7 @@ export const getPlaylistsThunk = () => async dispatch => {
     const response = await csrfFetch(`/api/session/playlists`);
     if (response.ok) {
         const playlists = await response.json();
-        // console.log("inthunk----", response)
+
         dispatch(getUserPlaylists({playlists}));
     }
     return response
@@ -124,16 +124,16 @@ export const getPlaylistsThunk = () => async dispatch => {
 
 
 export const createPlaylistThunk = (playlist) => async dispatch=>{
-    // console.log('inthunk0000',playlist)
+
         const res = await csrfFetch(`/api/playlists/new`,{
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(playlist),
         });
         const newPlaylist = await res.json()
-        console.log('inthunk--res0000',newPlaylist)
+
         if(res.ok){
-            // console.log(newAlbum)
+
 
             dispatch(createPlaylist(newPlaylist))
         }
@@ -147,7 +147,7 @@ export const addSongToPlaylistThunk = (playlistId,songId) => async dispatch=>{
             body: JSON.stringify(songId),
         });
         if(res.ok){
-            // console.log(newAlbum)
+
 
             const data = await res.json()
 
@@ -166,21 +166,21 @@ const playlistsReducer = (state = initialState, action)=>{
     switch(action.type){
         case GET_PLAYLISTS:{
             newState = {}
-            // console.log("action",action.albums)
+
             newState = action.playlists
-            // console.log("newState", newState)
+
             return newState
         };
         case GET_USER_PLAYLISTS:{
             newState = {}
 
             newState = action.playlists.playlists.playlists
-            // console.log("newState", newState)
+
             return newState
         };
         case LOAD_PLAYLIST_DETAIL:{
             newState = {...state}
-            // console.log("action.song", action.song)
+
             newState= action.playlist
             return newState
         }

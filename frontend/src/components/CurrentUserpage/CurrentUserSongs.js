@@ -11,15 +11,13 @@ const CurrentUserSongs = ()=>{
 
 
 
-    // console.log('currentUserSong', songList)
+
 
     useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
       },[dispatch])
 
-    // const [isLoaded, setIsLoaded] = useState(false)
-    // console.log(songList.length)
-    // console.log('currentUserSong', yourSongs)
+   
 
 
 

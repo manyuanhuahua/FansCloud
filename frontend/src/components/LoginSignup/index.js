@@ -9,7 +9,7 @@ import "./LoginSignup.css"
 
 function LoginSignupForm(){
 
-    // console.log('error before return',errors.map(e=>console.log('e',e)))
+
 
 
     return (

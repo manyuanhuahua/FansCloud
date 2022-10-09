@@ -71,7 +71,7 @@ export const deleteSong =(songId, albumId)=>async dispatch=>{
     if(response.ok){
         const { deletedSongId: songId } = await response.json()
         dispatch(removeSong(songId, albumId));
-        // console.log(data)
+
         return songId
     }
 
@@ -84,8 +84,7 @@ export const getSong = () => async dispatch => {
     if (response.ok) {
         const songs = await response.json();
         dispatch(loadSong(songs));
-        // console.log("getsongs",songs)
-        // return response
+
 
     }
   };
@@ -127,13 +126,13 @@ const songsReducer = (state = initialState, action)=>{
         case LOAD_SONGS:{
             newState = Object.assign({},state)
             newState= action.songs.Songs
-            // console.log("newState", newState)
+
             return newState
         };
 
         case LOAD_SONG_DETAIL:{
             newState = {}
-            // console.log("action.song", action.song)
+
             newState = action.song
 
             return newState
@@ -157,8 +156,6 @@ const songsReducer = (state = initialState, action)=>{
                     return newState;
                 }
 
-
-            // console.log("add song newState", newState)
 
 
 

@@ -22,11 +22,11 @@ const DemoUser = ()=>{
         setErrors([]);
         return dispatch(sessionActions.login(demo.credential, demo.password )).catch(
           async (res) => {
-            // console.log("in the catch")
+
 
             const data  = await res.json();
 
-            // console.log("data.error", data.errors)
+    
 
             if (data && data.errors) setErrors(data.errors);
 

@@ -57,7 +57,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
         hideModal()
       };
 
-      // console.log("outdispatch",errors)
+
       const updateAudio = (e) => {
         const file = e.target.files[0];
         setaudioUrl(file);

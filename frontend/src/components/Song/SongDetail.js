@@ -28,8 +28,7 @@ const SongDetail = ()=>{
 
     const [isLoaded, setIsLoaded] = useState(false)
 
-    // console.log("song", song)
-    // console.log('songObj', Object.values(song))
+   
 
       useEffect(()=>{
         dispatch(songActions.getSongDetail(songId))

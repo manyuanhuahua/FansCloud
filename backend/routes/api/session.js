@@ -36,26 +36,12 @@ const validateLogin = [
   handleValidationErrors
 ]
 
-//custom(validator)
-/*
-app.post(
-  '/create-user',
-  check('password').exists(),
-  check(
-    'passwordConfirmation',
-    'passwordConfirmation field must have the same value as the password field',
-  )
-    .exists()
-    .custom((value, { req }) => value === req.body.password),
-  loginHandler,
-);
-*/
 
 
 
 router.post('/', validateLogin, async (req,res,next)=>{
     const { credential, password }= req.body;
-    // console.log(token)
+
     const user = await User.login({ credential, password });
 
 
@@ -68,7 +54,7 @@ router.post('/', validateLogin, async (req,res,next)=>{
     }
 
     await setTokenCookie(res, user);
-    // console.log(req.user)
+  
     return res.json({
         id : user.id,
         firstName: user.firstName,
@@ -115,7 +101,7 @@ router.get('/currentUser/songs',requireAuth, async (req,res)=>{
 
 router.get('/albums', requireAuth, async (req,res,next)=>{
     const userId = req.user.toJSON().id
-    
+
     const albums = await Album.findAll({
       where:{
         userId

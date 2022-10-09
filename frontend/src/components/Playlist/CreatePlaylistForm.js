@@ -12,7 +12,6 @@ function CreatePlaylistForm({hideModal}){
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
 
-    // console.log("outside submit")
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -30,13 +29,13 @@ function CreatePlaylistForm({hideModal}){
 
           ).catch(
             async (res) => {
-              // console.log("in the catch")
+
               const data  = await res.json();
-              // console.log("data.error", data.errors)
+
               if (data && data.errors) setErrors(data.errors);
               }
             )
-            // .then(()=>history.push('/currentUser'));
+
           };
 
     const handleCancelClick = (e) => {
@@ -46,7 +45,7 @@ function CreatePlaylistForm({hideModal}){
       };
 
 
-      
+
 
 
     return (

@@ -57,7 +57,7 @@ export const deleteAlbum =(albumId)=>async dispatch=>{
     if(response.ok){
         const { deletedAlbumId: albumId } = await response.json()
         dispatch(removeAlbum(albumId));
-        // console.log(data)
+
         return albumId
     }
 
@@ -87,8 +87,7 @@ export const getallbums = () => async dispatch => {
     if (response.ok) {
         const albums = await response.json();
         dispatch(loadAlbums(albums));
-        // console.log("getalbums",albums)
-        // return response
+
     }
   };
 
@@ -98,8 +97,7 @@ export const getallbums = () => async dispatch => {
     if (response.ok) {
         const albums = await response.json();
         dispatch(getYourAlbums(albums));
-        // console.log("getalbums",albums)
-        // return response
+
     }
   };
 
@@ -135,7 +133,7 @@ export const createAlbum = (album) => async dispatch=>{
         });
         if(res.ok){
             const newAlbum = await res.json()
-            // console.log(newAlbum)
+
             dispatch(addAlbum(newAlbum))
             return res
         }
@@ -160,7 +158,7 @@ const albumsReducer = (state = initialState, action)=>{
         }
         case LOAD_ALBUM_DETAIL:{
             newState = {}
-            // console.log("action.song", action.song)
+         
             newState = action.album
             return newState
         }

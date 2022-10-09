@@ -14,7 +14,7 @@ function EditAlbumForm({album, hideModal,editModal,setEditModal}){
 
 
 
-    // console.log("outside submit")
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -30,21 +30,17 @@ function EditAlbumForm({album, hideModal,editModal,setEditModal}){
 
       dispatch(albumActions.editAlbum(updateAlbum)).then(()=>hideModal()).catch(
               async (res) => {
-            // console.log("in the catch")
+
 
               const data  = await res.json();
 
-            // console.log("data.error", data.errors)
+
 
               if (data && data.errors) setErrors(data.errors);
 
           }
           )
-          // .then(()=>history.push(`/currentUser`));
-
-        // if(updaedAlbum){
-        //     hideModal()
-        // }
+     
           };
 
     const handleCancelClick = (e) => {

@@ -10,8 +10,7 @@ const AlbumsBrowser = ()=>{
     const songList = useSelector(state => state.songs);
 
     const [isLoaded, setIsLoaded] = useState(false)
-    // console.log(songList.length)
-    // console.log('songList', songList)
+   
 
     useEffect(()=>{
         dispatch(albumActions.getallbums()).then(()=>setIsLoaded(true))

@@ -9,8 +9,7 @@ const SongsBrowser = ()=>{
     const dispatch = useDispatch()
     const songList = useSelector(state => state.songs);
     const [isLoaded, setIsLoaded] = useState(false)
-    // console.log(songList.length)
-    // console.log('songList', songList)
+ 
 
       useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))

@@ -10,12 +10,7 @@ const DeleteAlbumAlert = ({album,hideModal})=>{
     const [isLoaded, setIsLoaded] = useState(false)
     const [errors, setErrors] = useState([]);
 
-    // const songList=songs.filter((song)=>song.albumId === albumId);
 
-    // const songId = song.id
-
-    // console.log('song', song.id)
-    // console.log('user', user)
 
     const handleDeleteClick = async (e) => {
       e.preventDefault();

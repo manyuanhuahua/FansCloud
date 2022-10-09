@@ -3,7 +3,7 @@ import { createSongThunk } from '../../store/song';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import {uploadFilesThunk} from "../../store/aws"
-import UploadSong from './UploadSong';
+
 import { csrfFetch } from '../../store/csrf';
 import {addSongToPlaylistThunk,getUserPlaylistsThunk} from "../../store/playlist"
 
@@ -26,9 +26,7 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
       dispatch(getUserPlaylistsThunk()).then(()=>setIsLoaded(true))
     },[dispatch])
 
-    // const albumId = album.id
-    // const [showForm, setShowForm] = useState(true)
-    console.log('playlists======',playlists)
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -36,7 +34,7 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
 
       setErrors([]);
 
-      // console.log('audio----',newSong)
+
 
       dispatch(addSongToPlaylistThunk(playlistId,songId)).then((res)=>{
 
@@ -46,9 +44,9 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
           async (res) => {
                const data  = await res.json();
 
-            // const data  = await res.json();
+
             if (data && data.errors) setErrors(['Please select a playlist!']);
-            // console.log("indispatch",data.errors)
+
         })
 
 
@@ -62,13 +60,11 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
         hideModal()
       };
 
-      // console.log("outdispatch",errors)
+
       const options= Object.values(playlists).map((playlist)=>{
         return {value:`${playlist.id}`,label:`${playlist.name}`}
       })
-      console.log('options======',options)
-      console.log('playlistId======',playlistId)
-      console.log('playlists======',Object.values(playlists))
+
 
 
 

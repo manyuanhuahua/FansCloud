@@ -23,7 +23,7 @@ const CurrentUserAlbums = ()=>{
     useEffect(()=>{
         dispatch(getYourALbumsThunk()).then(()=>setIsLoaded(true))
       },[dispatch,isUpload])
-    // console.log('yourAlbums',yourAlbums)
+    
     const albumDefault = 'https://i.pinimg.com/236x/8a/b8/7b/8ab87bd6999d659eb282fbed00895d86--last-fm-album-cover.jpg'
 
       return isLoaded && (

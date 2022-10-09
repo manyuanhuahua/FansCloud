@@ -50,9 +50,9 @@ function HomePage(){
                         songShows.map((song, index)=>{
                             return (
                                 <div className='song-list-container' key={index}>
-                                    <NavLink to={`/songs/${song?.id}`}>
+                                    <NavLink to={`/songs/${song?.id}`} style={{textDecoration: 'none'}}>
                                         <img className='song-entry-image' src={song?.previewImage} />
-                                    <div className='song-content'>
+                                    <div className='song-content' >
                                         <span className='song-title'>{song?.title}</span>
                                         <span className='song-text'>Top 50</span>
                                     </div>

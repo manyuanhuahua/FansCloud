@@ -29,9 +29,13 @@
     width:auto;
     justify-content: space-between;
     text-decoration: none;
-   
+
 }
 
+.user-mainContainer .mid-banner a{
+    text-decoration: none;
+
+}
 
 .user-mainContainer .left-banner a{
     /* background-color: darkorange; */

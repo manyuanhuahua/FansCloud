@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
 *{
   font-family: 'Varela Round', sans-serif;
+  margin-top: 0;
 }
 body {
   height: 100%;

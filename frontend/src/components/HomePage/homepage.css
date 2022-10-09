@@ -131,11 +131,15 @@
     flex-direction: column;
     text-decoration: none;
     cursor: pointer;
+    text-decoration: none;
+
 }
 
 .song-content .song-title{
     color: #333;
     font-family: 'Varela Round', sans-serif;
+    font-size: 14px;
+
 }
 
 .song-content .song-text{
@@ -147,7 +151,13 @@
 
 .song-content {
     height: 42px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-decoration: none;
 }
+
+
 
 .bottom-box {
     background-color: #f2f2f2;

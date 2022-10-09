@@ -18,18 +18,33 @@ const routes = require('./routes');
 const { ValidationError } = require('sequelize');
 
 
+
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 if(!isProduction){
     app.use(cors());
+    //cors policy debug
+    // app.use(
+    //     cors({
+    //       credentials: true,
+    //       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    //       allowedHeaders: ['Content-Type', 'Authorization'],
+    //       origin: ['http://localhost:3000', 'http://localhost:8000'], // whatever ports you used in frontend
+    //     })
+    //   );
+
 }//enable cors only in development
+
 
 
 app.use(helmet.crossOriginResourcePolicy({
     policy: 'cross-origin'
 }));
+
+
 
 app.use(
     csurf({
@@ -66,8 +81,8 @@ app.use((err, _req, _res, next)=>{
 
 //error format error
 app.use((err,_req,res,_next)=>{
-    // res.status(err.status || 500);
-    console.log(err);
+    res.status(err.status || 500);
+    // console.log(err);
     res.json({
         // title: err.title || "Server Error",
         statusCode: err.status || 500,

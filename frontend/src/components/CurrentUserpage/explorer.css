@@ -1,0 +1,21 @@
+.explore-main-container {
+    margin: auto;
+    width: 1300px;
+    background: #ebe8db;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding:20px 40px;
+    height: 100%;
+}
+
+.explore-main-container .explore-content-container{
+    border-bottom: 1px solid #e1dbcd;
+    margin:10px;
+    padding-bottom: 10px
+}
+
+.explore-main-container .explore-content-container h2{
+    margin:10px;
+    padding-left: 20px
+}

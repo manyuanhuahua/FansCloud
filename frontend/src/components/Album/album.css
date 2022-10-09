@@ -1,0 +1,274 @@
+.album-detail{
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.album-top-box{
+    /* background-color: blueviolet; */
+    background-image: url('https://scpic.chinaz.net/files/pic/pic9/202103/hpic3749.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 404px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.album-top-box .top-box-right .album-cover {
+    width: 340px;
+    height: 340px;
+    background-size: cover;
+    position: relative;
+}
+
+.img-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.img-cropper .player-img {
+    height: 100%;
+    width: fit-content;
+    /* background-color: aquamarine; */
+}
+
+.album-top-box .top-box-left .left-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 50px; */
+}
+
+.album-top-box .top-box-left {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.album-top-box .top-box-left .left-top .text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 7px 4px;
+    padding: 5px;
+}
+
+.album-top-box .top-box-left .left-top .text a{
+    text-decoration: none;
+    cursor: pointer;
+    color: rgba(56, 55, 55, 0.485);
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+
+}
+
+.album-top-box .top-box-left .left-top .text span {
+    margin-bottom: 5px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 32px;
+}
+
+
+.album-detail .mid-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20px;
+    margin: 10px;
+    width: 400px;
+    border-bottom: 1px solid rgba(159, 171, 166, 0.5);
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.album-detail .mid-box span{
+    /* padding-left: 10px; */
+    text-align: center;
+}
+
+.album-detail .content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px;
+    /* border: 1px solid black; */
+    /* width:  600px; */
+    align-items: center;
+}
+
+.album-detail .content-container .content-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px 50px;
+    align-items: center;
+}
+
+.album-detail .content-container .content-left .user-profile{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.album-detail .content-container .content-left span{
+    margin-top: 20px;
+    font-size: 32px;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 200;
+}
+
+.album-detail .content-container .songsContainer{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin: 10px 400px; */
+}
+
+.album-detail .content-container .center-box{
+    /* width: 800px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* background-color: blueviolet; */
+    /* align-items: center; */
+    /* margin: 10px 400px; */
+    padding-right: 20px;
+}
+
+
+
+
+.create-album-form {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 0;
+    /* position: absolute; */
+    /* margin: 30px; */
+    box-sizing: border-box;
+
+    padding: 25px;
+}
+
+.create-album-form input {
+    border-radius: 5px;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    box-sizing: border-box;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    margin: 3px 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.create-album-form button {
+    border-radius: 5px;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    box-sizing: border-box;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    margin: 3px 0;
+    font-family: 'Varela Round', sans-serif;
+    border: 1px solid #fff;
+    font-weight: 100;
+    cursor: pointer;
+
+}
+
+.create-album-form .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    height: 220px;
+    /* background-color: #f50; */
+
+}
+
+.create-album-form ul {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#upload-album-button-click {
+    background-color: #f50;
+    color: #fff;
+}
+
+#edit-album-button {
+    background-color: #f50;
+    color: #fff;
+}
+
+
+
+.delete-album-form {
+    width: 600px;
+    box-sizing: border-box;
+    padding: 20px;
+    height: auto;
+    /* background-color: #f50; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.delete-album-form h2 {
+    margin: 0;
+    color: #f50;
+}
+
+.delete-album-form p {
+    margin: 10px;
+    color: #333;
+}
+
+.delete-album-form button {
+    background: transparent;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 400;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+    margin: 0 20px;
+    color: #333;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+}

@@ -6,7 +6,8 @@ const {User, Song, Comment} = require('../../db/models')
 const {check}=require('express-validator');
 const {handleValidationErrors}=require('../../utils/validation');
 const { ResultWithContext } = require('express-validator/src/chain');
-const { query } = require('express-validator/check');
+const { query } = require('express-validator');
+const {singlePublicFileUpload,singleMulterUpload} = require('../../awsS3')
 
 // const { Op } = require('sequelize');
 
@@ -17,6 +18,12 @@ const validateSong = [
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Song title is required.'),
+    // check('title')
+    //     .custom(async function(email){
+    //         const existedEmail = await User.findOne({where:{email,}})
+    //         if(existedEmail) return Promise.reject('Email is also exist')
+    //     })
+    //     .withMessage('User with that email already exists'),
 
     check('audioUrl')
         .exists({ checkFalsy: true })
@@ -97,7 +104,7 @@ router.get('/',validateParams, async (req,res)=>{
     const songs = await Song.findAll({
         ...pagination
     })
-    console.log(songs)
+    // console.log(songs)
     if(songs.length){
         return res.json({
             Songs: songs,
@@ -137,12 +144,12 @@ router.delete('/:songId', requireAuth,async (req, res, next)=>{
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
-        if (artist.isArtist && id === song.userId){
+        if (id === song.userId){
 
             await song.destroy()
             res.json({
                 message: "Successfully deleted",
-                statusCode: 200
+                deletedSongId: songId
             })
         }else{
             return next(properAuth())
@@ -165,7 +172,7 @@ router.put('/:songId', validateSong, async(req,res,next)=>{
     const artist = await User.findByPk(id)
     if(song){
         // check if current user is the album's owner and if it is an artist
-        if (artist.isArtist && id === song.userId){
+        if (id === song.userId){
             song.update({
                 title,
                 description,
@@ -228,7 +235,20 @@ router.post('/:songId/comments/new',requireAuth, validateComment, async(req, res
     }
 })
 
+router.post('/upload',singleMulterUpload("audioUrl"),async(req, res, next)=>{
 
+    // console.log("in backend---",req.file)
+
+    const audioUrl = await singlePublicFileUpload(req.file)
+    // console.log("in backend route---",audioUrl)
+
+
+    return res.json({audioUrl:audioUrl})
+
+
+    // return "msg"
+
+})
 
 
 

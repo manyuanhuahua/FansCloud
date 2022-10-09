@@ -37,9 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         return {include: [{
           model: User,
           as: 'Artist',
-          where: {
-            isArtist: true
-        },
+
         attributes: ['id','username','previewImage'],
 
         }],

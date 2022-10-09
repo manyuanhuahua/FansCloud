@@ -1,0 +1,416 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.top-title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f2f2f2;
+    margin-top: 18px;
+}
+
+.top-title h2{
+    font-size: 32px;
+    font-weight: 100;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 400;
+    margin-left: 30px;
+}
+
+.top-container{
+    display: grid;
+    /* width: 940px; */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    grid-gap: 20px;
+    align-content: space-between;
+    justify-content: space-around;
+    justify-items: center;
+    /* margin: 10px 200px; */
+    box-sizing: border-box;
+    /* margin-bottom: 30px; */
+
+}
+
+.song-entry-image{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.song-content{
+    height:200px
+}
+
+.song-entry{
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.top-container a{
+    text-decoration:none;
+    width: 200px;
+    height: 268px;
+
+}
+
+.song-entry .song-title{
+    color: #333;
+    font-family: 'Varela Round', sans-serif;
+    width: 200px;
+
+
+}
+
+.song-entry .song-text{
+    color: #999;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.audioList-container {
+    display: flex;
+    flex-direction: column;
+    /* background-color: bisque; */
+}
+
+
+.menu-song {
+    display: grid;
+    grid-template-columns: repeat(9,1fr);
+    align-items: center;
+    margin: 10px;
+    width:820px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e7e5d0;
+
+}
+
+.audioList-container .menu-song .song-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    grid-column: 1/2;
+}
+
+
+
+
+.menu-song span{
+    font-size: 12px;
+    font-weight: 600;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+    color: #999;
+    grid-column: 2/3;
+
+  }
+
+.menu-song .song-text{
+    margin-left: 20px;
+    grid-column: 2/4;
+    /* justify-content: center; */
+  }
+
+.menu-song .songlist-audioPlayer{
+    grid-column: 4/10;
+  }
+.rhap_volume-container {
+    width: 80px;
+}
+  .menu-song a{
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+  }
+
+
+.song-detail-entry {
+    background-color:#edd1d8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 90vh;
+
+}
+
+.song-detail-music-player {
+    width: 350px;
+    height: 550px;
+    border-radius: 20px;
+    background: rgba(255,255, 255, 0.28);
+    box-shadow: 0 40px 100px rgba(255,255, 255, 0.18);
+    padding: 30px;
+    overflow: hidden;
+    color: #b6b196;
+    margin-top: 30px;
+}
+
+.song-detail-music-player .song-title,
+.aritst-name {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.song-detail-music-player .song-title {
+    font-size: 40px;
+    font-weight: 500;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.aritst-name {
+    font-size: 20px;
+}
+
+.song-detail-music-player .disk::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #edd1d8;
+}
+
+.song-detail-music-player .disk {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgba(255,255, 255, 0.08);
+    background-size:contain;
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
+}
+
+.song-detail-music-player .disk.play {
+    animation-play-state: running;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.song-detail-entry .detail-image{
+    box-shadow: 10px 10px 20px rgba(0,0, 0, 0.35);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+
+.song-detail-entry .cover-img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.song-detail-entry .song-detail-player{
+    margin-top: 40px;
+    width: auto;
+
+
+
+    /* object-fit: cover; */
+}
+
+.song-detail-entry .detail-content h2{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+    color: #333;
+    margin: 10px;
+}
+
+.song-detail-entry .detail-content h3{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+    color: #999;
+    margin-top: 0;
+
+
+}
+
+
+.create-song-form {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: #fff;
+    border-radius: 0;
+    /* position: absolute; */
+    /* margin: 30px; */
+    box-sizing: border-box;
+
+    padding: 0 25px 25px 25px;
+}
+
+.create-song-form input {
+    border-radius: 5px;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    box-sizing: border-box;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    margin: 3px 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.create-song-form button {
+    border-radius: 5px;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    box-sizing: border-box;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    margin: 3px 0;
+    font-family: 'Varela Round', sans-serif;
+    border: 1px solid #fff;
+    font-weight: 100;
+    cursor: pointer;
+
+}
+
+.create-song-form .form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    height: 220px;
+    /* background-color: #f50; */
+
+}
+
+.create-song-form ul {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#upload-song-button-click {
+
+    background-color: #f50;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+
+
+.edit-song-button, #delete-song-button {
+    border: none;
+    background: transparent;
+    color: #fff;
+    border-color: #999;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 400;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+    margin: 0 20px;
+    color: #333;
+}
+
+.delete-song-form {
+    width: 600px;
+    box-sizing: border-box;
+    padding: 20px;
+    /* background-color: #f50; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.delete-song-form h2 {
+    margin: 0;
+    color: #f50;
+}
+
+.delete-song-form p {
+    margin: 10px;
+    color: #333;
+}
+
+.delete-song-form button {
+    background: transparent;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 400;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+    margin: 0 20px;
+    color: #333;
+}
+
+.song-detail-player .rhap_container{
+    border-radius: 15px;
+    height: 85px;
+    background: rgba(255,255, 255, 0.38);
+    box-shadow: none;
+}
+
+.song-detail-player .rhap_volume-controls{
+    margin-right: 10px;
+}
+
+.song-create-time {
+    padding-top: 10px;
+    margin:auto;
+    cursor: pointer;
+}
+
+.aws-box {
+    display: flex;
+    justify-content: space-between;
+    padding:25px 25px 0 25px;
+    align-items: center;
+}
+
+.aws-box button{
+    background-color: #eea08c;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+}

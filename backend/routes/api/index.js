@@ -50,9 +50,9 @@ router.use('/artists',artistRouter);
 
 router.use('/playlists',playlistRouter);
 
-// router.post('/test',(req,res)=>{
-//     res.json({requestBody: req.body})
-// })
+router.post('/test',(req,res)=>{
+    res.json({requestBody: req.body})
+})
 
 
 

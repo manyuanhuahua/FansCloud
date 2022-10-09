@@ -1,0 +1,210 @@
+.user-page-main-container {
+    display: flex;
+    flex-direction: column;
+    background: #ebe8db;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+.user-page-main-container .left-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-bottom: 1px solid #c5bfad;
+    width: 50%;
+}
+
+
+
+/* .user-page-main-container .left-box {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 30px;
+} */
+
+.user-page-main-container .right-box{
+    min-height:90vh;
+ }
+
+.current-user-albums {
+    display: grid;
+    /* width: 940px; */
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-gap: 30px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+.current-user-albums a{
+   text-decoration: none;
+}
+
+.current-user-albums .content-entry .content-title{
+    text-decoration: none;
+   font-family: 'Varela Round', sans-serif;
+   color: #333;
+   font-size: 20px;
+   margin-top:6px
+ }
+
+.current-user-albums .content-entry .content-text{
+    text-decoration: none;
+   font-family: 'Varela Round', sans-serif;
+   color: #999;
+   font-size: 14px;
+   margin:5px;
+ }
+
+.album-content-entry-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    padding-top:5px;
+ }
+
+ .profile-button-right-box .nav-right > ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+ }
+
+ .profile-button-right-box .user-button{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    color: #eee;
+
+ }
+
+ .profile-button-right-box .nav-right ul li.nr_li{
+    margin-right: 25px;
+    cursor: pointer;
+    color: #999;
+    font-size: 20px;
+    position: relative;
+ }
+
+ .profile-button-right-box .nav-right ul li.nr_li:hover{
+    color:antiquewhite;
+ }
+
+ .profile-button-right-box .nav-right ul li img {
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+ }
+
+ .profile-button-right-box .user-button .nr_img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+
+  }
+
+.profile-button-right-box .dd_menu {
+    position: absolute;
+    top:47px;
+    right: -20px;
+    display: flex;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(221, 216, 216, 0.867);
+    border-radius: 15px;
+}
+
+
+
+.profile-button-right-box .dd_menu .dd_left{
+    background: #eee;
+    padding: 15px 10px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    list-style-type: none;
+}
+
+.profile-button-right-box .dd_menu .dd_left ul{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-button-right-box .dd_menu .dd_left li{
+    /* color: #fff; */
+    list-style-type: none;
+    margin-top: 5px;
+
+
+}
+
+.profile-button-right-box .dd_menu .dd_right li{
+    list-style-type: none;
+    margin: 5px 0;
+
+}
+
+.profile-button-right-box .dd_menu .dd_right {
+    padding: 15px 20px;
+    height: auto;
+    background-color: #fff;
+   font-family: 'Varela Round', sans-serif;
+   /* right: 0; */
+    /* text-decoration: none; */
+    /* width:50px; */
+}
+
+
+.profile-button-right-box .dd_menu .dd_right a{
+   text-decoration: none;
+   text-align: center;
+   cursor: pointer;
+    /* text-decoration: none; */
+    /* width:50px; */
+}
+
+.profile-button-right-box .dd_menu .li {
+    margin-bottom: 10px;
+    color: #868686;
+
+}
+
+.profile-button-right-box .dd_menu::before{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 80px;
+    border: 10px solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.profile-button-right-box {
+    width: fit-content;
+}
+
+.upload-album-modal button{
+    border: none;
+    background: transparent;
+    color: #333;
+    border-color: #ccc;
+    height: 30px;
+    border: 1px solid #333;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: 300;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 2px 15px;
+}
+
+.profile-button-right-box .dd_menu{
+    /* border: 2px solid #868686; */
+    right: 20px;
+}

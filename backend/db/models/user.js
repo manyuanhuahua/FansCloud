@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject(){
-      const { id, username, email }= this // context will be the user instance
+      const { id, username, email }= this
       return { id , username, email }
     }
 
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password, firstName, lastName, isArtist, previewImage}){
+    static async signup({ username, email, password, firstName, lastName, previewImage}){
       const hashedPassword = bcrypt.hashSync(password)
       const user = await User.create({
         username,
@@ -38,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
         hashedPassword,
         firstName,
         lastName,
-        isArtist,
         previewImage
       });
       return await User.scope('currentUser').findByPk(user.id)
@@ -67,7 +66,6 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         len:[4,30],
         isNotEmail(value){
-          //isEmail is a built-in method
           if(Validator.isEmail(value)){
             throw new Error('Cannot be an email')
         }
@@ -79,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       unique:false,
       validate:{
-        len:[3,256],
+        len:[3,50],
       }
     },
     hashedPassword: {
@@ -97,10 +95,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false
     },
-    isArtist:{
-      type: DataTypes.BOOLEAN,
-      allowNull:false
-    },
     previewImage:{
       type: DataTypes.STRING
     },
@@ -115,7 +109,7 @@ module.exports = (sequelize, DataTypes) => {
     scopes:{
       currentUser:{
         attributes:{
-          exclude:['hashedPassword','previewImage','createdAt','updatedAt']
+          exclude:['hashedPassword','createdAt','updatedAt']
         }
       },
       loginUser:{

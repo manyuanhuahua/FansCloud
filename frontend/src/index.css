@@ -1,0 +1,92 @@
+/* TODO Add site wide styles */
+*{
+  font-family: 'Varela Round', sans-serif;
+}
+body {
+  height: 100%;
+
+}
+.centered {
+    justify-content: center;
+  }
+
+.middled {
+    align-items: center;
+  }
+
+.new-form-holder .edit-form-holder {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+/* .menu-song li {
+
+
+} */
+
+/* .banner-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  background-color: #333333;
+  height: 20px;
+
+} */
+
+/* .banner-left ul {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+
+} */
+
+/* .banner-left ul li{
+  list-style: none;
+  margin: 0 20px;
+  position: relative;
+
+}
+
+.banner-left ul img{
+  height: 46px;
+  width: 69px;
+
+}
+.banner-left ul li a{
+  text-decoration: none;
+  color: #999999;
+  font-size: 14px;
+  font-family: 'Varela Round', sans-serif;
+
+} */
+
+/* .banner-left ul li:hover,
+.banner-left ul li.active:hover
+{
+  color: white;
+}
+
+
+
+/* .menu-song li .fa-solid fa-circle-play{
+
+} */
+
+.album-top-banner img{
+  /* background: linear-gradient(to right, transparent, mistyrose); */
+  width: 100%;
+}
+
+.user-mainContainer {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  /* background-image: url(); */
+}
+
+.user-mainContainer .user-top-banner{
+  display: flex;
+
+}

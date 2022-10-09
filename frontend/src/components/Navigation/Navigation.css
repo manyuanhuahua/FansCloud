@@ -1,0 +1,82 @@
+.user-mainContainer {
+    /* background: linear-gradient(transparent, rgba(0,0,0,0)); */
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 46px;
+    justify-content: space-between;
+    z-index: 1;
+    position: relative;
+
+}
+
+.user-mainContainer .left-banner{
+    /* background-color: darkorange; */
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    align-items: center;
+    top: 20px;
+    right: 30px;
+    width: auto;
+
+}
+
+.user-mainContainer .mid-banner {
+    display: flex;
+    align-items: center;
+    width:auto;
+    justify-content: space-between;
+    text-decoration: none;
+   
+}
+
+
+.user-mainContainer .left-banner a{
+    /* background-color: darkorange; */
+    margin-right: 10px;
+    padding-left: 10px;
+
+}
+
+.user-mainContainer .left-banner .logo{
+    /* position: absolute; */
+    width: 184px;
+    height: 46px;
+    /* max-height: 46px; */
+
+}
+
+.user-mainContainer .left-banner img{
+    /* position: absolute; */
+    padding-left: 10px;
+
+    max-height: 46px;
+    /* max-height: 46px; */
+
+}
+
+.user-mainContainer .right-banner{
+    /* background-color: darkorange; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    top: 20px;
+    right: 30px;
+
+}
+
+.left-banner a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.right-banner {
+    margin-right: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}

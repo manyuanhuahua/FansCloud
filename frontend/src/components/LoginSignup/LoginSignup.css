@@ -1,0 +1,19 @@
+section {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(to bottom, #0f0c29,#302b63,#24243e);
+}
+
+.main-form {
+    width: 450px;
+    height: 550px;
+    background: red;
+    overflow: hidden;
+    background: url(https://img.88tph.com/p1/ce/24/ziTYmQtJEemMSQARMiynhQ.jpg) no-repeat center / cover;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+}

@@ -5,7 +5,7 @@ const handleValidationErrors = (req, _res, next)=>{
     if(!validationErrors.isEmpty()){
         const errors = validationErrors
                 .array()
-                .map((error)=>(`${error.param}: ${error.msg}`));
+                .map((error)=>(`${error.msg}`));
 
         const err = Error('Validation Error');
         err.errors=errors;

@@ -21,7 +21,23 @@ const validateComment = [
 router.get('/', async (req,res,next)=>{
     const comments = await Comment.findAll()
     if(comments){
-        res.json(comments)
+        let obj = {}
+        for(let comment of comments){
+            const user = await User.findByPk(comment.userId)
+            obj[comment.id]={
+                id:comment.id,
+                user:{
+                    id: user.id,
+                    username:user.username,
+                    previewImage: user.previewImage
+                },
+                body:comment.body,
+                createdAt:comment.createdAt,
+                updatedAt:comment.updatedAt
+            }
+
+        }
+        res.json(obj)
     }else{
         res.json({})
     }
@@ -37,7 +53,7 @@ router.put('/:commentId',requireAuth, validateComment, async(req, res, next)=>{
 
     const { body } = req.body
     if(comment){
-        if(artist.isArtist && id === comment.userId){
+        if(id === comment.userId){
             comment.update({
                 body
             })
@@ -61,7 +77,7 @@ router.delete('/:commentId',requireAuth, async(req, res, next)=>{
     const userId = req.user.toJSON().id
     const artist = await User.findByPk(userId)
     if(comment){
-        if(artist.isArtist && comment.userId === userId){
+        if(comment.userId === userId){
             await comment.destroy()
             res.json({
                 message: "Successfully deleted",

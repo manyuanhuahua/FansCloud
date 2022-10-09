@@ -39,7 +39,6 @@ if(!isProduction){
 }//enable cors only in development
 
 
-
 app.use(helmet.crossOriginResourcePolicy({
     policy: 'cross-origin'
 }));

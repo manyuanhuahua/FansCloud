@@ -29,7 +29,7 @@ const validateSignup = [
         .withMessage('Please provide an email address with at least 3 characters.'),
     check('email')
         .exists({ checkFalsy: true })
-        .isLength({ max: 50 })
+        .isLength({ max: 100 })
         .withMessage('Please provide an email address with maximum 50 characters.'),
 
     check('username')
@@ -38,7 +38,7 @@ const validateSignup = [
         .withMessage('Please provide a username with at least 4 characters.'),
     check('username')
         .exists({ checkFalsy: true })
-        .isLength({ max: 30 })
+        .isLength({ max: 50 })
         .withMessage('Please provide a username with maximum 30 characters.'),
     check('username')
         .not()

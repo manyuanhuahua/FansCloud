@@ -11,8 +11,6 @@ const AlbumsBrowser = ()=>{
 
     const [isLoaded, setIsLoaded] = useState(false)
 
-
-    
     useEffect(()=>{
         dispatch(albumActions.getallbums()).then(()=>setIsLoaded(true))
       },[dispatch])

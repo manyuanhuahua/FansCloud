@@ -6,7 +6,7 @@ module.exports = {
       {
       userId: 1,
       name: 'Country list',
-      previewImage: 'https://static.vecteezy.com/system/resources/previews/007/162/562/original/beautiful-pink-mountain-silhouette-landscape-with-fog-and-sunrise-and-sunset-in-mountains-background-outdoor-and-hiking-concept-good-for-wallpaper-site-banner-cover-poster-free-vector.jpg'
+      previewImage: 'https://thumbs.dreamstime.com/b/lone-trees-landscape-17839931.jpg'
       },
       {
         userId: 1,
@@ -21,7 +21,7 @@ module.exports = {
       {
         userId: 3,
         name: 'Gym Hip-hop',
-        previewImage: 'https://static-cse.canva.com/_next/static/assets/04_quick-features_photo-editor_frames_w600xh600_ac129099278734529ec00091f892b1f35c931bd33287bd4f40686b1d4c825573.png'
+        previewImage: 'https://png.pngtree.com/thumb_back/fh260/back_pic/04/53/06/825860f62480c36.jpg'
       },
       {
           userId: 3,

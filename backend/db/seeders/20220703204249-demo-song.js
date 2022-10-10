@@ -88,7 +88,7 @@ module.exports = {
       "title": "Medicine",
       "description": "A song about some small talks between friends.",
       "audioUrl": "https://mp3.filmisongs.com/go.php?id=Medicine%20-%20Taylor%20Swift.mp3",
-      "previewImage": "https://www.instyle.com/thmb/xOBfCiAKvvxvJdZVKE8MP7_iREk=/1632x918/smart/filters:no_upscale():focal(733x879:735x881)/121020-taylor-swift-evermore-pandemic-lead-2000-a900838b2ba1440c97e85b634a0923b4.jpg"
+      "previewImage": "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2022/06/2.-Overlapping.jpg"
     },
     {
       "userId": 1,

@@ -34,7 +34,7 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password'),
         firstName: 'IO',
         lastName:'Music',
-        previewImage: 'https://static.vecteezy.com/system/resources/previews/006/008/937/original/cute-bear-says-hello-an-image-for-a-children-s-postcard-holiday-invitations-greetings-decoration-of-a-children-s-room-flat-style-illustration-for-cover-design-notebooks-mugs-fabrics-free-vector.jpg'
+        previewImage: 'https://www.pngitem.com/pimgs/m/74-741782_transparent-relationship-icon-png-public-relation-icon-png.png'
       }
     ], {});
   },

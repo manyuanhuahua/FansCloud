@@ -140,38 +140,6 @@ module.exports = {
     },
     {
       "userId": 1,
-      "albumId": 6,
-      "title": "Love Story",
-      "description": "A song about the past 7 summers.",
-      "audioUrl": "https://mp3.filmisongs.com/go.php?id=Love%20Story%20-%20Taylor%20Swift.mp3",
-      "previewImage": "https://www.nme.com/wp-content/uploads/2021/02/fearless_cover-2-696x442.jpg"
-    },
-    {
-      "userId": 1,
-      "albumId": 6,
-      "title": "Mr Perfectly Fine",
-      "description": "A song about some small talks between friends.",
-      "audioUrl": "https://mp3.filmisongs.com/go.php?id=Mr%20Perfectly%20Fine%20-%20Taylor%20Swift.mp3",
-      "previewImage": "https://pbs.twimg.com/media/E8W-o7NVEAgSDCQ.jpg"
-    },
-    {
-      "userId": 1,
-      "albumId": 7,
-      "title": "Only The Young",
-      "description": "A song about nothing.",
-      "audioUrl": "https://mp3.filmisongs.com/go.php?id=Only%20The%20Young%20Mp3%20By%20Taylor%20Swift.mp3",
-      "previewImage": "https://upload.wikimedia.org/wikipedia/en/6/69/Taylor_Swift_-_Only_the_Young.png"
-    },
-    {
-      "userId": 1,
-      "albumId": 7,
-      "title": "The Man",
-      "description": "A song about the past 7 summers.",
-      "audioUrl": "https://mp3.filmisongs.com/go.php?id=The%20Man%20Mp3%20By%20Taylor%20Swift.mp3",
-      "previewImage": "https://cdn.mamamia.com.au/wp/wp-content/uploads/2020/02/28130728/the-man-hidden-details-bouquet.jpg"
-    },
-    {
-      "userId": 1,
       "albumId": 8,
       "title": "Blank Space",
       "description": "A song about some small talks between friends.",

@@ -139,7 +139,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 90vh;
+    height: 100vh;
 
 }
 
@@ -152,7 +152,7 @@
     padding: 30px;
     overflow: hidden;
     color: #b6b196;
-    margin-top: 30px;
+
 }
 
 .song-detail-music-player .song-title,

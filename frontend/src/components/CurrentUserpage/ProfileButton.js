@@ -81,7 +81,7 @@ function ProfileButton() {
                   <ul>
                     <li key='textName'><span>{user?.username}</span></li>
                     <li key='textEmail'><span>{user?.email}</span></li>
-                    <li key='textLogout' ><span onClick={logout} style={{cursor:'hover'}}>Log Out</span></li>
+                    <li key='textLogout' ><span onClick={logout} id='logout'>Log Out</span></li>
                   </ul>
 
                 </div>

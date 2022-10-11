@@ -17,6 +17,9 @@
     width: 50%;
 }
 
+#logout{
+    cursor: pointer;
+}
 
 
 /* .user-page-main-container .left-box {

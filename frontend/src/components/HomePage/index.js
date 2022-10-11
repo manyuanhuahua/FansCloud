@@ -47,7 +47,7 @@ function HomePage(){
                 <h2>Hear what's trending for free in the FansCloud community</h2>
                 <div className='song-trending'>
                     {isLoaded &&
-                        songList.filter((song,index)=>index <= 12).map((song, index)=>{
+                        songList.filter((song,index)=>index < 12).map((song, index)=>{
                             return (
                                 <div className='song-list-container' key={index}>
                                     <NavLink to={`/songs/${song?.id}`} style={{textDecoration: 'none'}}>
@@ -90,7 +90,7 @@ function HomePage(){
                         <p>Get on FansCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
 
                     </div>
-                       
+
 
                 </div>
                 <div className='box-bottom'>

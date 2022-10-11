@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Route, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import * as songActions from '../../store/song'
 import MainAudioPlayer from '../AudioPlayer/MainAudio';
-import DeleteSong from './DeleteSongAlert';
 import DeleteSongModal from './DeleteSongModal';
 import EditSongModal from './EditSongModal';
 import { Modal } from '../../context/Modal';
@@ -57,8 +56,9 @@ const SongDetail = ()=>{
                         <div style={{textAlign:'left',margin:'0',cursor:'pointer',color:'#5a5c5b'}} onClick={()=>history.goBack()}>← Back</div>
                         <h2 className='song-title'>{song.title}</h2>
                         <p className='artist-name'>{song.Artist.username}</p>
-                        <div className='disk' style={{backgroundImage:`url(${song.previewImage})`}}>
-                          <img src={song.previewImage? song.previewImage : defaultImg}
+                        <div className='disk'>
+                          <img alt=''
+                              src={song.previewImage? song.previewImage : defaultImg}
                               onError={imgError} />
                         </div>
                             {/* <img className='cover-img'src={song.previewImage} /> */}

@@ -1,63 +1,88 @@
 import React, { useState, useEffect, useRef } from 'react';
 import WaveSurfer from 'wavesurfer.js';
-import PropTypes from 'prop-types'
-const Waveform = ({ audio }) => {
-    const containerRef = useRef();
-    const waveSurferRef = useRef({
-      isPlaying: () => false,
+
+const formWaveSurferOptions = ref => ({
+  container: ref,
+  waveColor: "#eee",
+  progressColor: "OrangeRed",
+  cursorColor: "OrangeRed",
+  barWidth: 3,
+  barRadius: 3,
+  responsive: true,
+  height: 150,
+  // If true, normalize by the maximum peak instead of 1.0.
+  normalize: true,
+  // Use the PeakCache to improve rendering speed of large waveforms.
+  partialRender: true
+});
+
+export default function Waveform() {
+  const waveformRef = useRef(null);
+  const wavesurfer = useRef(null);
+  const [playing, setPlay] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+  const url = 'https://fanscloud-bucket.s3.us-west-1.amazonaws.com/1665436580727.mp3'
+  // create new WaveSurfer instance
+  // On component mount and when url changes
+  useEffect(() => {
+    setPlay(false);
+
+    const options = formWaveSurferOptions(waveformRef.current);
+    wavesurfer.current = WaveSurfer.create(options);
+
+    wavesurfer.current.load(url);
+
+    wavesurfer.current.on("ready", function() {
+      // https://wavesurfer-js.org/docs/methods.html
+      // wavesurfer.current.play();
+      // setPlay(true);
+
+      // make sure object stillavailable when file loaded
+      if (wavesurfer.current) {
+        wavesurfer.current.setVolume(volume);
+        setVolume(volume);
+      }
     });
-    const [isPlaying, toggleIsPlaying] = useState(false);
 
-    useEffect(() => {
-      const waveSurfer = WaveSurfer.create({
-        container: containerRef.current,
-        responsive: true,
-        barWidth: 2,
-        barHeight: 10,
-        cursorWidth: 0,
-      });
-      waveSurfer.load(audio);
-      waveSurfer.on('ready', () => {
-        waveSurferRef.current = waveSurfer;
-      });
+    // Removes events, elements and disconnects Web Audio nodes.
+    // when component unmount
+    return () => wavesurfer.current.destroy();
+  }, [url]);
 
-      return () => {
-        waveSurfer.destroy();
-      };
-    }, [audio]);
+  const handlePlayPause = () => {
+    setPlay(!playing);
+    wavesurfer.current.playPause();
+  };
 
-    return (
-      <div>
-        <button
-          onClick={() => {
-            waveSurferRef.current.playPause();
-            toggleIsPlaying(waveSurferRef.current.isPlaying());
-          }}
-          type="button"
-        >
-          {isPlaying ? 'play' : 'pause'}
-        </button>
-        <div ref={containerRef} />
+  const onVolumeChange = e => {
+    const { target } = e;
+    const newVolume = +target.value;
+
+    if (newVolume) {
+      setVolume(newVolume);
+      wavesurfer.current.setVolume(newVolume || 1);
+    }
+  };
+
+  return (
+    <div>
+      <div id="waveform" ref={waveformRef} />
+      <div className="controls">
+        <button onClick={handlePlayPause}>{!playing ? "Play" : "Pause"}</button>
+        <input
+          type="range"
+          id="volume"
+          name="volume"
+          // waveSurfer recognize value of `0` same as `1`
+          //  so we need to set some zero-ish value for silence
+          min="0.01"
+          max="1"
+          step=".025"
+          onChange={onVolumeChange}
+          defaultValue={volume}
+        />
+
       </div>
-    );
-  };
-
-  Waveform.propTypes = {
-    audio: PropTypes.string.isRequired,
-  };
-
-//   const WaveSurferWrap = styled.div`
-//     display: grid;
-//     grid-template-columns: 40px 1fr;
-//     align-items: center;
-//     button {
-//       width: 40px;
-//       height: 40px;
-//       border: none;
-//       padding: 0;
-//       background-color: white;
-//     }
-//   `;
-
-
-  export default Waveform;
+    </div>
+  );
+}

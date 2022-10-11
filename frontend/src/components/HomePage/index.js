@@ -13,30 +13,30 @@ import './homepage.css'
 
 function HomePage(){
     const dispatch = useDispatch()
-    const songList = useSelector(state => state.songs);
-    const sessionUser = useSelector(state => state.session.user);
-    const [isPlay, setIsPlay] = useState(false);
+    const songs = useSelector(state => state.songs);
+
     const [isLoaded, setIsLoaded] = useState(false)
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
-    const [showModal, setShowModal] = useState(false);
 
-    let songShows= [];
+    const songList = Object.values(songs)
+
+
     useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setIsLoaded(true))
       },[dispatch])
 
-      const copyList = ()=>{
-        for (let i = 0; i<12;i++){
-            songShows.push(songList[i])
-            }
-        return songShows
-      }
 
+
+      const defaultImg = 'https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg'
+
+      const imgError = (e) =>{
+            e.target.src = defaultImg
+      }
     return isLoaded && (
         <div className='mainpage-container'>
             <div className='top-box'>
-                {/* <img src='https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg' /> */}
+
                 <div className='banner-text'>
 
                 <h2>What's next in music is first on FansCloud</h2>
@@ -46,12 +46,16 @@ function HomePage(){
             <div className='mid-box'>
                 <h2>Hear what's trending for free in the FansCloud community</h2>
                 <div className='song-trending'>
-                    {isLoaded && copyList() &&
-                        songShows.map((song, index)=>{
+                    {isLoaded &&
+                        songList.filter((song,index)=>index <= 12).map((song, index)=>{
                             return (
                                 <div className='song-list-container' key={index}>
                                     <NavLink to={`/songs/${song?.id}`} style={{textDecoration: 'none'}}>
-                                        <img className='song-entry-image' src={song?.previewImage} />
+                                        <img className='song-entry-image'
+                                        src={song.previewImage? song.previewImage : defaultImg}
+                                        style={{backgroundImage:'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'}}
+                                        onError={imgError}
+                                         />
                                     <div className='song-content' >
                                         <span className='song-title'>{song?.title}</span>
                                         <span className='song-text'>Top 50</span>
@@ -76,7 +80,7 @@ function HomePage(){
                     </div>
                     <div className='text'>
                         <h2>Never stop listening</h2>
-                        {/* <img class='color' src='https://image.shutterstock.com/image-illustration/abstract-layout-wavy-lines-cmyk-260nw-62119561.jpg'/> */}
+
                         <span>FansCloud is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One.</span>
                     </div>
                 </div>
@@ -86,7 +90,7 @@ function HomePage(){
                         <p>Get on FansCloud to connect with fans, share your sounds, and grow your audience. What are you waiting for?</p>
 
                     </div>
-                        {/* <img className='artist' src='https://a-v2.sndcdn.com/assets/images/hp_creator_image_featured_artists-798050ae.jpg'/> */}
+                       
 
                 </div>
                 <div className='box-bottom'>

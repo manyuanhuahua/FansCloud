@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import * as songActions from '../../store/song'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import "./song.css"
-function EditSongForm({song, album, hideModal}){
-    const history = useHistory()
+function EditSongForm({song, hideModal}){
+
     const {songId} = useParams()
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state=>state.session.user);
+
     const [title, setTitle] = useState(song.title);
     const [description, setDescription] = useState(song.description);
     const [audioUrl, setaudioUrl] = useState(song.audioUrl);
     const [previewImage, setPreviewImage] = useState(song.previewImage);
     const [errors, setErrors] = useState([]);
-    const [showForm, setShowForm] = useState(true)
+
 
 
 
@@ -36,17 +36,9 @@ function EditSongForm({song, album, hideModal}){
                 .catch(async (res) => {
                     const data  = await res.json();
 
-              // const data  = await res.json();
               if (data && data.errors) setErrors(data.errors);
           })
-
-
-        //   if(updaedSong)
-        //     hideModal()
         }
-;
-
-
 
 
     const handleCancelClick = (e) => {
@@ -60,7 +52,7 @@ function EditSongForm({song, album, hideModal}){
 
 
     return (
-        // <section className="new-form-holder centered middled">
+       
           <form className="create-song-form" onSubmit={handleSubmit}>
           <div className='form-content'>
 

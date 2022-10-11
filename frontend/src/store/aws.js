@@ -30,12 +30,12 @@ const awsReducer = (state = initialState, action)=>{
     let newState;
     switch(action.type){
         case GET_KEYS:{
-            newState = {...state}
+            newState = {}
             newState= action.keys
             return newState
         };
         case UPLOAD_FILE:{
-            newState = {...state}
+            newState = {}
             newState.audio= action.file
             return newState
         };

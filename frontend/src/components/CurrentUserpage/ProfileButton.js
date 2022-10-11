@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { NavLink, useHistory,Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import "./currentUser.css"
 
 function ProfileButton() {
@@ -81,7 +81,7 @@ function ProfileButton() {
                   <ul>
                     <li key='textName'><span>{user?.username}</span></li>
                     <li key='textEmail'><span>{user?.email}</span></li>
-                    <li key='textLogout'><a onClick={logout}>Log Out</a></li>
+                    <li key='textLogout' ><span onClick={logout} style={{cursor:'hover'}}>Log Out</span></li>
                   </ul>
 
                 </div>

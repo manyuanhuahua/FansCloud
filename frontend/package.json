@@ -10,6 +10,7 @@
     "js-cookie": "^3.0.1",
     "nuka-carousel": "^5.4.0",
     "react": "^18.2.0",
+    "react-audio-visualizers": "^0.1.1",
     "react-aws-s3": "^1.5.0",
     "react-dom": "^18.2.0",
     "react-playlist-player": "^1.2.6",
@@ -20,6 +21,7 @@
     "react-waveform-music-player": "^1.0.53",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "waveplayer": "^1.2.4",
     "wavesurfer-react": "^2.2.2",
     "wavesurfer.js": "^6.2.0"
   },

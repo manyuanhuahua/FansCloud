@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import * as albumActions from '../../store/album'
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+
 import "./album.css"
 
 function CreateAlbumForm({hideModal,isUpload, setIsUpload}){
-    const history = useHistory()
+
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state=>state.session.user);
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [previewImage, setPreviewImage] = useState("");
@@ -19,7 +19,7 @@ function CreateAlbumForm({hideModal,isUpload, setIsUpload}){
       e.preventDefault();
 
       setErrors([]);
-      // hideModal()
+
         const newAlbum = {
             title,
             description,

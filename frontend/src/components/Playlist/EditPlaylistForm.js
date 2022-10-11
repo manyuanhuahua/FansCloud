@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {editPlaylistThunk} from '../../store/playlist'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-function EditPlaylistForm({playlist, hideModal,editModal,setEditModal}){
+function EditPlaylistForm({playlist, hideModal}){
     const history = useHistory()
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state=>state.session.user);
+
     const [name, setName] = useState(playlist.name);
     const [previewImage, setPreviewImage] = useState(playlist.previewImage);
     const [errors, setErrors] = useState([]);
@@ -41,11 +41,6 @@ function EditPlaylistForm({playlist, hideModal,editModal,setEditModal}){
 
       })
 
-          // .then(()=>history.push(`/currentUser`));
-
-        // if(updaedAlbum){
-        //     hideModal()
-        // }
           };
 
     const handleCancelClick = (e) => {

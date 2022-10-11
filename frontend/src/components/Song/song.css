@@ -189,11 +189,17 @@
     margin: 20px auto;
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+
     box-shadow: 0 0 0 10px rgba(255,255, 255, 0.08);
     background-size:contain;
     animation: rotate 20s linear infinite;
     animation-play-state: paused;
+}
+.song-detail-music-player .disk img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .song-detail-music-player .disk.play {
@@ -408,7 +414,7 @@
 }
 
 .aws-box button{
-    background-color: #eea08c;
+    background-color: #f5bc01;
     color: #fff;
     border-radius: 5px;
     border: none;

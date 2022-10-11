@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, Route, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import {getPlaylistDetailThunk} from '../../store/playlist'
-import CreateSongModal from '../Song/CreateSongModal';
+
 import AudioPlayer, { RHAP_UI }  from 'react-h5-audio-player';
 
 
@@ -13,13 +13,11 @@ const PlaylistDetail = ()=>{
     const dispatch = useDispatch()
     const {playlistId} = useParams()
     const playlistObj = useSelector(state => state.playlists);
-    const [showModal, setShowModal] = useState(false);
-    const [editModal, setEditModal] = useState(false);
-    const [createModal, setCreateModal] = useState(false);
+
     const [currentTrack, setTrackIndex] = useState(0)
 
     const [isLoaded, setIsLoaded] = useState(false)
-    const [songLoaded, setSongLoaded] = useState(false)
+
 
 
     useEffect(()=>{

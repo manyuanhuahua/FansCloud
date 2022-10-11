@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginFormModal from '../LoginFormModal';
@@ -15,14 +15,9 @@ import './Navigation.css';
 import UserNav from '../CurrentUserpage/UserNav';
 
 
-function Navigation({ isLoaded }){
-    const dispatch = useDispatch()
+function Navigation(){
+
     const sessionUser = useSelector(state => state.session.user);
-    const [showSongs, setShowSongs] = useState(false)
-    const [showAlbums, setShowAlbums] = useState(false)
-
-    let sessionLinks;
-
 
 
     return (!sessionUser) ? (
@@ -53,7 +48,7 @@ function Navigation({ isLoaded }){
         <div className='right-banner'>
             <div className='login'><LoginFormModal /></div>
             <div className='signup'><SignUpFormModal /></div>
-            {/* <div className='demouser'><DemoUser /></div> */}
+
 
         </div>
       </div>

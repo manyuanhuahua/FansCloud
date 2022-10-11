@@ -1,6 +1,5 @@
 const AWS = require("aws-sdk");
-const { aws }= require('./config')
-const NAME_OF_BUCKET = aws.bucket;
+const NAME_OF_BUCKET = "fanscloud";
 const multer = require("multer");
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
@@ -16,12 +15,13 @@ const singlePublicFileUpload = async (file) => {
       Bucket: NAME_OF_BUCKET,
       Key,
       Body: buffer,
+      ContentType: 'audio/mpeg',
       ACL: "public-read",
     };
 
 
     const result = await s3.upload(uploadParams).promise();
-    
+
     // save the name of the file in your bucket as the key in your database to retrieve for later
     return result.Location;
   };

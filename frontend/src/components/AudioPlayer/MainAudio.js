@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 
 function MainAudioPlayer({song,rotate}) {
-    // const [isPlay, setIsPlay] = useState(false)
+
 
     return (
      <AudioPlayer
@@ -12,7 +12,7 @@ function MainAudioPlayer({song,rotate}) {
       src={song.audioUrl}
       onPlay={() => rotate()}
       onPause={()=>rotate()}
-      // other props here
+  
       />
   );
 }

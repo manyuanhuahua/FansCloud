@@ -65,6 +65,11 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 10px;
+    align-items: center;
+}
+
+.current-user-playlists .playlist-gallery-left .button-group button{
+    margin-right: 10px;
 }
 
 .current-user-playlists .playlist-gallery-right{
@@ -342,4 +347,14 @@
         font-family: 'Varela Round', sans-serif;
         padding: 2px 15px;
         padding-top: 5px;
+}
+
+.playlist-top-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playlist-top-box h2{
+   margin: 10px 0;
 }

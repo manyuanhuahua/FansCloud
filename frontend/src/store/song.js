@@ -83,7 +83,12 @@ export const getSong = () => async dispatch => {
     const response = await csrfFetch(`/api/songs`);
     if (response.ok) {
         const songs = await response.json();
-        dispatch(loadSong(songs));
+        const songObj = {}
+
+        for(let i = 0; i< songs.Songs.length;i++){
+            songObj[songs.Songs[i].id]=songs.Songs[i]
+        }
+        dispatch(loadSong(songObj));
 
 
     }
@@ -124,8 +129,8 @@ const songsReducer = (state = initialState, action)=>{
     let newState;
     switch(action.type){
         case LOAD_SONGS:{
-            newState = Object.assign({},state)
-            newState= action.songs.Songs
+            newState = {}
+            newState= action.songs
 
             return newState
         };

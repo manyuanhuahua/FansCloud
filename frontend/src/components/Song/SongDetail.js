@@ -28,7 +28,7 @@ const SongDetail = ()=>{
 
     const [isLoaded, setIsLoaded] = useState(false)
 
-   
+
 
       useEffect(()=>{
         dispatch(songActions.getSongDetail(songId))
@@ -42,6 +42,11 @@ const SongDetail = ()=>{
         disk.classList.toggle('play')
       }
 
+      const defaultImg = 'https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg'
+
+    const imgError = (e) =>{
+          e.target.src = defaultImg
+    }
 
       return isLoaded && (
 
@@ -53,6 +58,8 @@ const SongDetail = ()=>{
                         <h2 className='song-title'>{song.title}</h2>
                         <p className='artist-name'>{song.Artist.username}</p>
                         <div className='disk' style={{backgroundImage:`url(${song.previewImage})`}}>
+                          <img src={song.previewImage? song.previewImage : defaultImg}
+                              onError={imgError} />
                         </div>
                             {/* <img className='cover-img'src={song.previewImage} /> */}
                     <div className='song-create-time'>

@@ -14,6 +14,7 @@ const Explore = ()=>{
     const songs = useSelector(state => state.songs);
     const albums = useSelector(state => state.albums);
     const playlists = useSelector(state => state.playlists);
+    const songList = Object.values(songs)
 
 
     const [isLoaded, setIsLoaded] = useState(false)
@@ -72,7 +73,7 @@ const Explore = ()=>{
             <div className='explore-content-container'>
                 <h2>FansCloud Exclusives Songs</h2>
                 <Carousel wrapAround={true} slidesToShow={5} dragging={true} className='slider-container'>
-                    {[...songs].sort(() => 0.5 - Math.random()).slice(0,10).map((song,index)=>(
+                    {[...songList].sort(() => 0.5 - Math.random()).slice(0,10).map((song,index)=>(
                         <>
                         <NavLink to={`/songs/${song.id}`} key={index}>
                             <img
@@ -86,15 +87,7 @@ const Explore = ()=>{
                     )}
                 </Carousel>
             </div>
-            {/* <div className='explore-content-container'>
-                <h2>Fresh Pressed</h2>
-                <Carousel wrapAround={true} slidesToShow={5} dragging={true}>
-                    {[...s].sort(() => 0.5 - Math.random()).slice(0,10).map((album)=>(
-                            <img src={album.previewImage} style={{width:'150px',height:'150px',padding:'0 18px 30px 18px'}}/>
-                        )
-                    )}
-                </Carousel>
-            </div> */}
+
         </div>
 
       )

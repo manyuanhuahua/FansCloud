@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal } from '../../context/Modal';
 import EditSongForm from './EditSongForm';
 
 
 function EditSongModal({song, showModal, setShowModal}) {
-  // const [showModal, setShowModal] = useState(false);
+
 
 
 

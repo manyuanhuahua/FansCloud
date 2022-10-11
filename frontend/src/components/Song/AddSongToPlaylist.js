@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { createSongThunk } from '../../store/song';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
-import {uploadFilesThunk} from "../../store/aws"
 
-import { csrfFetch } from '../../store/csrf';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+
 import {addSongToPlaylistThunk,getUserPlaylistsThunk} from "../../store/playlist"
 
 
 
 
-function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModal}){
-    const history = useHistory()
+function AddSongToPlaylistForm({hideModal}){
+
     const dispatch = useDispatch();
     const songId = useParams()
-    const sessionUser = useSelector(state=>state.session.user);
+
     const playlists = useSelector(state=>state.playlists)
 
     const [errors, setErrors] = useState([]);
@@ -59,12 +57,6 @@ function AddSongToPlaylistForm({hideModal,songPlaylistModal, setSongPlaylistModa
         setErrors([]);
         hideModal()
       };
-
-
-      const options= Object.values(playlists).map((playlist)=>{
-        return {value:`${playlist.id}`,label:`${playlist.name}`}
-      })
-
 
 
 

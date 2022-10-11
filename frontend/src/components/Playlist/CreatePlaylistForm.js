@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {createPlaylistThunk} from "../../store/playlist"
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import "./playlist.css"
 
 function CreatePlaylistForm({hideModal}){
-    const history = useHistory()
+
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state=>state.session.user);
+
     const [name, setName] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [errors, setErrors] = useState([]);
@@ -17,7 +17,7 @@ function CreatePlaylistForm({hideModal}){
       e.preventDefault();
 
       setErrors([]);
-      // hideModal()
+
         const newPlaylist = {
             name,
             previewImage

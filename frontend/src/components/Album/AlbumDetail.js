@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, Route, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import * as albumActions from '../../store/album'
 import * as songActions from '../../store/song'
 import SongList from '../Song/SongList';
@@ -15,7 +15,7 @@ const AlbumDetail = ()=>{
     const album = useSelector(state => state.albums);
     const songList = useSelector(state => state.songs);
     const sessionUser = useSelector(state => state.session.user);
-    const [showModal, setShowModal] = useState(false);
+
     const [editModal, setEditModal] = useState(false);
     const [createModal, setCreateModal] = useState(false);
 
@@ -32,7 +32,7 @@ const AlbumDetail = ()=>{
     useEffect(()=>{
         dispatch(songActions.getSong()).then(()=>setSongLoaded(true))
     },[dispatch,createModal])
-   
+
 
     const defaultImg = 'https://nerdbear.com/wp-content/uploads/2022/03/Mario.jpg'
     const albumDefault = 'https://i.pinimg.com/236x/8a/b8/7b/8ab87bd6999d659eb282fbed00895d86--last-fm-album-cover.jpg'
@@ -41,14 +41,14 @@ const AlbumDetail = ()=>{
     }
 
 
-      return isLoaded && setSongLoaded && (
+      return isLoaded && songLoaded && (
             //top banner
             <div className='album-detail'>
                 <div className='album-top-box'>
                     <div className='top-box-left'>
                             <div className='left-top'>
                                 <div className='img-cropper'>
-                                    <img className='player-img'
+                                    <img className='player-img' alt=''
                                     src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-DWToqLKUNiKibSfOoTx8UrBcM9CVJ8gag&usqp=CAU' />
                                 </div>
                                 <div className='text'>
@@ -60,6 +60,7 @@ const AlbumDetail = ()=>{
                     </div>
                     <div className='top-box-right'>
                             <img className='album-cover'
+                            alt=''
                             src={album.previewImage? album.previewImage : albumDefault}
                             onError={(e) => e.target.src = albumDefault}
                             />

@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import * as songActions from '../../store/song'
 
-const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
+const DeleteSongAlert = ({albumId,song,hideModal})=>{
     const history=useHistory()
     const dispatch = useDispatch()
 
-    const [isLoaded, setIsLoaded] = useState(false)
+
     const [errors, setErrors] = useState([]);
 
-    // const songList=songs.filter((song)=>song.albumId === albumId);
+
 
     const songId = song.id
 
@@ -19,25 +19,10 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
     const handleDeleteClick = async (e) => {
       e.preventDefault();
 
-
       hideModal()
-
-        // setErrors([]);
 
         return dispatch(songActions.deleteSong(songId, albumId))
                   .then(()=>history.push(`/albums/${albumId}`))
-        //       .catch(async (res) => {
-        //        const data  = await res.json();
-
-        //     // const data  = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-
-        // })
-
-
-
-
-
       };
 
 
@@ -52,12 +37,6 @@ const DeleteSongAlert = ({albumId,song,hideModal,user})=>{
           <div className='delete-song-form'>
             <h2>Delete Song</h2>
 
-
-          {/* {errors && (
-            <ul>
-            {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-          </ul>
-          )} */}
           <p>Are you sure you want to delete {song.title}? This action cannot be undone.</p>
           <div className='button-group'>
 

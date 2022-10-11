@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import * as albumActions from '../../store/album'
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import "./album.css"
 function EditAlbumForm({album, hideModal,editModal,setEditModal}){
-    const history = useHistory()
+
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state=>state.session.user);
+
     const [title, setTitle] = useState(album.title);
     const [description, setDescription] = useState(album.description);
     const [previewImage, setPreviewImage] = useState(album.previewImage);
@@ -31,16 +30,13 @@ function EditAlbumForm({album, hideModal,editModal,setEditModal}){
       dispatch(albumActions.editAlbum(updateAlbum)).then(()=>hideModal()).catch(
               async (res) => {
 
-
               const data  = await res.json();
-
-
 
               if (data && data.errors) setErrors(data.errors);
 
           }
           )
-     
+
           };
 
     const handleCancelClick = (e) => {

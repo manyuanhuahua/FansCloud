@@ -12,7 +12,6 @@ function CreateSongModal({albumId,createModal, setCreateModal}) {
   return (
     <div>
     <i className="fa-solid fa-circle-plus" onClick={()=>setShowModal(true)}></i>
-    {/* <i class="fa-solid fa-cloud-music" onClick={() => setShowModal(true)}></i> */}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateSongForm hideModal={()=>setShowModal(false)} albumId={albumId} createModal={createModal}  setCreateModal={setCreateModal}/>

@@ -1,6 +1,6 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import { createSongThunk } from '../../store/song';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory} from 'react-router-dom';
 
 import { csrfFetch } from '../../store/csrf';
@@ -9,7 +9,7 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
     const history = useHistory()
     const dispatch = useDispatch();
 
-    const sessionUser = useSelector(state=>state.session.user);
+
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -100,9 +100,14 @@ function CreateSongForm({hideModal,albumId,createModal, setCreateModal}){
               />
 
 
-              <button type="submit">Upload Audio</button>
+
+              <button type="submit">Upload</button>
               </div>
             </form>
+            {audioFile.length > 0 ?
+                <ul>
+                  <p style={{textAlign:'center',marginBottom:'0',fontSize:'12px'}}>Audio uploaded successfully!</p>
+                </ul> :<></>}
           <form className="create-song-form" onSubmit={handleSubmit}>
             <div className='form-content'>
             <input
